@@ -1,0 +1,16 @@
+.header{
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  top:0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color:rgb(190, 185, 185) ;
+}
