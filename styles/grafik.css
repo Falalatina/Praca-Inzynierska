@@ -1,0 +1,184 @@
+.grafik-container{
+  display: flex;
+  min-width: 400px;
+  background-color: rgb(255, 255, 255);
+}
+.week-container{
+  display: flex;
+  z-index: 100;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px 8px 10px;
+  border-bottom: 1px solid rgb(160, 160, 160);
+}
+
+.week-container .day-in-week{
+  margin-right: 15px;
+  border: 1px solid gray;
+  padding: 10px 15px 10px 15px;
+  border-radius: 2px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  min-width: 35px;
+  flex: 1;
+}
+
+@media (max-width: 800px){
+  .week-container .day-in-week,
+  .shift-container .tooltip,
+  .first-shift,
+  .second-shift,
+  .third-shift,
+  .workers-container,
+  .workers-container .worker{
+   font-size: 10px;
+   transition: font-size .05s;
+  }
+}
+
+@media (max-width: 801px) and (min-width: 999px){
+  .week-container .day-in-week,
+  .shift-container .tooltip,
+  .first-shift,
+  .second-shift,
+  .third-shift,
+  .workers-container{
+    font-size: 14px;
+    transition: font-size .1s;
+   }
+}
+
+@media (min-width: 1000px){
+  .week-container .day-in-week,
+  .shift-container .tooltip,
+  .first-shift,
+  .second-shift,
+  .third-shift,
+  .workers-container{
+   font-size: 16px;
+   transition: font-size .05s;
+  }
+
+}
+
+.day-in-week .date-time-day,
+.shift-container .tooltip{
+  border: 1px solid rgb(185, 185, 185);
+  background-color: rgba(150, 150, 150, 0.726);
+  color: white;
+  position: absolute;
+  padding: 4px 8px 4px 8px;
+  border-radius: 2px;
+  bottom: -35px;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.day-in-week:hover .date-time-day,
+.shift-container:hover .tooltip{
+  opacity: 1;
+}
+
+.grid-shift-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 25px 10px 10px;
+  background-color: rgb(236, 236, 236);
+}
+
+.shift-container{
+  background-color: rgb(216, 226, 223);
+  min-height: 50px;
+  min-width: 63px;
+  margin-top: 10px;
+  border-radius: 2px;
+  border: 2px dotted rgb(212, 212, 212);
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+}
+
+.shift-container .tooltip{
+  z-index: 200;
+  position: absolute;
+}
+
+.off-day,
+.first-shift,
+.second-shift,
+.third-shift{
+  flex-direction: row;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(185, 148, 255, 0.322);
+  padding: 2px 4px 2px 4px;
+  color: rgb(26, 0, 75);
+  border-radius: 20px;
+  border: 1px solid rgb(26, 0, 75);
+  box-shadow: 0px 0px 5px rgb(255, 255, 255);
+  width: 150px;
+  white-space: nowrap;
+  height: 32px;
+ }
+
+ .off-day{
+  font-weight: 900;
+  font-size: 30px;
+  background-color: rgba(235, 158, 158, 0.452);
+  color: red;
+  border: 1px solid red;
+  box-shadow: 0px 0px 5px rgb(255, 255, 255);
+}
+
+.tooltip{
+  font-weight: normal;
+  font-size: 14px;
+}
+
+
+.second-shift{
+  background-color: rgba(148, 255, 205, 0.322);
+  color: rgb(0, 68, 36);
+  border: 1px solid rgb(0, 68, 36);
+}
+
+.third-shift{
+  background-color: rgba(0, 8, 117, 0.829);
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+}
+
+
+
+.workers-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 89px;
+  cursor: pointer;
+  pointer-events: none;
+  justify-content: center;
+  vertical-align: bottom;
+}
+
+.workers-container .worker{
+  margin-bottom: 22px;
+  border-bottom: 1px solid gray;
+  height: 35px;
+  padding: 10px;
+  font-weight: 500;
+}
