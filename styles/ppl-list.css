@@ -1,0 +1,20 @@
+.people-list-container{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.header-secion-list-ppl{
+  display: flex;
+}
+.header-secion-list-ppl div{
+  margin-right: 10px;
+}
+.person-on-list{
+  display: flex;
+}
+.person-on-list div{
+  margin-right: 10px;
+}
+.person-on-list .preferences{
+  display: flex;
+  flex-direction: column;
+}
