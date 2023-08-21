@@ -12,6 +12,7 @@
 @media (max-width: 800px){
   .sidebar{
     opacity: 0;
+    pointer-events: none;
   }
 }
 
