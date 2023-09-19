@@ -12,10 +12,17 @@ const renderPeopleOnList = () => {
   };
 
   const clearAllItems = () => {
-    setPerson([]);
+    setPeople([]);
   };
   return (
     <section className="x ">
+      <div className="header-secion-list-ppl">
+        <div></div>
+        <div>Name</div>
+        <div>Stage</div>
+        <div>Shifts</div>
+        <div></div>
+      </div>
       <div className="people-list-container">
         {people.map((person) => {
           const { id, name, img, stage, shifts } = person;
@@ -26,6 +33,7 @@ const renderPeopleOnList = () => {
               <div>{stage}</div>
               <div>{shifts}</div>
               <button
+                type="button"
                 onClick={() => removeItem(id)}
                 style={{ marginRight: "1rem" }}
               >
@@ -35,7 +43,9 @@ const renderPeopleOnList = () => {
           );
         })}
       </div>
-      <button>Delete all </button>
+      <button type="button" onClick={clearAllItems}>
+        Delete all
+      </button>
     </section>
   );
 };
