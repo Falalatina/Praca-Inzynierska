@@ -1,4 +1,4 @@
-.people-list-container{
+.people-list-container {
   display: grid;
   grid-template-columns: 1fr;
   background-color: white;
@@ -9,49 +9,49 @@
   justify-content: left;
 }
 .header-secion-list-ppl,
-.person-on-list{
+.person-on-list {
   display: flex;
   align-items: center;
   height: 50px;
-  justify-content: space-between; 
+  justify-content: space-between;
   max-width: 1410px;
 }
 .header-secion-list-ppl div,
-.person-on-list div{
+.person-on-list div {
   margin-right: 30px;
   min-width: 60px;
   flex-shrink: 0;
 }
-.person-on-list .preferences{
+.person-on-list .preferences {
   display: flex;
   flex-direction: column;
 }
 .header-secion-list-ppl .name,
-.person-on-list .name{
+.person-on-list .name {
   padding-right: 135px;
   width: 160px;
   max-width: 350px;
   margin-right: 20px;
 }
-.number{
+.number {
   width: 60px;
 }
-.preferences-head{
+.preferences-head {
   width: 102px;
 }
-.person-on-list{
+.person-on-list {
   border: 1px solid gray;
   border-radius: 60px;
   margin-bottom: 10px;
   position: relative;
 }
-.name{
+.name {
   display: flex;
   margin: 10px;
   justify-content: space-between;
   align-items: center;
 }
-.profilowe{
+.profilowe {
   object-fit: cover;
   object-position: center;
   width: 40px;
@@ -60,7 +60,7 @@
   margin-right: 15px;
   margin-left: 10px;
 }
-.details{
+.details {
   align-items: top;
   display: flex;
   background-color: rgb(52, 165, 127);
@@ -72,20 +72,20 @@
   border-radius: 6px;
   z-index: 200;
 }
-.details-left{
+.details-left {
   margin: 10px;
 }
-.details-right{
+.details-right {
   margin: 10px;
 }
-.change-btn{
+.change-btn {
   border: none;
   padding: 4px 10px 4px 10px;
   cursor: pointer;
   border-radius: 4px;
 }
-.change-btn:hover{
+.change-btn:hover {
   background-color: rgb(69, 161, 131);
-  border:1px solid white;
+  border: 1px solid white;
   color: white;
 }
