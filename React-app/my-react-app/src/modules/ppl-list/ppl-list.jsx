@@ -4,7 +4,7 @@ import { data } from "./data";
 import "./ppl-list.css";
 import avatar from "../../assets/images/default-avatar.svg";
 
-const renderPeopleOnList = () => {
+const RenderPeopleOnList = () => {
   const [people, setPeople] = useState(data);
 
   const removeItem = (id) => {
@@ -52,4 +52,4 @@ const renderPeopleOnList = () => {
   );
 };
 
-export default renderPeopleOnList;
+export default RenderPeopleOnList;
