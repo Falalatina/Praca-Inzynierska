@@ -5,8 +5,10 @@
   margin-top: 0.5rem;
   padding: 0.5rem;
   border-radius: 6px;
-  min-width: 400px;
+  width: 90vw;
+  max-width: 1410px;
   justify-content: left;
+  position: relative;
 }
 .header-secion-list-ppl,
 .person-on-list {
@@ -14,12 +16,13 @@
   align-items: center;
   height: 3rem;
   justify-content: space-between;
+  width: 90vw;
   max-width: 1410px;
 }
 .header-secion-list-ppl div,
 .person-on-list div {
   margin-right: 30px;
-  min-width: 60px;
+  max-width: var(--fixed-width);
   flex-shrink: 0;
 }
 .person-on-list .preferences {
@@ -94,4 +97,66 @@
 .header-secion-list-ppl {
   background-color: white;
   font-weight: 600;
+}
+
+/* form */
+.form {
+  width: 90vw;
+  max-width: var(--fixed-width);
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-2);
+  padding: 2rem;
+  margin: 3rem auto;
+}
+.form-label {
+  display: block;
+  font-size: var(--small-text);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+}
+.form-input,
+.form-textarea {
+  width: 90%;
+  padding: 0.375rem 0.7rem;
+  border-radius: var(--borderRadius);
+  background: var(--backgroundColor);
+  border: 1px solid var(--black);
+}
+
+.form-row {
+  margin-bottom: 1rem;
+}
+
+.form-textarea {
+  height: 7rem;
+}
+::placeholder {
+  font-family: inherit;
+  color: var(--grey-400);
+}
+.form-alert {
+  color: var(--red-dark);
+  letter-spacing: var(--letterSpacing);
+  text-transform: capitalize;
+}
+/* extra styles */
+.form .form-label {
+  text-align: left;
+}
+.form .btn-block {
+  margin-top: 0.5rem;
+}
+
+/* /// */
+
+.btn-delete {
+  position: absolute;
+  background-color: rgb(240, 194, 194);
+  border: 1px solid red;
+  width: 10rem;
+  margin-top: 0.5rem;
+  bottom: -2rem;
+  right: 1.5rem;
 }
