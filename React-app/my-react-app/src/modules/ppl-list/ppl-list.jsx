@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { data } from "./data";
 import "./ppl-list.css";
+import avatar from "../../assets/images/default-avatar.svg";
 
 const renderPeopleOnList = () => {
   const [people, setPeople] = useState(data);
@@ -26,9 +27,10 @@ const renderPeopleOnList = () => {
       <div className="people-list-container">
         {people.map((person) => {
           const { id, name, img, stage, shifts } = person;
+          const image = img ?? avatar;
           return (
             <section key={id} className="person-on-list">
-              <img className="profilowe" src={img} />
+              <img className="profilowe" src={image} />
               <div>{name}</div>
               <div>{stage}</div>
               <div>{shifts}</div>

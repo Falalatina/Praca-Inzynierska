@@ -18,4 +18,12 @@ export const data = [
     shifts: 3,
     preferences: "no W",
   },
+  {
+    id: 3,
+
+    name: "Barnaba Miotła",
+    stage: "Helper",
+    shifts: 3,
+    preferences: "no W",
+  },
 ];
