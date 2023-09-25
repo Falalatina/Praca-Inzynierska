@@ -53,9 +53,10 @@ const RenderPeopleOnList = () => {
               <div>{stage}</div>
               <div>{shifts}</div>
               <button
+                className="btn"
                 type="button"
                 onClick={() => removeItem(id)}
-                style={{ marginRight: "1rem" }}
+                style={{ marginRight: "1rem", backgroundColor: "red" }}
               >
                 Delete
               </button>
@@ -63,13 +64,22 @@ const RenderPeopleOnList = () => {
           );
         })}
 
-        <button className="btn-delete" type="button" onClick={clearAllItems}>
+        <button
+          className="btn-delete btn"
+          style={{ backgroundColor: "red" }}
+          type="button"
+          onClick={clearAllItems}
+        >
           Delete all
         </button>
 
         <section className="person-on-list">
           <div></div>
-          <button type="button" onClick={() => setToggle(!toggle)}>
+          <button
+            className="btn"
+            type="button"
+            onClick={() => setToggle(!toggle)}
+          >
             {toggle ? "Hide Add User" : "Add User"}
           </button>
           <div></div>
