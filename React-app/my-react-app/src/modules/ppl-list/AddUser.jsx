@@ -4,25 +4,30 @@ import { data } from "./data";
 import "./ppl-list.css";
 
 const AddUser = () => {
-  const [people, setPeople] = useState(data);
-  const [name, setName] = useState("");
-  const [stage, setStage] = useState("");
-  const [shifts, setShifts] = useState("");
+  const [user, setUser] = useState({
+    name: "",
+    stage: "",
+    shifts: "",
+  });
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name) return;
+    if (!user.name) return;
     const fakeId = Date.now();
+    const name = user.name;
+    const stage = user.stage;
+    const shifts = user.shifts;
     const newPerson = { id: fakeId, name, stage, shifts };
     const updatePeople = [...people, newPerson];
     setPeople(updatePeople);
 
-    console.log(name);
-    setName("");
-    setStage("");
-    setShifts("");
+    // console.log(name);
+    setUser({ name: "", stage: "", shifts: "" });
   };
-
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h3>Add User</h3>
@@ -34,8 +39,9 @@ const AddUser = () => {
           type="text"
           className="form-input"
           id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={user.name}
+          onChange={handleChange}
+          name="name"
         />
       </div>
 
@@ -47,8 +53,9 @@ const AddUser = () => {
           type="text"
           className="form-input"
           id="stage"
-          value={stage}
-          onChange={(e) => setStage(e.target.value)}
+          value={user.stage}
+          onChange={handleChange}
+          name="stage"
         />
       </div>
 
@@ -60,8 +67,9 @@ const AddUser = () => {
           type="text"
           className="form-input"
           id="shifts"
-          value={shifts}
-          onChange={(e) => setShifts(e.target.value)}
+          value={user.shifts}
+          onChange={handleChange}
+          name="shifts"
         />
       </div>
 
