@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { data } from "./data";
+import { data, shiftsSystem } from "./data";
 import "./ppl-list.css";
 import avatar from "../../assets/images/default-avatar.svg";
 
@@ -127,14 +127,17 @@ const RenderPeopleOnList = () => {
             <label htmlFor="shifts" className="form-label">
               shifts
             </label>
-            <input
-              type="text"
-              className="form-input"
+            <select
               id="shifts"
               value={user.shifts}
               onChange={handleChange}
               name="shifts"
-            />
+              className="form-input"
+            >
+              {shiftsSystem.map((shift) => {
+                return <option key={shift}>{shift}</option>;
+              })}
+            </select>
           </div>
 
           <button type="submit" className="btn ">
