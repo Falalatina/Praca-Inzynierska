@@ -2,12 +2,14 @@
   display: flex;
   min-width: 400px;
   background-color: rgb(255, 255, 255);
-
   background: var(--white);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
   padding: 2rem;
   margin: 3rem auto;
+  overflow-x: scroll;
+  width: 90vw;
+  max-width: 1410px;
 }
 .week-container {
   z-index: 100;
