@@ -1,7 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import { data, shiftsSystem } from "./data";
-import "./ppl-list.css";
+import { shiftsSystem } from "./data";
+import "./UserList";
 
 const AddUser = ({ user, handleChange, handleSubmit }) => {
   return (

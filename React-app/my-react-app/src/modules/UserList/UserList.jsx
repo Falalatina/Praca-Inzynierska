@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { data, shiftsSystem } from "./data";
-import "./ppl-list.css";
+import "./UserList.css";
 import avatar from "../../assets/images/default-avatar.svg";
 import AddUser from "./AddUser";
+import Graphic from "./Graphic";
 
 const RenderPeopleOnList = () => {
   const [people, setPeople] = useState(data);
@@ -43,6 +44,7 @@ const RenderPeopleOnList = () => {
   };
   return (
     <section className="x ">
+      <Graphic />
       <div className="header-secion-list-ppl">
         <div></div>
         <div>Name</div>

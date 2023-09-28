@@ -1,4 +1,4 @@
-import RenderPeopleOnList from "./ppl-list";
+import RenderPeopleOnList from "./UserList";
 
 import React from "react";
 

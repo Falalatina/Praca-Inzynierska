@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PplList from "./modules/ppl-list";
+import PplList from "./modules/UserList";
 import "./App.css";
 
 function App() {
