@@ -42,7 +42,7 @@ const Graphic = ({ user, people }) => {
           {people.map((person) => {
             const { name } = person;
             return (
-              <div className="grid-shift-container">
+              <div className="grid-shift-container" key={name}>
                 <div className="workers-container">
                   <div className="worker">
                     <h3>{name}</h3>

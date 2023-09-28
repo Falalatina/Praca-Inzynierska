@@ -12,12 +12,10 @@ const Header = () => {
         <div>
           <label className="selector">
             <select>
-              <option selected value="1">
-                Home
-              </option>
-              <option value="2">Educational institution</option>
-              <option value="3">Undertaking</option>
-              <option value="4">Personal</option>
+              <option>Home</option>
+              <option>Educational institution</option>
+              <option>Undertaking</option>
+              <option>Personal</option>
             </select>
           </label>
         </div>
