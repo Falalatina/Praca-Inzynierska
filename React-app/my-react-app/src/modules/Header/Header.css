@@ -1,0 +1,70 @@
+.header {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(190, 185, 185);
+}
+
+.left-section {
+  display: flex;
+}
+
+.hamburger-menu {
+  height: 24px;
+  margin-left: 24px;
+  margin-right: 20px;
+}
+
+.middle-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 2;
+  margin-left: 70px;
+  margin-right: 35px;
+  max-width: 600px;
+}
+
+.middle-section button,
+.middle-section select {
+  padding: 8px 8px 8px 35px;
+  border: none;
+  background-color: white;
+  border-right: 1px solid gray;
+  cursor: pointer;
+  font-size: 16px;
+  width: 110px;
+  border-radius: 8px 0px 0px 8px;
+  transition: background-color 0.2s;
+  outline: none;
+  appearance: none;
+}
+
+.middle-section button:hover,
+.middle-section select:hover,
+.middle-section option:hover {
+  background-color: aquamarine;
+}
+
+.middle-section option {
+  background-color: aquamarine;
+}
+
+.right-section {
+  display: flex;
+  width: 180px;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
