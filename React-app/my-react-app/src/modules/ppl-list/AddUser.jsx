@@ -1,33 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { data } from "./data";
+import { data, shiftsSystem } from "./data";
 import "./ppl-list.css";
 
-const AddUser = () => {
-  const [user, setUser] = useState({
-    name: "",
-    stage: "",
-    shifts: "",
-  });
-
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!user.name) return;
-    const fakeId = Date.now();
-    const name = user.name;
-    const stage = user.stage;
-    const shifts = user.shifts;
-    const newPerson = { id: fakeId, name, stage, shifts };
-    const updatePeople = [...people, newPerson];
-    setPeople(updatePeople);
-
-    // console.log(name);
-    setUser({ name: "", stage: "", shifts: "" });
-  };
+const AddUser = ({ user, handleChange, handleSubmit }) => {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h3>Add User</h3>
@@ -63,14 +39,18 @@ const AddUser = () => {
         <label htmlFor="shifts" className="form-label">
           shifts
         </label>
-        <input
-          type="text"
-          className="form-input"
+        <select
           id="shifts"
           value={user.shifts}
           onChange={handleChange}
           name="shifts"
-        />
+          className="form-input"
+        >
+          <option></option>
+          {shiftsSystem.map((shift) => {
+            return <option key={shift}>{shift}</option>;
+          })}
+        </select>
       </div>
 
       <button type="submit" className="btn ">
