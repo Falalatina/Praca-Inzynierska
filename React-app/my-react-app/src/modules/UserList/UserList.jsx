@@ -1,39 +1,17 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { data, shiftsSystem } from "./data";
 import "./UserList.css";
 import avatar from "../../assets/images/default-avatar.svg";
 import AddUser from "./AddUser";
 import Graphic from "./Graphic";
 
-const RenderPeopleOnList = () => {
-  const [people, setPeople] = useState(data);
-  const [toggle, setToggle] = useState(false);
-  const [user, setUser] = useState({
-    name: "",
-    stage: "",
-    shifts: "",
-  });
-
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!user.name) return;
-    const fakeId = Date.now();
-    const name = user.name;
-    const stage = user.stage;
-    const shifts = user.shifts;
-    const newPerson = { id: fakeId, name, stage, shifts };
-    const updatePeople = [...people, newPerson];
-    setPeople(updatePeople);
-
-    // console.log(name);
-    setUser({ name: "", stage: "", shifts: "" });
-  };
-
+const RenderPeopleOnList = ({
+  people,
+  toggle,
+  user,
+  handleChange,
+  handleSubmit,
+  setPeople,
+  setToggle,
+}) => {
   const removeItem = (id) => {
     const newPeople = people.filter((person) => person.id !== id);
     setPeople(newPeople);
@@ -44,15 +22,16 @@ const RenderPeopleOnList = () => {
   };
   return (
     <section className="x ">
-      <Graphic />
-      <div className="header-secion-list-ppl">
-        <div></div>
-        <div>Name</div>
-        <div>Stage</div>
-        <div>Shifts</div>
-        <div></div>
-      </div>
+      <Graphic user={user} people={people} />
+
       <div className="people-list-container">
+        <div className="header-secion-list-ppl">
+          <div></div>
+          <div>Name</div>
+          <div>Stage</div>
+          <div>Shifts</div>
+          <div></div>
+        </div>
         {people.map((person) => {
           const { id, name, img, stage, shifts } = person;
           const image = img ?? avatar;

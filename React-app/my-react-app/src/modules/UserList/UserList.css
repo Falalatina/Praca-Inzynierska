@@ -9,7 +9,21 @@
   max-width: 1410px;
   justify-content: left;
   position: relative;
+
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-2);
+  padding: 1rem;
+  margin: 1rem auto;
 }
+.header-secion-list-ppl {
+  width: 90vw;
+  max-width: var(--fixed-width);
+  background: var(--white);
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-2);
+}
+
 .header-secion-list-ppl,
 .person-on-list {
   display: flex;
