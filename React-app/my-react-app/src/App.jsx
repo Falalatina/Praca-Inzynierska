@@ -1,11 +1,8 @@
-import { useState } from "react";
-import UserList from "./modules/UserList";
-import Header from "./modules/Header";
 import "./App.css";
+import UserList from "./modules/UserList";
+import Header from "./modules/HeaderMod";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="container">
       <Header />
