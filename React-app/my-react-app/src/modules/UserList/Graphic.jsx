@@ -8,7 +8,7 @@ const Graphic = ({ user, people }) => {
       <div className="grafik-container">
         <div>
           <div className="week-container">
-            <div className="name"> Name</div>
+            <div className="name"> User</div>
             <div className="day-in-week">
               Monday
               <div className="date-time-day">21.08</div>

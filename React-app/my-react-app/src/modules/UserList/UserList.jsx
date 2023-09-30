@@ -2,16 +2,31 @@ import "./UserList.css";
 import avatar from "../../assets/images/default-avatar.svg";
 import AddUser from "./AddUser";
 import Graphic from "./Graphic";
+import { useGlobalContext } from "../../Context";
+import { useState } from "react";
 
-const RenderPeopleOnList = ({
-  people,
-  toggle,
-  user,
-  handleChange,
-  handleSubmit,
-  setPeople,
-  setToggle,
-}) => {
+const RenderPeopleOnList = () => {
+  const [toggle, setToggle] = useState(false);
+  const { user, setUser, people, setPeople } = useGlobalContext();
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!user.name) return;
+    const fakeId = Date.now();
+    const name = user.name;
+    const stage = user.stage;
+    const shifts = user.shifts;
+    const newPerson = { id: fakeId, name, stage, shifts };
+    const updatePeople = [...people, newPerson];
+    setPeople(updatePeople);
+
+    // console.log(name);
+    setUser({ name: "", stage: "", shifts: "" });
+  };
+
   const removeItem = (id) => {
     const newPeople = people.filter((person) => person.id !== id);
     setPeople(newPeople);
@@ -75,11 +90,7 @@ const RenderPeopleOnList = ({
         </section>
       </div>
       {toggle ? (
-        <AddUser
-          user={user}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
+        <AddUser handleChange={handleChange} handleSubmit={handleSubmit} />
       ) : (
         <div> </div>
       )}

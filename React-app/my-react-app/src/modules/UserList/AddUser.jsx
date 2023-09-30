@@ -1,8 +1,10 @@
 import React from "react";
 import { shiftsSystem } from "./data";
 import "./UserList";
+import { useGlobalContext } from "../../Context";
 
-const AddUser = ({ user, handleChange, handleSubmit }) => {
+const AddUser = ({ handleChange, handleSubmit }) => {
+  const { user } = useGlobalContext();
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h3>Add User</h3>
