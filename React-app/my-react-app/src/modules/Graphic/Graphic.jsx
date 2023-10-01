@@ -6,6 +6,7 @@ import UserDetail from "./AdditionalInfo/UserDetail";
 
 import { InfoIcon } from "@chakra-ui/icons";
 import { Tooltip } from "@chakra-ui/react";
+import { Fade, ScaleFade, Slide, SlideFade, Collapse } from "@chakra-ui/react";
 
 const Graphic = () => {
   const { people } = useGlobalContext();
@@ -67,14 +68,17 @@ const Graphic = () => {
               const { id, name } = person;
               return (
                 <div className="grid-shift-container" key={name}>
-                  <div className="workers-container">
+                  <div
+                    className="workers-container"
+                    onClick={() => renderInfo(id)}
+                  >
                     <Tooltip
                       hasArrow
                       label="User Details "
                       placement="top-start"
                       bg="gray.400"
                     >
-                      <div className="worker" onClick={() => renderInfo(id)}>
+                      <div className="worker">
                         <h4>{name}</h4>
                       </div>
                     </Tooltip>

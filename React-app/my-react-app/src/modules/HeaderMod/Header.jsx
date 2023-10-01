@@ -2,6 +2,17 @@ import React from "react";
 import hamburgerMenu from "../../assets/icons/hamburger-menu.svg";
 import "./Header.css";
 
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
+
 const Header = () => {
   return (
     <header className="header">
@@ -10,14 +21,14 @@ const Header = () => {
       </div>
       <div className="middle-section">
         <div>
-          <label className="selector">
-            <select>
-              <option>Home</option>
-              <option>Educational institution</option>
-              <option>Undertaking</option>
-              <option>Personal</option>
-            </select>
-          </label>
+          <Menu className="selector">
+            <MenuButton>Pages</MenuButton>
+            <MenuList>
+              <MenuItem>Educational institution</MenuItem>
+              <MenuItem>Undertaking</MenuItem>
+              <MenuItem>Personal</MenuItem>
+            </MenuList>
+          </Menu>
         </div>
 
         <button>FaQ</button>

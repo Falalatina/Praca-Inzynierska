@@ -87,7 +87,11 @@ const RenderPeopleOnList = () => {
         </section>
       </div>
       {toggle ? (
-        <AddUser handleChange={handleChange} handleSubmit={handleSubmit} />
+        <AddUser
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          toggle={toggle}
+        />
       ) : (
         <div> </div>
       )}

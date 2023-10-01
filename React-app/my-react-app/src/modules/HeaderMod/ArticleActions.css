@@ -4,6 +4,7 @@
   position: fixed;
   z-index: 600;
   top: 60px;
-  left: 10vw;
+  left: 0;
   right: 0;
+  padding-left: 10vw;
 }
