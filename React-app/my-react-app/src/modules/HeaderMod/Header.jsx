@@ -19,7 +19,7 @@ const Header = () => {
             </select>
           </label>
         </div>
-        <button>Filter</button>
+
         <button>FaQ</button>
       </div>
       <div className="right-section"></div>

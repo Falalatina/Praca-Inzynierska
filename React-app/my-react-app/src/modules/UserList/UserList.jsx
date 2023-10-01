@@ -1,7 +1,6 @@
 import "./UserList.css";
 import avatar from "../../assets/images/default-avatar.svg";
 import AddUser from "./AddUser";
-import Graphic from "./Graphic";
 import { useGlobalContext } from "../../Context";
 import { useState } from "react";
 
@@ -37,8 +36,6 @@ const RenderPeopleOnList = () => {
   };
   return (
     <section className="x ">
-      <Graphic user={user} people={people} />
-
       <div className="people-list-container">
         <div className="header-secion-list-ppl">
           <div></div>

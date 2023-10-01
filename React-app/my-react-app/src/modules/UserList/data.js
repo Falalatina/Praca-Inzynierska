@@ -7,24 +7,24 @@ export const data = [
     img: img1,
     name: "Magdalena Mops",
     stage: "leader",
-    shifts: 3,
-    preferences: "no M",
+    shifts: "Fixed shifts",
+    preferences: { yes: "Mondays", no: "Fridays" },
   },
   {
     id: 2,
     img: img2,
     name: "Benedykta Kula",
     stage: "Helper",
-    shifts: 3,
-    preferences: "no W",
+    shifts: "On-call shifts",
+    preferences: { yes: "", no: "Weekends" },
   },
   {
     id: 3,
 
     name: "Barnaba Miotła",
     stage: "Helper",
-    shifts: 3,
-    preferences: "no W",
+    shifts: "On-call shifts",
+    preferences: { yes: "", no: "" },
   },
 ];
 

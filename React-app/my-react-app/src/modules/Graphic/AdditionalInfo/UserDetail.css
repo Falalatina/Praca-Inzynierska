@@ -1,0 +1,38 @@
+.user-detail-container {
+  width: 90vw;
+  max-width: var(--fixed-width);
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-2);
+  padding: 1rem;
+  margin: 3rem auto;
+  position: relative;
+}
+
+.info-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.btn-edit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20%;
+  margin: 10px;
+}
+
+.preferences-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.btn-return {
+  position: absolute;
+  margin: 10px;
+  top: 0;
+  right: 0;
+  color: red;
+  background-color: rgb(255, 207, 207);
+  border-radius: 0.5rem;
+}

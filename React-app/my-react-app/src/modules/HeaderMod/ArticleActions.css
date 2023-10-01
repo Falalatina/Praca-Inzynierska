@@ -1,0 +1,9 @@
+.aa-container {
+  height: 20px;
+  background-color: white;
+  position: fixed;
+  z-index: 600;
+  top: 60px;
+  left: 10vw;
+  right: 0;
+}

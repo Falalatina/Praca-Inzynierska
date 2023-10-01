@@ -4,24 +4,39 @@
   bottom: 0;
   top: 60px;
   background-color: rgb(252, 252, 252);
-  width: 72px;
+  width: 8vw;
   z-index: 200;
   padding-top: 5px;
+  margin-right: 5vw;
 }
 
 @media (max-width: 800px) {
   .sidebar {
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.1s;
   }
 }
 
 @media (min-width: 1000px) {
   .sidebar {
-    width: 100px;
+    left: 1;
+
+    transition: left 0.1s;
   }
   .sidebar-link div {
     font-size: 12px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .sidebar {
+    left: 2;
+    transition: left 0.1s;
+  }
+  .sidebar-link div {
+    font-size: 16px;
+    transition: font-size 0.2s;
   }
 }
 

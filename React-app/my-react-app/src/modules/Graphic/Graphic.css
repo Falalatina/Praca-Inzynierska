@@ -1,6 +1,5 @@
 .grafik-container {
   display: flex;
-
   background-color: rgb(255, 255, 255);
   background: var(--white);
   border-radius: var(--borderRadius);
@@ -8,6 +7,7 @@
   padding: 2rem;
   margin: 3rem auto;
   overflow-x: auto;
+
   width: 90vw;
   max-width: 1410px;
 }
@@ -45,7 +45,7 @@
   flex: 1;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .week-container .day-in-week,
   .shift-container .tooltip,
   .first-shift,
@@ -53,11 +53,11 @@
   .third-shift,
   .workers-container,
   .workers-container .worker {
-    font-size: 10px;
+    font-size: 9px;
   }
 }
 
-@media (max-width: 801px) and (min-width: 999px) {
+@media (max-width: 901px) and (min-width: 1499px) {
   .week-container .day-in-week,
   .shift-container .tooltip,
   .first-shift,
@@ -68,7 +68,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1500px) {
   .week-container .day-in-week,
   .shift-container .tooltip,
   .first-shift,
@@ -181,10 +181,20 @@
   min-width: 63px;
   margin-top: 10px;
   border-radius: 2px;
-  border: 2px dotted rgb(212, 212, 212);
+  border: 1px solid rgb(212, 212, 212);
   position: relative;
   justify-content: center;
   align-items: center;
   display: flex;
   flex: 1;
+  cursor: pointer;
+}
+
+.workers-container:hover {
+  box-shadow: var(--shadow-2);
+}
+
+.content {
+  max-height: 30vw;
+  overflow-y: auto;
 }

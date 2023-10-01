@@ -7,13 +7,27 @@ import sun from "../../assets/icons/sun-svgrepo-com.svg";
 import pencil from "../../assets/icons/pencil-svgrepo-com.svg";
 
 const Sidebar = () => {
+  const goTop = () => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const goToWorkerList = () => {
+    window.scroll({
+      top: 700,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <nav className="sidebar">
-      <div className="sidebar-link">
+      <div className="sidebar-link" onClick={goTop}>
         <img src={calendar} />
         <div>Schedule</div>
       </div>
-      <div className="sidebar-link">
+      <div className="sidebar-link" onClick={goToWorkerList}>
         <img src={idCard} />
         <div>Workers List</div>
       </div>

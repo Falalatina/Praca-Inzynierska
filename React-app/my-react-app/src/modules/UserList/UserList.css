@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr;
   background-color: white;
-  border-radius: 6px;
   width: 90vw;
   max-width: 1410px;
   justify-content: center;
