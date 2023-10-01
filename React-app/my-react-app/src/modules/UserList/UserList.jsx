@@ -34,6 +34,17 @@ const RenderPeopleOnList = () => {
   const clearAllItems = () => {
     setPeople([]);
   };
+
+  const showForm = () => {
+    setToggle(!toggle);
+    setTimeout(() => {
+      window.scroll({
+        top: 1900,
+        behavior: "smooth",
+      });
+    }, 0);
+  };
+
   return (
     <section className="x ">
       <div className="people-list-container">
@@ -76,11 +87,7 @@ const RenderPeopleOnList = () => {
 
         <section className="person-on-list">
           <div></div>
-          <button
-            className="btn"
-            type="button"
-            onClick={() => setToggle(!toggle)}
-          >
+          <button className="btn" type="button" onClick={showForm}>
             {toggle ? "Hide Add User" : "Add User"}
           </button>
           <div></div>

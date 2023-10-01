@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  top: 60px;
+  top: 70px;
   background-color: rgb(252, 252, 252);
   width: 8vw;
   z-index: 200;
@@ -41,7 +41,7 @@
 }
 
 .sidebar-link {
-  height: 74px;
+  height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +54,7 @@
 
 .sidebar-link img {
   height: 24px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .sidebar-link {

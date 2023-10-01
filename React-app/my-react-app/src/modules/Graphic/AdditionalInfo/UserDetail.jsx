@@ -27,7 +27,7 @@ const UserDetail = ({ getPerson, toggle, setToggle }) => {
             <h3>{getPerson[0].shifts}</h3>
           </div>
         </div>
-        <Divider style={{ marginTop: "1rem" }} />
+        <Divider style={{ margin: "1rem" }} />
         <h3>Preferences: </h3>
 
         <div>
