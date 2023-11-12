@@ -16,9 +16,7 @@ import {
 const Header = () => {
   return (
     <header className="header">
-      <div className="left-section">
-        <img className="hamburger-menu" src={hamburgerMenu} />
-      </div>
+      <div className="left-section"></div>
       <div className="middle-section">
         <div>
           <Menu className="selector">
@@ -33,7 +31,9 @@ const Header = () => {
 
         <button>FaQ</button>
       </div>
-      <div className="right-section"></div>
+      <div className="right-section">
+        <img className="hamburger-menu" src={hamburgerMenu} />
+      </div>
     </header>
   );
 };
