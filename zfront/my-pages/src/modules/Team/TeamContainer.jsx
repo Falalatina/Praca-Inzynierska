@@ -24,7 +24,7 @@ const TeamContainer = () => {
         <h2>You have {amount} teams. </h2>
       </header>
       <div>
-        <Grid templateColumns="repeat(2, 1fr)" gap={1}>
+        <Grid templateColumns="repeat(2, 1fr)" gap={3}>
           {teams.map((item) => {
             return (
               <GridItem key={item.id}>

@@ -1,0 +1,7 @@
+.card-container {
+  min-width: 250px;
+}
+.persons {
+  overflow-y: auto;
+  max-height: 240px;
+}
