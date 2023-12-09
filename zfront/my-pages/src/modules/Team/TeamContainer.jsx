@@ -21,7 +21,7 @@ const TeamContainer = () => {
     <section className="container">
       <header>
         <h1>Your teams: </h1>
-        <h2>You have {amount} teams. </h2>
+        <h2 className="txt">You have {amount} teams. </h2>
       </header>
       <div>
         <Grid templateColumns="repeat(2, 1fr)" gap={3}>

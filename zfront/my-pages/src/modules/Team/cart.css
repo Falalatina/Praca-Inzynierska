@@ -5,3 +5,7 @@
   overflow-y: auto;
   max-height: 240px;
 }
+
+.txt {
+  margin: 20px;
+}
