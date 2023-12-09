@@ -5,6 +5,7 @@ const initialState = {
   teams: teams,
   name: "",
   workers: "",
+  amount: 2,
   isLoading: true,
 };
 

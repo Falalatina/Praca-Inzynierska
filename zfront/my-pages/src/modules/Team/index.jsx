@@ -1,7 +1,12 @@
 import React from "react";
+import TeamContainer from "./TeamContainer";
 
 const index = () => {
-  return <div>index</div>;
+  return (
+    <div>
+      <TeamContainer />
+    </div>
+  );
 };
 
 export default index;
