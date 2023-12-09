@@ -1,6 +1,7 @@
 import React from "react";
 import TeamCard from "./Teamcard";
 import { useSelector } from "react-redux";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 const TeamContainer = () => {
   const { teams, amount } = useSelector((state) => state.team);
@@ -22,9 +23,15 @@ const TeamContainer = () => {
         <h2>You have {amount} teams. </h2>
       </header>
       <div>
-        {teams.map((item) => {
-          return <TeamCard key={item.id} {...item} />;
-        })}
+        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+          {teams.map((item) => {
+            return (
+              <GridItem key={item.id}>
+                <TeamCard key={item.id} {...item} />
+              </GridItem>
+            );
+          })}
+        </Grid>
       </div>
     </section>
   );
