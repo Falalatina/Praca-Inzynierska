@@ -1,7 +1,7 @@
 const teams = [
   {
     id: 1,
-    name: "Małpiszony",
+    teamName: "Małpiszony",
     workers: [
       { id: 11, name: "Aga" },
       { id: 12, name: "Basia" },
@@ -10,7 +10,7 @@ const teams = [
   },
   {
     id: 2,
-    name: "1klw3",
+    teamName: "1klw3",
     workers: [
       { id: 14, name: "Bartek" },
       { id: 15, name: "Lucyna" },
