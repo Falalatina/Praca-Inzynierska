@@ -1,0 +1,27 @@
+.container {
+  background-color: rgb(255, 255, 255);
+
+  padding: 2rem;
+  margin: 3rem auto;
+  overflow-x: auto;
+  width: 90vw;
+  max-width: 1410px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 501px) and (min-width: 1499px) {
+  .container {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .container {
+    font-size: 16px;
+  }
+}

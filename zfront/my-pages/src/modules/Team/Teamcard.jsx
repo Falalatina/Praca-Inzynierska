@@ -4,7 +4,9 @@ import React from "react";
 const TeamCard = ({ id, teamName, workers }) => {
   return (
     <Card variant="elevated" mb="2">
-      <CardHeader background="purple.800">{teamName}</CardHeader>
+      <CardHeader background="purple.800" color="white" h="100" w="100%">
+        {teamName}
+      </CardHeader>
       {workers.map((item) => {
         const { id, name } = item;
         return (
