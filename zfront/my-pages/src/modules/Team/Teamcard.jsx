@@ -1,7 +1,7 @@
 import React from "react";
 
-const Teamcard = () => {
+const TeamCard = () => {
   return <div>Teamcard</div>;
 };
 
-export default Teamcard;
+export default TeamCard;
