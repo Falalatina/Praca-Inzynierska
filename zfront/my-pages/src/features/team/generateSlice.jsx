@@ -4,7 +4,24 @@ import teams from "../../data";
 const initialState = {
   items: teams,
   name: "",
-  workers: "",
+  workers: [
+    {
+      id: "",
+      name: "",
+      stage: "",
+      shifts: "s",
+      preferences: { yes: [], no: [] },
+      graphic: {
+        monday: "",
+        tuesday: "",
+        wednesday: "",
+        thursday: "",
+        friday: "",
+        saturday: "",
+        sunday: " ",
+      },
+    },
+  ],
   isLoading: true,
 };
 
@@ -13,7 +30,7 @@ const generateSlice = createSlice({
   initialState,
   reducers: {
     autoSchedule: (state) => {
-      console.log(state.items);
+      console.log();
     },
   },
 });
