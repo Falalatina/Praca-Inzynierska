@@ -21,6 +21,18 @@ const teams = [
       { id: 20, name: "Genowefa" },
     ],
   },
+  {
+    id: 3,
+    teamName: "Maciusie",
+    workers: [
+      { id: 14, name: "Bartek" },
+      { id: 15, name: "Lucyna" },
+      { id: 16, name: "Genowefa" },
+      { id: 18, name: "Bartek" },
+      { id: 19, name: "Lucyna" },
+      { id: 20, name: "Genowefa" },
+    ],
+  },
 ];
 
 export default teams;
