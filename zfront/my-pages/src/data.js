@@ -16,33 +16,9 @@ const teams = [
       { id: 14, name: "Bartek" },
       { id: 15, name: "Lucyna" },
       { id: 16, name: "Genowefa" },
-    ],
-  },
-  {
-    id: 2,
-    teamName: "1klw3",
-    workers: [
-      { id: 14, name: "Bartek" },
-      { id: 15, name: "Lucyna" },
-      { id: 16, name: "Genowefa" },
-    ],
-  },
-  {
-    id: 2,
-    teamName: "1klw3",
-    workers: [
-      { id: 14, name: "Bartek" },
-      { id: 15, name: "Lucyna" },
-      { id: 16, name: "Genowefa" },
-    ],
-  },
-  {
-    id: 2,
-    teamName: "1klw3",
-    workers: [
-      { id: 14, name: "Bartek" },
-      { id: 15, name: "Lucyna" },
-      { id: 16, name: "Genowefa" },
+      { id: 18, name: "Bartek" },
+      { id: 19, name: "Lucyna" },
+      { id: 20, name: "Genowefa" },
     ],
   },
 ];

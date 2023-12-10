@@ -14,7 +14,7 @@ const TeamCard = ({ id, teamName, workers }) => {
   return (
     <Card variant="elevated" mb="2" className="card-container">
       <CardHeader
-        bgGradient="linear(to-l, #38B2AC, #322659)"
+        bgGradient="linear(to-l, #38B2AC, #322659, #38B2AC, #322659)"
         color="white"
         h="89"
         w="100%"
