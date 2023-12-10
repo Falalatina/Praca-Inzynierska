@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import teams from "../../data";
 
 const initialState = {
-  generate: teams,
+  items: teams,
   name: "",
   workers: "",
   isLoading: true,
@@ -11,6 +11,12 @@ const initialState = {
 const generateSlice = createSlice({
   name: "generate",
   initialState,
+  reducers: {
+    autoSchedule: (state) => {
+      console.log(state.items);
+    },
+  },
 });
 
+export const { autoSchedule } = generateSlice.actions;
 export default generateSlice.reducer;
