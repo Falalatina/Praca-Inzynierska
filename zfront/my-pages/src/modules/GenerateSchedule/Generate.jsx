@@ -63,6 +63,12 @@ const Generate = () => {
     }
   };
 
+  const evaluate = () => {
+    population.map((item) => {
+      const fitness = 0;
+    });
+  };
+
   const startGenerate = () => {
     console.log(population);
     createStartingPopulation(
