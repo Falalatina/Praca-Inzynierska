@@ -1,10 +1,9 @@
 import "./App.css";
-import Login from "./modules/Team";
-import LogNav from "./modules/LogNav/LogNav";
+import Login from "./modules/GenerateSchedule";
+
 function App() {
   return (
     <>
-      <LogNav />
       <Login />
     </>
   );
