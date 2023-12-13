@@ -45,6 +45,9 @@ const Generate = () => {
   const randomElement = (array) => {
     return array[Math.floor(Math.random() * array.length)];
   };
+  const randomIntFromInterval = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
   const createStartingPopulation = (
     numberOfParents,
     workShifts,
@@ -112,7 +115,28 @@ const Generate = () => {
       }
       selectedToMate.push(winner);
     }
-    console.log(selectedToMate);
+
+    for (let index = 0; index < selectedToMate.length - 1; index++) {
+      crossover(selectedToMate[index], selectedToMate[index + 1]);
+    }
+  };
+
+  const crossover = (parent1, parent2) => {
+    let splitPoint = randomIntFromInterval(1, workShifts.length - 1);
+    mutating([
+      parent1
+        .slice(0, splitPoint)
+        .concat(parent2.slice(splitPoint, parent2.length)),
+    ]);
+    mutating([
+      parent2
+        .slice(0, splitPoint)
+        .concat(parent1.slice(splitPoint, parent1.length)),
+    ]);
+  };
+
+  const mutating = (child) => {
+    console.log(child);
   };
 
   const startGenerate = () => {
