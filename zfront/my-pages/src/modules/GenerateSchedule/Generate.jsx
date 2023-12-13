@@ -1,10 +1,18 @@
 import { Button } from "@chakra-ui/react";
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { autoSchedule } from "../../features/team/generateSlice";
 
 const Generate = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    createStartingPopulation(
+      numberOfParents,
+      workShifts,
+      numberOfPersonOnShift
+    );
+  }, []);
 
   const numberOfIterations = 100;
   const numberOfParents = 10;
@@ -63,31 +71,54 @@ const Generate = () => {
       population.push(chromosome);
     }
   };
+  const evaluateForOne = (item) => {
+    let fitness = 0;
+    item.map((innerItem) => {
+      for (let index = 0; index < innerItem.length - 1; index++) {
+        if (innerItem[index] === innerItem[index + 1]) {
+          fitness = fitness - 1;
+        }
+      }
+    });
+    return fitness;
+  };
 
   const evaluate = () => {
     population.map((item) => {
-      let fitness = 0;
-      item.map((innerItem) => {
-        for (let index = 0; index < innerItem.length - 1; index++) {
-          if (innerItem[index] === innerItem[index + 1]) {
-            fitness = fitness - 1;
-          }
-        }
-      });
-      console.log(fitness);
-      return fitness;
+      return evaluateForOne(item);
     });
   };
 
+  const tournamentSelection = (population) => {
+    const selectedToMate = [];
+    let winner = "";
+    for (let index = 0; index < population.length; index++) {
+      let contestant1 = randomElement(population);
+      let contestant2 = randomElement(population);
+      if (contestant1 === contestant2) {
+        contestant2 = randomElement(population);
+      }
+      let item1 = population.filter((con) => con === contestant1);
+
+      let item2 = population.filter((con) => con === contestant2);
+
+      let pointsForC1 = evaluateForOne(item1[0]);
+      let pointsForC2 = evaluateForOne(item2[0]);
+
+      if (pointsForC1 > pointsForC2) {
+        winner = contestant1;
+      } else {
+        winner = contestant2;
+      }
+      selectedToMate.push(winner);
+    }
+    console.log(selectedToMate);
+  };
+
   const startGenerate = () => {
-    // console.log(population);
-    createStartingPopulation(
-      numberOfParents,
-      workShifts,
-      numberOfPersonOnShift
-    );
-    //console.log(population);
-    evaluate();
+    //evaluate();
+
+    tournamentSelection(population);
   };
 
   return <Button onClick={() => startGenerate()}>Generate</Button>;
