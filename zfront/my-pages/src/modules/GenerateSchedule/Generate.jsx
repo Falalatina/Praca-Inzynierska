@@ -10,9 +10,10 @@ const Generate = () => {
   const numberOfParents = 10;
   const mutate = 50;
   const workers = [
-    { name: "a", preferences: { yes: ["pn1"], no: ["wt2"] } },
-    { name: "b", preferences: { yes: ["pn2"], no: ["wt3"] } },
+    { name: "asia", preferences: [{ yes: ["pn1"] }, { no: ["wt2"] }] },
+    { name: "basia", preferences: { yes: ["pn2"], no: ["wt3"] } },
   ];
+
   const population = [];
   const workShifts = [
     "pn1",
@@ -65,18 +66,28 @@ const Generate = () => {
 
   const evaluate = () => {
     population.map((item) => {
-      const fitness = 0;
+      let fitness = 0;
+      item.map((innerItem) => {
+        for (let index = 0; index < innerItem.length - 1; index++) {
+          if (innerItem[index] === innerItem[index + 1]) {
+            fitness = fitness - 1;
+          }
+        }
+      });
+      console.log(fitness);
+      return fitness;
     });
   };
 
   const startGenerate = () => {
-    console.log(population);
+    // console.log(population);
     createStartingPopulation(
       numberOfParents,
       workShifts,
       numberOfPersonOnShift
     );
-    console.log(population);
+    //console.log(population);
+    evaluate();
   };
 
   return <Button onClick={() => startGenerate()}>Generate</Button>;
