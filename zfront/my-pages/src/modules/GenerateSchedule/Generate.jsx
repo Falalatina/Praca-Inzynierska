@@ -48,6 +48,15 @@ const Generate = () => {
   const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
+
+  const maxWithKey = (array, keyFunction) => {
+    return array.reduce((max, current) => {
+      const currentValue = keyFunction(current);
+      const maxValue = keyFunction(max);
+
+      return currentValue > maxValue ? current : max;
+    }, array[0]);
+  };
   const createStartingPopulation = (
     numberOfParents,
     workShifts,
@@ -83,12 +92,14 @@ const Generate = () => {
         }
       }
     });
+    //console.log(fitness);
     return fitness;
   };
 
   const evaluate = () => {
     population.map((item) => {
-      return evaluateForOne(item);
+      let result = maxWithKey(item, evaluateForOne);
+      return result;
     });
   };
 
@@ -136,13 +147,37 @@ const Generate = () => {
   };
 
   const mutating = (child) => {
-    console.log(child);
+    //console.log(child);
+    if (mutate <= randomIntFromInterval(1, 100)) {
+      for (let index = 0; index < randomIntFromInterval(1, 2); index++) {
+        let mutatedGene = randomIntFromInterval(0, workShifts.length - 1);
+        //console.log(child[0][mutatedGene]);
+        let randomGen = randomIntFromInterval(
+          0,
+          child[0][mutatedGene].length - 1
+        );
+
+        // console.log("był: " + child[0][mutatedGene][randomGen]);
+        child[0][mutatedGene][randomGen] = randomElement(workers).name;
+
+        // console.log("NOWY: " + child[0][mutatedGene][randomGen]);
+      }
+    }
+    population.push(child);
+  };
+
+  const reducePopulation = (population) => {
+    // while (population.length > 10) {
+    let result = evaluate();
+    console.log(result);
+    Math.min();
+    // }
   };
 
   const startGenerate = () => {
     //evaluate();
-
     tournamentSelection(population);
+    reducePopulation(population);
   };
 
   return <Button onClick={() => startGenerate()}>Generate</Button>;
