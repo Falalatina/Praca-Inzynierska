@@ -186,6 +186,7 @@ const Generate = () => {
     //evaluate();
     tournamentSelection(population);
     reducePopulation(population);
+    console.log(population);
   };
 
   return <Button onClick={() => startGenerate()}>Generate</Button>;
