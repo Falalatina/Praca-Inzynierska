@@ -20,6 +20,7 @@ const Generate = () => {
   const workers = [
     { name: "asia", preferences: [{ yes: ["pn1"] }, { no: ["wt2"] }] },
     { name: "basia", preferences: { yes: ["pn2"], no: ["wt3"] } },
+    { name: "kasia", preferences: { yes: ["pn2"], no: ["wt3"] } },
   ];
 
   const population = [];
@@ -48,13 +49,20 @@ const Generate = () => {
   const randomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-
   const minWithKey = (array, keyFunction) => {
     return array.reduce((max, current) => {
       const currentValue = keyFunction(current);
       const maxValue = keyFunction(max);
 
       return currentValue < maxValue ? current : max;
+    }, array[0]);
+  };
+  const maxWithKey = (array, keyFunction) => {
+    return array.reduce((max, current) => {
+      const currentValue = keyFunction(current);
+      const maxValue = keyFunction(max);
+
+      return currentValue > maxValue ? current : max;
     }, array[0]);
   };
   const createStartingPopulation = (
@@ -110,13 +118,14 @@ const Generate = () => {
     for (let index = 0; index < population.length; index++) {
       let contestant1 = randomElement(population);
       let contestant2 = randomElement(population);
-      //console.log(contestant1);
+      //console.log(contestant1); to sa indexy
+      // console.log([...population]);
       if (contestant1 === contestant2) {
         contestant2 = randomElement(population);
       }
-      let item1 = population.filter((con) => con === contestant1);
+      let item1 = [...population].filter((con) => con === contestant1);
 
-      let item2 = population.filter((con) => con === contestant2);
+      let item2 = [...population].filter((con) => con === contestant2);
 
       //console.log(item1);
       let pointsForC1 = evaluateForOne(item1[0]);
@@ -190,9 +199,11 @@ const Generate = () => {
       tournamentSelection(population);
       reducePopulation(population);
 
-      console.log(index, population);
+      // console.log(index, population);
     }
     // console.log(population);
+    maxWithKey(population, evaluateForOne);
+    console.log(maxWithKey(population, evaluateForOne));
   };
 
   return <Button onClick={() => startGenerate()}>Generate</Button>;
