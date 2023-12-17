@@ -49,12 +49,12 @@ const Generate = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const maxWithKey = (array, keyFunction) => {
+  const minWithKey = (array, keyFunction) => {
     return array.reduce((max, current) => {
       const currentValue = keyFunction(current);
       const maxValue = keyFunction(max);
 
-      return currentValue > maxValue ? current : max;
+      return currentValue < maxValue ? current : max;
     }, array[0]);
   };
   const createStartingPopulation = (
@@ -176,17 +176,23 @@ const Generate = () => {
   };
 
   const reducePopulation = (population) => {
-    // while (population.length > 10) {
-
-    Math.min();
-    // }
+    while (population.length > 10) {
+      const index = population.indexOf(minWithKey(population, evaluateForOne));
+      population.splice(index, 1);
+      // console.log(minWithKey(population, evaluateForOne));
+      // console.log(evaluateForOne(minWithKey(population, evaluateForOne)));
+      //Math.min();
+    }
   };
 
   const startGenerate = () => {
-    //evaluate();
-    tournamentSelection(population);
-    reducePopulation(population);
-    console.log(population);
+    for (let index = 0; index < numberOfIterations; index++) {
+      tournamentSelection(population);
+      reducePopulation(population);
+
+      console.log(index, population);
+    }
+    // console.log(population);
   };
 
   return <Button onClick={() => startGenerate()}>Generate</Button>;
