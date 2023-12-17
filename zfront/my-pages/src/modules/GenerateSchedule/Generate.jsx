@@ -18,9 +18,10 @@ const Generate = () => {
   const numberOfParents = 10;
   const mutate = 50;
   const workers = [
-    { name: "asia", preferences: [{ yes: ["pn1"] }, { no: ["wt2"] }] },
-    { name: "basia", preferences: { yes: ["pn2"], no: ["wt3"] } },
-    { name: "kasia", preferences: { yes: ["pn2"], no: ["wt3"] } },
+    { name: "asia", preferences: { yes: ["pn1"], no: ["wt2"] } },
+    { name: "basia", preferences: { yes: ["wt1"], no: ["wt3"] } },
+    { name: "kasia", preferences: { yes: ["sr1"], no: ["wt3"] } },
+    { name: "kacper", preferences: { yes: ["czw1"], no: ["wt3"] } },
   ];
 
   const population = [];
@@ -98,9 +99,14 @@ const Generate = () => {
         if (innerItem[index] === innerItem[index + 1]) {
           fitness = fitness - 1;
         }
+        if (workShifts[index] === workers[index].preferences.yes) {
+          if (population[workShifts[index]].includes(workers.name)) {
+            fitness++;
+          }
+        }
       }
     });
-    console.log(fitness);
+    //console.log(fitness);
     return fitness;
   };
 
