@@ -100,7 +100,7 @@ const Generate = () => {
         }
       }
     });
-    //console.log(fitness);
+    console.log(fitness);
     return fitness;
   };
 
@@ -118,14 +118,14 @@ const Generate = () => {
     for (let index = 0; index < population.length; index++) {
       let contestant1 = randomElement(population);
       let contestant2 = randomElement(population);
-      //console.log(contestant1); to sa indexy
+      //console.log(contestant1); to to index
       // console.log([...population]);
       if (contestant1 === contestant2) {
         contestant2 = randomElement(population);
       }
-      let item1 = [...population].filter((con) => con === contestant1);
+      let item1 = population.filter((con) => con === contestant1);
 
-      let item2 = [...population].filter((con) => con === contestant2);
+      let item2 = population.filter((con) => con === contestant2);
 
       //console.log(item1);
       let pointsForC1 = evaluateForOne(item1[0]);
@@ -152,6 +152,7 @@ const Generate = () => {
     //console.log(splitPoint);
     //console.log(parent1.slice(0, splitPoint));
     // console.log(parent2.slice(splitPoint, parent2.length));
+
     mutating([
       parent1
         .slice(0, splitPoint)
@@ -161,27 +162,30 @@ const Generate = () => {
       parent2
         .slice(0, splitPoint)
         .concat(parent1.slice(splitPoint, parent1.length)),
-    ]); //nawiasy by był aarray
+    ]);
+    //nawiasy by był aarray
   };
 
   const mutating = (child) => {
-    //console.log(child[0]);
+    // console.log(child[0]);
+    let childCopy = JSON.parse(JSON.stringify(child));
+    //console.log(childCopy[0]);
     if (mutate <= randomIntFromInterval(1, 100)) {
       for (let index = 0; index < randomIntFromInterval(1, 2); index++) {
         let mutatedGene = randomIntFromInterval(0, workShifts.length - 1);
-        //console.log(child[0][mutatedGene]);
+        // console.log(child[0][mutatedGene]);
         let randomGen = randomIntFromInterval(
           0,
-          child[0][mutatedGene]?.length - 1
+          childCopy[0][mutatedGene]?.length - 1
         );
 
         // console.log("był: " + child[0][mutatedGene][randomGen]);
-        child[0][mutatedGene][randomGen] = randomElement(workers).name;
+        childCopy[0][mutatedGene][randomGen] = randomElement(workers).name;
 
         // console.log("NOWY: " + child[0][mutatedGene][randomGen]);
       }
     }
-    population.push(child[0]);
+    population.push(childCopy[0]);
   };
 
   const reducePopulation = (population) => {
