@@ -96,12 +96,13 @@ const Generate = () => {
     return fitness;
   };
 
-  const evaluate = () => {
-    population.map((item) => {
-      let result = maxWithKey(item, evaluateForOne);
-      return result;
-    });
-  };
+  // const evaluate = () => {
+  //   population.map((item) => {
+  //     let result = maxWithKey(item, evaluateForOne);
+  //     console.log(result);
+  //     return result;
+  //   });
+  // };
 
   const tournamentSelection = (population) => {
     const selectedToMate = [];
@@ -109,6 +110,7 @@ const Generate = () => {
     for (let index = 0; index < population.length; index++) {
       let contestant1 = randomElement(population);
       let contestant2 = randomElement(population);
+      //console.log(contestant1);
       if (contestant1 === contestant2) {
         contestant2 = randomElement(population);
       }
@@ -116,17 +118,21 @@ const Generate = () => {
 
       let item2 = population.filter((con) => con === contestant2);
 
+      //console.log(item1);
       let pointsForC1 = evaluateForOne(item1[0]);
       let pointsForC2 = evaluateForOne(item2[0]);
+
+      // console.log(pointsForC1);
 
       if (pointsForC1 > pointsForC2) {
         winner = contestant1;
       } else {
         winner = contestant2;
       }
+      // console.log(winner);
       selectedToMate.push(winner);
     }
-
+    // console.log(selectedToMate[1]);
     for (let index = 0; index < selectedToMate.length - 1; index++) {
       crossover(selectedToMate[index], selectedToMate[index + 1]);
     }
@@ -134,6 +140,9 @@ const Generate = () => {
 
   const crossover = (parent1, parent2) => {
     let splitPoint = randomIntFromInterval(1, workShifts.length - 1);
+    //console.log(splitPoint);
+    //console.log(parent1.slice(0, splitPoint));
+    // console.log(parent2.slice(splitPoint, parent2.length));
     mutating([
       parent1
         .slice(0, splitPoint)
@@ -143,18 +152,18 @@ const Generate = () => {
       parent2
         .slice(0, splitPoint)
         .concat(parent1.slice(splitPoint, parent1.length)),
-    ]);
+    ]); //nawiasy by był aarray
   };
 
   const mutating = (child) => {
-    //console.log(child);
+    //console.log(child[0]);
     if (mutate <= randomIntFromInterval(1, 100)) {
       for (let index = 0; index < randomIntFromInterval(1, 2); index++) {
         let mutatedGene = randomIntFromInterval(0, workShifts.length - 1);
         //console.log(child[0][mutatedGene]);
         let randomGen = randomIntFromInterval(
           0,
-          child[0][mutatedGene].length - 1
+          child[0][mutatedGene]?.length - 1
         );
 
         // console.log("był: " + child[0][mutatedGene][randomGen]);
@@ -163,13 +172,12 @@ const Generate = () => {
         // console.log("NOWY: " + child[0][mutatedGene][randomGen]);
       }
     }
-    population.push(child);
+    population.push(child[0]);
   };
 
   const reducePopulation = (population) => {
     // while (population.length > 10) {
-    let result = evaluate();
-    console.log(result);
+
     Math.min();
     // }
   };
