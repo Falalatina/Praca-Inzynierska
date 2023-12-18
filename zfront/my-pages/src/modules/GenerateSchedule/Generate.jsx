@@ -87,9 +87,12 @@ const Generate = () => {
             day.push(randomElement(workers).name);
           }
         }
+        // console.log("DAY: ", day);
         chromosome.push(day);
       }
+      // console.log("CHROMOSOME: ", chromosome);
       population.push(chromosome);
+      //  console.log("POPULATION: ", population);
     }
   };
   const evaluateForOne = (item) => {
@@ -114,7 +117,7 @@ const Generate = () => {
         //console.log(workers[index].preferences.yes);
       }
     });
-    console.log(fitness);
+    //console.log(fitness);
     return fitness;
   };
 
