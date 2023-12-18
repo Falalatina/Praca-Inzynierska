@@ -249,14 +249,8 @@ const Generate = () => {
     workers.map((i) => {
       for (let index = 0; index < bestSolution.length - 1; index++) {
         if (bestSolution[index]?.includes(i.name)) {
-          if (index < 3) {
-            i.graphic = [...i.graphic, `pn${index + 1}`];
-            console.log(index, i);
-          }
-          if (index === 3) {
-            //infinit
-            console.log("ok");
-          }
+          i.graphic = [...i.graphic, `pn${index + 1}`];
+          console.log(index, i);
         }
       }
     });
