@@ -251,27 +251,27 @@ const Generate = () => {
         workers[index].graphic = [workers[index].graphic, `pn${index + 1}`];
       }
     }
-    for (let index = 0; 3 <= index < 6; index++) {
+    for (let index = 3; index < 6; index++) {
       if (bestSolution[index]?.includes(workers[index].name)) {
         workers[index].graphic = [workers[index].graphic, `wt${index + 1}`];
       }
     }
-    for (let index = 0; 6 <= index < 8; index++) {
+    for (let index = 6; index < 8; index++) {
       if (bestSolution[index]?.includes(workers[index].name)) {
         workers[index].graphic = [workers[index].graphic, `sr${index + 1}`];
       }
     }
-    for (let index = 0; 8 <= index < 11; index++) {
+    for (let index = 8; index < 11; index++) {
       if (bestSolution[index]?.includes(workers[index].name)) {
         workers[index].graphic = [workers[index].graphic, `czw${index + 1}`];
       }
     }
-    for (let index = 0; 11 <= index < 15; index++) {
+    for (let index = 11; index < 15; index++) {
       if (bestSolution[index]?.includes(workers[index].name)) {
         workers[index].graphic = [workers[index].graphic, `pt${index + 1}`];
       }
     }
-    console.log(workers[index]);
+    console.log(workers);
   };
   return (
     <>
