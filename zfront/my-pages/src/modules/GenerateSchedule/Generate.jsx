@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { autoSchedule } from "../../features/team/generateSlice";
+import ScheduleContainer from "./ScheduleContainer";
 
 const Generate = () => {
   const dispatch = useDispatch();
@@ -216,10 +217,19 @@ const Generate = () => {
     }
     // console.log(population);
     maxWithKey(population, evaluateForOne);
-    console.log(maxWithKey(population, evaluateForOne));
+    //console.log(maxWithKey(population, evaluateForOne));
+    let bestSolution = maxWithKey(population, evaluateForOne);
+    console.log({ bestSolution });
+    setBestSolution(bestSolution);
   };
 
-  return <Button onClick={() => startGenerate()}>Generate</Button>;
+  const [bestSolution, setBestSolution] = useState({});
+  return (
+    <>
+      <Button onClick={() => startGenerate()}>Generate</Button>
+      <ScheduleContainer bestSolution={bestSolution} />
+    </>
+  );
 };
 
 export default Generate;
