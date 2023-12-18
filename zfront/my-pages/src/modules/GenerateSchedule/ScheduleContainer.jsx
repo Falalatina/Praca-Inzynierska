@@ -4,7 +4,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import ScheduleItem from "./ScheduleItem";
 
 const ScheduleContainer = ({ bestSolution, workShifts }) => {
-  console.log(bestSolution);
+  // console.log(bestSolution);
 
   return (
     <>

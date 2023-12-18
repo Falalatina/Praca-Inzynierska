@@ -19,10 +19,30 @@ const Generate = () => {
   const numberOfParents = 10;
   const mutate = 50;
   const workers = [
-    { id: 1, name: "asia", preferences: { yes: ["pn1"], no: ["pn3", "wt3"] } },
-    { id: 2, name: "basia", preferences: { yes: ["wt1"], no: ["wt2"] } },
-    { id: 3, name: "kasia", preferences: { yes: ["sr1"], no: ["wt1"] } },
-    { id: 4, name: "kacper", preferences: { yes: ["czw1"], no: ["czw1"] } },
+    {
+      id: 1,
+      name: "asia",
+      preferences: { yes: ["pn1"], no: ["pn3", "wt3"] },
+      graphic: [],
+    },
+    {
+      id: 2,
+      name: "basia",
+      preferences: { yes: ["wt1"], no: ["wt2"] },
+      graphic: [],
+    },
+    {
+      id: 3,
+      name: "kasia",
+      preferences: { yes: ["sr1"], no: ["wt1"] },
+      graphic: [],
+    },
+    {
+      id: 4,
+      name: "kacper",
+      preferences: { yes: ["czw1"], no: ["czw1"] },
+      graphic: [],
+    },
   ];
 
   const population = [];
@@ -219,11 +239,40 @@ const Generate = () => {
     maxWithKey(population, evaluateForOne);
     //console.log(maxWithKey(population, evaluateForOne));
     let bestSolution = maxWithKey(population, evaluateForOne);
-    console.log({ bestSolution });
+    console.log(bestSolution);
     setBestSolution(bestSolution);
+    addGraphicToWorker();
   };
-
   const [bestSolution, setBestSolution] = useState({});
+
+  const addGraphicToWorker = () => {
+    for (let index = 0; index < 3; index++) {
+      if (bestSolution[index]?.includes(workers[index].name)) {
+        workers[index].graphic = [workers[index].graphic, `pn${index + 1}`];
+      }
+    }
+    for (let index = 0; 3 <= index < 6; index++) {
+      if (bestSolution[index]?.includes(workers[index].name)) {
+        workers[index].graphic = [workers[index].graphic, `wt${index + 1}`];
+      }
+    }
+    for (let index = 0; 6 <= index < 8; index++) {
+      if (bestSolution[index]?.includes(workers[index].name)) {
+        workers[index].graphic = [workers[index].graphic, `sr${index + 1}`];
+      }
+    }
+    for (let index = 0; 8 <= index < 11; index++) {
+      if (bestSolution[index]?.includes(workers[index].name)) {
+        workers[index].graphic = [workers[index].graphic, `czw${index + 1}`];
+      }
+    }
+    for (let index = 0; 11 <= index < 15; index++) {
+      if (bestSolution[index]?.includes(workers[index].name)) {
+        workers[index].graphic = [workers[index].graphic, `pt${index + 1}`];
+      }
+    }
+    console.log(workers[index]);
+  };
   return (
     <>
       <Button onClick={() => startGenerate()}>Generate</Button>
