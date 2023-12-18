@@ -1,9 +1,10 @@
 import React from "react";
 import "./ShContainer.css";
 import { Grid, GridItem } from "@chakra-ui/react";
+import ScheduleItem from "./ScheduleItem";
 
 const ScheduleContainer = ({ bestSolution, workShifts }) => {
-  //console.log(bestSolution);
+  console.log(bestSolution);
 
   return (
     <>
@@ -12,13 +13,15 @@ const ScheduleContainer = ({ bestSolution, workShifts }) => {
         templateColumns="repeat(5, 1fr)"
         gap={1}
       >
-        {workShifts.map((item) => {
-          return (
-            <GridItem key={item}>
-              <div className="shift-container"></div>
-            </GridItem>
-          );
-        })}
+        <div className="shift-container">
+          {workShifts.map((item) => {
+            //console.log(item);
+            const re3 = /[p]+[n]+./;
+            if (item.match(re3)) {
+              return item;
+            }
+          })}
+        </div>
       </Grid>
     </>
   );
