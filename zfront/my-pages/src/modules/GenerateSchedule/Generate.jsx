@@ -246,31 +246,21 @@ const Generate = () => {
   const [bestSolution, setBestSolution] = useState({});
 
   const addGraphicToWorker = () => {
-    for (let index = 0; index < 3; index++) {
-      if (bestSolution[index]?.includes(workers[index].name)) {
-        workers[index].graphic = [workers[index].graphic, `pn${index + 1}`];
+    workers.map((i) => {
+      for (let index = 0; index < bestSolution.length - 1; index++) {
+        if (bestSolution[index]?.includes(i.name)) {
+          if (index < 3) {
+            i.graphic = [...i.graphic, `pn${index + 1}`];
+            console.log(index, i);
+          }
+          if (index === 3) {
+            //infinit
+            console.log("ok");
+          }
+        }
       }
-    }
-    for (let index = 3; index < 6; index++) {
-      if (bestSolution[index]?.includes(workers[index].name)) {
-        workers[index].graphic = [workers[index].graphic, `wt${index + 1}`];
-      }
-    }
-    for (let index = 6; index < 8; index++) {
-      if (bestSolution[index]?.includes(workers[index].name)) {
-        workers[index].graphic = [workers[index].graphic, `sr${index + 1}`];
-      }
-    }
-    for (let index = 8; index < 11; index++) {
-      if (bestSolution[index]?.includes(workers[index].name)) {
-        workers[index].graphic = [workers[index].graphic, `czw${index + 1}`];
-      }
-    }
-    for (let index = 11; index < 15; index++) {
-      if (bestSolution[index]?.includes(workers[index].name)) {
-        workers[index].graphic = [workers[index].graphic, `pt${index + 1}`];
-      }
-    }
+    });
+
     console.log(workers);
   };
   return (
