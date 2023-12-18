@@ -18,10 +18,10 @@ const Generate = () => {
   const numberOfParents = 10;
   const mutate = 50;
   const workers = [
-    { name: "asia", preferences: { yes: ["pn1"], no: ["wt2"] } },
-    { name: "basia", preferences: { yes: ["wt1"], no: ["wt3"] } },
-    { name: "kasia", preferences: { yes: ["sr1"], no: ["wt3"] } },
-    { name: "kacper", preferences: { yes: ["czw1"], no: ["wt3"] } },
+    { name: "asia", preferences: { yes: ["pn1"], no: ["pn3", "wt3"] } },
+    { name: "basia", preferences: { yes: ["wt1"], no: ["wt2"] } },
+    { name: "kasia", preferences: { yes: ["sr1"], no: ["wt1"] } },
+    { name: "kacper", preferences: { yes: ["czw1"], no: ["czw1"] } },
   ];
 
   const population = [];
@@ -99,24 +99,24 @@ const Generate = () => {
         if (innerItem[index] === innerItem[index + 1]) {
           fitness = fitness - 1;
         }
-        if (workShifts[index] === workers[index].preferences.yes) {
-          if (population[workShifts[index]].includes(workers.name)) {
-            fitness++;
+        // console.log(workShifts[index]); - pn1 pn2 etc.
+        const array = [workers[index].preferences.yes];
+        // console.log(array[0].length > 0);
+        for (let i = 0; i < array[0].length; i++) {
+          // console.log(workers[index].preferences.yes[i]);
+          if (workShifts[index] === workers[index].preferences.yes[i]) {
+            fitness = fitness + 1;
+          }
+          if (workShifts[index] === workers[index].preferences.no[i]) {
+            fitness = fitness - 1;
           }
         }
+        //console.log(workers[index].preferences.yes);
       }
     });
-    //console.log(fitness);
+    console.log(fitness);
     return fitness;
   };
-
-  // const evaluate = () => {
-  //   population.map((item) => {
-  //     let result = maxWithKey(item, evaluateForOne);
-  //     console.log(result);
-  //     return result;
-  //   });
-  // };
 
   const tournamentSelection = (population) => {
     const selectedToMate = [];
