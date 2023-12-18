@@ -19,10 +19,10 @@ const Generate = () => {
   const numberOfParents = 10;
   const mutate = 50;
   const workers = [
-    { name: "asia", preferences: { yes: ["pn1"], no: ["pn3", "wt3"] } },
-    { name: "basia", preferences: { yes: ["wt1"], no: ["wt2"] } },
-    { name: "kasia", preferences: { yes: ["sr1"], no: ["wt1"] } },
-    { name: "kacper", preferences: { yes: ["czw1"], no: ["czw1"] } },
+    { id: 1, name: "asia", preferences: { yes: ["pn1"], no: ["pn3", "wt3"] } },
+    { id: 2, name: "basia", preferences: { yes: ["wt1"], no: ["wt2"] } },
+    { id: 3, name: "kasia", preferences: { yes: ["sr1"], no: ["wt1"] } },
+    { id: 4, name: "kacper", preferences: { yes: ["czw1"], no: ["czw1"] } },
   ];
 
   const population = [];
@@ -227,7 +227,7 @@ const Generate = () => {
   return (
     <>
       <Button onClick={() => startGenerate()}>Generate</Button>
-      <ScheduleContainer bestSolution={bestSolution} />
+      <ScheduleContainer bestSolution={bestSolution} workShifts={workShifts} />
     </>
   );
 };
