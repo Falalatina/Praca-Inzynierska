@@ -92,7 +92,7 @@ const Generate = () => {
     workShifts,
     numberOfPersonOnShift
   ) => {
-    for (let index = 0; index < numberOfParents; index++) {
+    for (let i = 0; i < numberOfParents; i++) {
       const chromosome = [];
       for (let index = 0; index < workShifts.length; index++) {
         const day = [];
@@ -241,17 +241,20 @@ const Generate = () => {
     //console.log(maxWithKey(population, evaluateForOne));
     let bestSolution = maxWithKey(population, evaluateForOne);
     console.log(bestSolution);
-    setBestSolution(bestSolution);
+    setBestSolution(bestSolution || []);
+    if (bestSolution) {
+    }
     addGraphicToWorker();
   };
 
   const addGraphicToWorker = () => {
     workers.map((person) => {
       let findInArrayIndex = [];
-      for (let i = 0; i < bestSolution.length - 1; i++) {
+      for (let i = 0; i < bestSolution.length; i++) {
         let bS = bestSolution[i];
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
+          console.log("ok");
         }
       }
       console.log(findInArrayIndex);
