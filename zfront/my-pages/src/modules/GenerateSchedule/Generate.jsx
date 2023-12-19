@@ -6,6 +6,7 @@ import ScheduleContainer from "./ScheduleContainer";
 
 const Generate = () => {
   const dispatch = useDispatch();
+  const [bestSolution, setBestSolution] = useState([]);
 
   useEffect(() => {
     createStartingPopulation(
@@ -227,7 +228,6 @@ const Generate = () => {
       //Math.min();
     }
   };
-  const [bestSolution, setBestSolution] = useState([]);
 
   const startGenerate = () => {
     for (let index = 0; index < numberOfIterations; index++) {
@@ -244,8 +244,11 @@ const Generate = () => {
     setBestSolution(bestSolution || []);
     if (bestSolution) {
     }
-    addGraphicToWorker();
   };
+
+  useEffect(() => {
+    addGraphicToWorker();
+  }, [bestSolution]);
 
   const addGraphicToWorker = () => {
     workers.map((person) => {
@@ -254,10 +257,10 @@ const Generate = () => {
         let bS = bestSolution[i];
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
-          console.log("ok");
+          // console.log("ok");
         }
       }
-      console.log(findInArrayIndex);
+      // console.log(findInArrayIndex);
       return findInArrayIndex;
     });
   };
