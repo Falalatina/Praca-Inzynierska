@@ -227,6 +227,7 @@ const Generate = () => {
       //Math.min();
     }
   };
+  const [bestSolution, setBestSolution] = useState([]);
 
   const startGenerate = () => {
     for (let index = 0; index < numberOfIterations; index++) {
@@ -243,39 +244,21 @@ const Generate = () => {
     setBestSolution(bestSolution);
     addGraphicToWorker();
   };
-  const [bestSolution, setBestSolution] = useState([]);
 
   const addGraphicToWorker = () => {
-    // workers.map((i) => {
-    //   for (let index = 0; index < bestSolution.length - 1; index++) {
-    //     if (bestSolution[index]?.includes(i.name)) {
-    //       i.graphic = [...i.graphic, `pn${index + 1}`];
-    //       console.log(index, i);
-    //     }
-    //   }
-    // });
-
-    for (let i = 0; i < workers.length; i++) {
-      let updatingPerson = workers[i].name;
-    }
-    for (let index = 0; index < bestSolution.length - 2; index++) {
-      // console.log(bestSolution[index]);
-      // console.log(workers[i].name);
-      switch (bestSolution[index].includes(updatingPerson)) {
-        case true:
-          console.log(index, workers[i].name);
-          break;
-
-        default:
-          break;
-        // if (bestSolution[index]?.includes(workers[i].name)) {
-        //   // workers[i].graphic = [...workers[i].graphic, `pn${index + 1}`];
-        // }
+    workers.map((person) => {
+      let findInArrayIndex = [];
+      for (let i = 0; i < bestSolution.length - 1; i++) {
+        let bS = bestSolution[i];
+        if (bS.includes(person.name)) {
+          findInArrayIndex.push([person.name, i]);
+        }
       }
-    }
-
-    console.log(workers);
+      console.log(findInArrayIndex);
+      return findInArrayIndex;
+    });
   };
+
   return (
     <>
       <Button onClick={() => startGenerate()}>Generate</Button>
