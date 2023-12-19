@@ -240,7 +240,7 @@ const Generate = () => {
     maxWithKey(population, evaluateForOne);
     //console.log(maxWithKey(population, evaluateForOne));
     let bestSolution = maxWithKey(population, evaluateForOne);
-    console.log(bestSolution);
+    //console.log(bestSolution);
     setBestSolution(bestSolution || []);
     if (bestSolution) {
     }
@@ -257,7 +257,7 @@ const Generate = () => {
         let bS = bestSolution[i];
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
-          // console.log("ok");
+          //console.log("ok");
           person.graphic.push(i);
         }
       }
