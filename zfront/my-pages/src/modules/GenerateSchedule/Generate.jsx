@@ -243,8 +243,7 @@ const Generate = () => {
     let bestSolution = maxWithKey(population, evaluateForOne);
     //console.log(bestSolution);
     setBestSolution(bestSolution || []);
-    if (bestSolution) {
-    }
+    setWasChanged(!wasChanged);
   };
 
   useEffect(() => {
@@ -258,15 +257,15 @@ const Generate = () => {
         let bS = bestSolution[i];
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
-          console.log("ok");
+          // console.log("ok");
           person.graphic.push(i);
         }
       }
-      console.log(person);
+      //  console.log(person);
     });
   };
 
-  /// sprobowac trzeba wymusic rerender po aktualizacji grafiku!!
+  //console.log(workers);
 
   return (
     <>
