@@ -258,9 +258,10 @@ const Generate = () => {
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
           // console.log("ok");
+          person.graphic.push(i);
         }
       }
-      // console.log(findInArrayIndex);
+      // console.log(person);
       return findInArrayIndex;
     });
   };
@@ -268,7 +269,16 @@ const Generate = () => {
   return (
     <>
       <Button onClick={() => startGenerate()}>Generate</Button>
-      <ScheduleContainer bestSolution={bestSolution} workShifts={workShifts} />
+      {workers.map((person) => {
+        return (
+          <ScheduleContainer
+            key={person.id}
+            {...person}
+            bestSolution={bestSolution}
+            workShifts={workShifts}
+          />
+        );
+      })}
     </>
   );
 };

@@ -3,8 +3,8 @@ import "./ShContainer.css";
 import { Grid, GridItem } from "@chakra-ui/react";
 import ScheduleItem from "./ScheduleItem";
 
-const ScheduleContainer = ({ bestSolution, workShifts }) => {
-  // console.log(bestSolution);
+const ScheduleContainer = ({ bestSolution, workShifts, name, id, graphic }) => {
+  console.log(name, id, graphic);
 
   return (
     <>
