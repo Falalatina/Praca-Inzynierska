@@ -7,6 +7,7 @@ import ScheduleContainer from "./ScheduleContainer";
 const Generate = () => {
   const dispatch = useDispatch();
   const [bestSolution, setBestSolution] = useState([]);
+  const [wasChanged, setWasChanged] = useState(false);
 
   useEffect(() => {
     createStartingPopulation(
@@ -251,20 +252,21 @@ const Generate = () => {
   }, [bestSolution]);
 
   const addGraphicToWorker = () => {
-    workers.map((person) => {
+    workers.forEach((person) => {
       let findInArrayIndex = [];
       for (let i = 0; i < bestSolution.length; i++) {
         let bS = bestSolution[i];
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
-          //console.log("ok");
+          console.log("ok");
           person.graphic.push(i);
         }
       }
-      // console.log(person);
-      return findInArrayIndex;
+      console.log(person);
     });
   };
+
+  /// sprobowac trzeba wymusic rerender po aktualizacji grafiku!!
 
   return (
     <>

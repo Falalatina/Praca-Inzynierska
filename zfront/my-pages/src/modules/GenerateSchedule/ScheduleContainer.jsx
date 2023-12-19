@@ -5,8 +5,8 @@ import ScheduleItem from "./ScheduleItem";
 
 const ScheduleContainer = ({ bestSolution, workShifts, name, id, graphic }) => {
   //console.log(name, id, graphic);
-
-  console.log(graphic);
+  // console.log(graphic);
+  // console.log(graphic.length === 0);
 
   return (
     <>
@@ -16,15 +16,17 @@ const ScheduleContainer = ({ bestSolution, workShifts, name, id, graphic }) => {
         gap={1}
       >
         <div className="shift-container">{name}</div>
-        {
-          (graphic = [] ? (
-            <></>
-          ) : (
-            graphic.map((shift) => {
-              return <div className="shift-container">{shift}</div>;
-            })
-          ))
-        }
+        {graphic.length > 0 ? (
+          graphic.map((shift) => {
+            return (
+              <div key={shift} className="shift-container">
+                {shift}
+              </div>
+            );
+          })
+        ) : (
+          <></>
+        )}
       </Grid>
     </>
   );
