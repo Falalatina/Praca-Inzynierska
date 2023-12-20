@@ -257,7 +257,7 @@ const Generate = () => {
         let bS = bestSolution[i];
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
-          // console.log("ok");
+          console.log("ok");
           person.graphic.push(i);
         }
       }
