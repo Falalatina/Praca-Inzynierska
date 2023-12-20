@@ -1,27 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import teams from "../../data";
+import workers from "../../workers";
 
 const initialState = {
-  items: teams,
-  name: "",
-  workers: [
-    {
-      id: "",
-      name: "",
-      stage: "",
-      shifts: "s",
-      preferences: { yes: [], no: [] },
-      graphic: {
-        monday: "",
-        tuesday: "",
-        wednesday: "",
-        thursday: "",
-        friday: "",
-        saturday: "",
-        sunday: " ",
-      },
-    },
-  ],
+  workers: workers,
+  graphic: [],
   isLoading: true,
 };
 
@@ -29,11 +12,13 @@ const generateSlice = createSlice({
   name: "generate",
   initialState,
   reducers: {
-    autoSchedule: (state) => {
-      console.log();
+    addGraphic: (state, { payload }) => {
+      const { name, newGraphic } = payload;
+      state.workers = state.workers.find((worker) => worker.name === name);
+      workers.graphic = newGraphic;
     },
   },
 });
 
-export const { autoSchedule } = generateSlice.actions;
+export const { addGraphic } = generateSlice.actions;
 export default generateSlice.reducer;

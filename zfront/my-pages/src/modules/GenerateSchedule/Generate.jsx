@@ -1,13 +1,22 @@
 import { Button } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { autoSchedule } from "../../features/team/generateSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addGraphic } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 
 const Generate = () => {
   const dispatch = useDispatch();
   const [bestSolution, setBestSolution] = useState([]);
   const [wasChanged, setWasChanged] = useState(false);
+  const { workers } = useSelector((store) => store.generate);
+
+  // console.log(
+  //   useSelector((store) => {
+  //     console.log(store.generate.generateItems[0].workers);
+  //   })
+  // );
+
+  console.log(workers);
 
   useEffect(() => {
     createStartingPopulation(
@@ -20,32 +29,6 @@ const Generate = () => {
   const numberOfIterations = 100;
   const numberOfParents = 10;
   const mutate = 50;
-  const workers = [
-    {
-      id: 1,
-      name: "asia",
-      preferences: { yes: ["pn1"], no: ["pn3", "wt3"] },
-      graphic: [],
-    },
-    {
-      id: 2,
-      name: "basia",
-      preferences: { yes: ["wt1"], no: ["wt2"] },
-      graphic: [],
-    },
-    {
-      id: 3,
-      name: "kasia",
-      preferences: { yes: ["sr1"], no: ["wt1"] },
-      graphic: [],
-    },
-    {
-      id: 4,
-      name: "kacper",
-      preferences: { yes: ["czw1"], no: ["czw1"] },
-      graphic: [],
-    },
-  ];
 
   const population = [];
   const workShifts = [
@@ -103,6 +86,7 @@ const Generate = () => {
         if (workShifts[index].match(re1)) {
           for (let index = 0; index < numberOfPersonOnShift; index++) {
             day.push(randomElement(workers).name);
+            // console.log(randomElement(workers).name);
           }
         }
         if (workShifts[index].match(re3)) {
@@ -115,7 +99,7 @@ const Generate = () => {
       }
       // console.log("CHROMOSOME: ", chromosome);
       population.push(chromosome);
-      //  console.log("POPULATION: ", population);
+      // console.log("POPULATION: ", population);
     }
   };
   const evaluateForOne = (item) => {
@@ -137,7 +121,7 @@ const Generate = () => {
             fitness = fitness - 1;
           }
         }
-        //console.log(workers[index].preferences.yes);
+        // console.log(workers[index].preferences.yes);
       }
     });
     //console.log(fitness);
@@ -217,6 +201,7 @@ const Generate = () => {
         // console.log("NOWY: " + child[0][mutatedGene][randomGen]);
       }
     }
+    // console.log(population);
     population.push(childCopy[0]);
   };
 
@@ -259,9 +244,10 @@ const Generate = () => {
           findInArrayIndex.push([person.name, i]);
           console.log("ok");
           person.graphic.push(i);
+          dispatch(addGraphic(person.name, person.graphic));
         }
       }
-      //  console.log(person);
+      // console.log(person);
     });
   };
 
