@@ -14,7 +14,9 @@ const generateSlice = createSlice({
   reducers: {
     addGraphic: (state, { payload }) => {
       const { name, newGraphic } = payload;
-      state.workers = state.workers.find((worker) => worker.name === name);
+      const workers = (state.workers = state.workers.find(
+        (worker) => worker.name === name
+      ));
       workers.graphic = newGraphic;
     },
   },

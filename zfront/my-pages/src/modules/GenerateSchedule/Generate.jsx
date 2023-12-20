@@ -16,7 +16,7 @@ const Generate = () => {
   //   })
   // );
 
-  console.log(workers);
+  console.log(workers[0].graphic);
 
   useEffect(() => {
     createStartingPopulation(
@@ -243,8 +243,10 @@ const Generate = () => {
         if (bS.includes(person.name)) {
           findInArrayIndex.push([person.name, i]);
           console.log("ok");
+
           person.graphic.push(i);
-          dispatch(addGraphic(person.name, person.graphic));
+          console.log(person.graphic);
+          //  dispatch(addGraphic(person.name, person.graphic));
         }
       }
       // console.log(person);
