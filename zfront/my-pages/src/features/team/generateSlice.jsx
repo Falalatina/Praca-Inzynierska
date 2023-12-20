@@ -13,11 +13,22 @@ const generateSlice = createSlice({
   initialState,
   reducers: {
     addGraphic: (state, { payload }) => {
-      const { name, newGraphic } = payload;
-      const workers = (state.workers = state.workers.find(
-        (worker) => worker.name === name
-      ));
-      workers.graphic = newGraphic;
+      const { bestSolution } = payload;
+      state.workers.forEach((person) => {
+        let findInArrayIndex = [];
+        for (let i = 0; i < bestSolution.length; i++) {
+          let bS = bestSolution[i];
+          if (bS.includes(person.name)) {
+            findInArrayIndex.push([person.name, i]);
+            console.log("ok");
+
+            person.graphic.push(i);
+            console.log(person.graphic);
+            //  dispatch(addGraphic(person.name, person.graphic));
+          }
+        }
+        // console.log(person);
+      });
     },
   },
 });
