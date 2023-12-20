@@ -20,10 +20,10 @@ const generateSlice = createSlice({
           let bS = bestSolution[i];
           if (bS.includes(person.name)) {
             findInArrayIndex.push([person.name, i]);
-            console.log("ok");
+            //console.log("ok");
 
             person.graphic.push(i);
-            console.log(person.graphic);
+            //console.log(person.graphic);
             //  dispatch(addGraphic(person.name, person.graphic));
           }
         }

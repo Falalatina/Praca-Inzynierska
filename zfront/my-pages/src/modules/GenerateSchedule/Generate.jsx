@@ -16,7 +16,7 @@ const Generate = () => {
   //   })
   // );
 
-  console.log(workers[0].graphic);
+  // console.log(workers[0].graphic);
 
   useEffect(() => {
     createStartingPopulation(
@@ -226,7 +226,7 @@ const Generate = () => {
     maxWithKey(population, evaluateForOne);
     //console.log(maxWithKey(population, evaluateForOne));
     let bestSolution = maxWithKey(population, evaluateForOne);
-    //console.log(bestSolution);
+    console.log(bestSolution);
     setBestSolution(bestSolution || []);
     setWasChanged(!wasChanged);
   };
