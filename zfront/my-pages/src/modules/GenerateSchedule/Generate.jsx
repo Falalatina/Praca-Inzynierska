@@ -257,7 +257,9 @@ const Generate = () => {
 
   return (
     <>
-      <Button onClick={() => startGenerate()}>Generate</Button>
+      <Button style={{ margin: "1rem" }} onClick={() => startGenerate()}>
+        Generate
+      </Button>
       {workers.map((person) => {
         return (
           <ScheduleContainer
