@@ -261,11 +261,6 @@ const Generate = () => {
     dispatch(isSthLoading());
   };
 
-  console.log();
-  if (bestSolution.length === 15) {
-    dispatch(isSthLoading());
-  }
-
   return (
     <>
       <Button style={{ margin: "1rem" }} onClick={() => start()}>
