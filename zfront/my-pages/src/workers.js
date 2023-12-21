@@ -23,6 +23,12 @@ const workers = [
     preferences: { yes: ["czw1"], no: ["czw1"] },
     graphic: [],
   },
+  {
+    id: 5,
+    name: "borys",
+    preferences: { yes: ["czw3"], no: ["sr3"] },
+    graphic: [],
+  },
 ];
 
 export default workers;

@@ -193,7 +193,6 @@
 .workers-container:hover {
   box-shadow: var(--shadow-2);
   background-color: rgba(148, 255, 205, 0.322);
-  width: 10vw;
 }
 
 .content {
