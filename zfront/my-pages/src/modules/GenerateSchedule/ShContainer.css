@@ -113,7 +113,7 @@
 .shift-container {
   background-color: rgb(216, 226, 223);
   min-height: 50px;
-  min-width: 63px;
+  min-width: 150px;
   margin-top: 10px;
   border-radius: 2px;
   border: 2px dotted rgb(212, 212, 212);

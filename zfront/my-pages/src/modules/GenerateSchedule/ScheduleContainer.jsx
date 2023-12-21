@@ -24,10 +24,14 @@ const ScheduleContainer = ({ workShifts, name, id, graphic }) => {
     const filteredData = graphic.filter((element) =>
       indexesOfDays[day].includes(element)
     );
+    console.log(filteredData);
+    if (filteredData.length === 0) {
+      return <div className="shift-container"></div>;
+    }
     return <ScheduleItem key={day} graphic={filteredData} />;
   });
 
-  console.log(graphic);
+  // console.log(graphic);
 
   return (
     <>
