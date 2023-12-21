@@ -2,8 +2,11 @@ import React from "react";
 import "./ShContainer.css";
 import { Grid, GridItem } from "@chakra-ui/react";
 import ScheduleItem from "./ScheduleItem";
+import { useDispatch, useSelector } from "react-redux";
+import { isSthLoading } from "../../features/team/generateSlice";
 
-const ScheduleContainer = ({ workShifts, name, id, graphic }) => {
+const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
+  const dispatch = useDispatch();
   //console.log(name, id, graphic);
   const daysOfWeek = ["pn", "wt", "sr", "czw", "pt"];
 
@@ -24,9 +27,9 @@ const ScheduleContainer = ({ workShifts, name, id, graphic }) => {
     const filteredData = graphic.filter((element) =>
       indexesOfDays[day].includes(element)
     );
-    console.log(filteredData);
+    //console.log(filteredData);
     if (filteredData.length === 0) {
-      return <div className="shift-container"></div>;
+      return <div key={day} className="shift-container"></div>;
     }
     return <ScheduleItem key={day} graphic={filteredData} />;
   });
@@ -40,11 +43,13 @@ const ScheduleContainer = ({ workShifts, name, id, graphic }) => {
         templateColumns="repeat(6, 1fr)"
         gap={1}
       >
-        <div className="workers-container">
-          <div className="worker">{name}</div>
+        <div key={name} className="workers-container">
+          <div key={name} className="worker">
+            {name}
+          </div>
         </div>
 
-        {filteredDays}
+        {isLoading ? <div></div> : filteredDays}
       </Grid>
     </>
   );

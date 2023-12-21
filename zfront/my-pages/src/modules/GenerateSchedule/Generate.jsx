@@ -1,15 +1,16 @@
 import { Button } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addGraphic } from "../../features/team/generateSlice";
+import { addGraphic, isSthLoading } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 
 const Generate = () => {
   const dispatch = useDispatch();
   const [bestSolution, setBestSolution] = useState([]);
   const [wasChanged, setWasChanged] = useState(false);
-  const { workers } = useSelector((store) => store.generate);
+  const { workers, isLoading } = useSelector((store) => store.generate);
 
+  console.log(isLoading);
   // console.log(
   //   useSelector((store) => {
   //     console.log(store.generate.generateItems[0].workers);
@@ -255,9 +256,19 @@ const Generate = () => {
 
   //console.log(workers);
 
+  const start = () => {
+    startGenerate();
+    dispatch(isSthLoading());
+  };
+
+  console.log();
+  if (bestSolution.length === 15) {
+    dispatch(isSthLoading());
+  }
+
   return (
     <>
-      <Button style={{ margin: "1rem" }} onClick={() => startGenerate()}>
+      <Button style={{ margin: "1rem" }} onClick={() => start()}>
         Generate
       </Button>
       {workers.map((person) => {
@@ -267,6 +278,7 @@ const Generate = () => {
             {...person}
             bestSolution={bestSolution}
             workShifts={workShifts}
+            isLoading={isLoading}
           />
         );
       })}

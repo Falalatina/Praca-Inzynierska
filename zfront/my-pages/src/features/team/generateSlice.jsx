@@ -5,7 +5,7 @@ import workers from "../../workers";
 const initialState = {
   workers: workers,
   graphic: [],
-  isLoading: true,
+  isLoading: false,
 };
 
 const generateSlice = createSlice({
@@ -30,8 +30,11 @@ const generateSlice = createSlice({
         // console.log(person);
       });
     },
+    isSthLoading: (state) => {
+      state.isLoading = !state.isLoading;
+    },
   },
 });
 
-export const { addGraphic } = generateSlice.actions;
+export const { addGraphic, isSthLoading } = generateSlice.actions;
 export default generateSlice.reducer;
