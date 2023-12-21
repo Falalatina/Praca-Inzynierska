@@ -5,7 +5,7 @@ import ScheduleItem from "./ScheduleItem";
 
 const ScheduleContainer = ({ workShifts, name, id, graphic }) => {
   //console.log(name, id, graphic);
-  const valuesToCheck = ["pn", "wt", "sr", "czw", "pt"];
+  const daysOfWeek = ["pn", "wt", "sr", "czw", "pt"];
 
   const findDay = (array, values) => {
     return array.reduce((acc, shift, index) => {
@@ -18,23 +18,14 @@ const ScheduleContainer = ({ workShifts, name, id, graphic }) => {
     }, {});
   };
 
-  const indexesOfDays = findDay(workShifts, valuesToCheck);
+  const indexesOfDays = findDay(workShifts, daysOfWeek);
 
-  const isThatMonday = graphic.filter((element) =>
-    indexesOfDays["pn"].includes(element)
-  );
-  const isThatTuesday = graphic.filter((element) =>
-    indexesOfDays["wt"].includes(element)
-  );
-  const isThatWednesday = graphic.filter((element) =>
-    indexesOfDays["sr"].includes(element)
-  );
-  const isThatThursday = graphic.filter((element) =>
-    indexesOfDays["czw"].includes(element)
-  );
-  const isThatFriday = graphic.filter((element) =>
-    indexesOfDays["pt"].includes(element)
-  );
+  const filteredDays = daysOfWeek.map((day) => {
+    const filteredData = graphic.filter((element) =>
+      indexesOfDays[day].includes(element)
+    );
+    return <ScheduleItem key={day} graphic={filteredData} />;
+  });
 
   console.log(graphic);
 
@@ -49,11 +40,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic }) => {
           <div className="worker">{name}</div>
         </div>
 
-        <ScheduleItem graphic={isThatMonday} />
-        <ScheduleItem graphic={isThatTuesday} />
-        <ScheduleItem graphic={isThatWednesday} />
-        <ScheduleItem graphic={isThatThursday} />
-        <ScheduleItem graphic={isThatFriday} />
+        {filteredDays}
       </Grid>
     </>
   );
