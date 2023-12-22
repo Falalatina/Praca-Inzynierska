@@ -1,6 +1,6 @@
 import React from "react";
 import "./ShContainer.css";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, CircularProgress } from "@chakra-ui/react";
 import ScheduleItem from "./ScheduleItem";
 import { useDispatch, useSelector } from "react-redux";
 import { startLoading } from "../../features/team/generateSlice";
@@ -49,7 +49,13 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
           </div>
         </div>
 
-        {isLoading ? <div></div> : filteredDays}
+        {isLoading ? (
+          <div>
+            <CircularProgress isIndeterminate color="green.300" />
+          </div>
+        ) : (
+          filteredDays
+        )}
       </Grid>
     </>
   );

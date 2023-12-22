@@ -11,10 +11,10 @@ import ScheduleContainer from "./ScheduleContainer";
 const Generate = () => {
   const dispatch = useDispatch();
   const [bestSolution, setBestSolution] = useState([]);
-  const [wasChanged, setWasChanged] = useState(false);
+  const [population, setPopulation] = useState([]);
   const { workers, isLoading } = useSelector((store) => store.generate);
 
-  console.log(isLoading);
+  // console.log(isLoading);
   // console.log(
   //   useSelector((store) => {
   //     console.log(store.generate.generateItems[0].workers);
@@ -35,7 +35,6 @@ const Generate = () => {
   const numberOfParents = 10;
   const mutate = 50;
 
-  const population = [];
   const workShifts = [
     "pn1",
     "pn2",
@@ -91,7 +90,7 @@ const Generate = () => {
         if (workShifts[index].match(re1)) {
           for (let index = 0; index < numberOfPersonOnShift; index++) {
             day.push(randomElement(workers).name);
-            // console.log(randomElement(workers).name);
+            //  console.log(randomElement(workers).name);
           }
         }
         if (workShifts[index].match(re3)) {
@@ -102,8 +101,10 @@ const Generate = () => {
         // console.log("DAY: ", day);
         chromosome.push(day);
       }
-      // console.log("CHROMOSOME: ", chromosome);
+      //console.log("CHROMOSOME: ", chromosome);
+
       population.push(chromosome);
+
       // console.log("POPULATION: ", population);
     }
   };
@@ -116,7 +117,7 @@ const Generate = () => {
         }
         // console.log(workShifts[index]); - pn1 pn2 etc.
         const array = [workers[index].preferences.yes];
-        // console.log(array[0].length > 0);
+        // console.log(array[0].length );
         for (let i = 0; i < array[0].length; i++) {
           // console.log(workers[index].preferences.yes[i]);
           if (workShifts[index] === workers[index].preferences.yes[i]) {
@@ -219,8 +220,11 @@ const Generate = () => {
       //Math.min();
     }
   };
-
+  console.log(population);
   const startGenerate = () => {
+    if (population.length > 0) {
+      setPopulation([]);
+    }
     for (let index = 0; index < numberOfIterations; index++) {
       tournamentSelection(population);
       reducePopulation(population);
@@ -233,7 +237,6 @@ const Generate = () => {
     let bestSolution = maxWithKey(population, evaluateForOne);
     console.log(bestSolution);
     setBestSolution(bestSolution || []);
-    setWasChanged(!wasChanged);
   };
 
   useEffect(() => {
@@ -265,15 +268,12 @@ const Generate = () => {
     dispatch(startLoading());
   };
 
-  if (bestSolution.length > 0) {
-    dispatch(stopLoading());
-  }
-
   return (
     <>
       <Button style={{ margin: "1rem" }} onClick={() => start()}>
         Generate
       </Button>
+
       {workers.map((person) => {
         return (
           <ScheduleContainer

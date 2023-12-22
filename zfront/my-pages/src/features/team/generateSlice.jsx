@@ -25,6 +25,7 @@ const generateSlice = createSlice({
             person.graphic.push(i);
             //console.log(person.graphic);
             //  dispatch(addGraphic(person.name, person.graphic));
+            state.isLoading = false;
           }
         }
         // console.log(person);
