@@ -1,8 +1,15 @@
 import React from "react";
 import Generate from "./Generate";
 import "./ShContainer.css";
+import { IconButton } from "@chakra-ui/react";
+import { SettingsIcon } from "@chakra-ui/icons";
+import SettingModal from "./Settingmodal";
+import { openModal } from "../../features/team/modalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const index = () => {
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((store) => store.modal);
   return (
     <>
       <div className="week-container">
@@ -28,6 +35,10 @@ const index = () => {
           <div className="date-time-day">25.08</div>
         </div>
       </div>
+      <IconButton
+        icon={<SettingsIcon onClick={() => dispatch(openModal())} />}
+      />
+      {isOpen && <SettingModal />}
       <Generate />
     </>
   );
