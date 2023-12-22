@@ -30,11 +30,14 @@ const generateSlice = createSlice({
         // console.log(person);
       });
     },
-    isSthLoading: (state) => {
-      state.isLoading = !state.isLoading;
+    startLoading: (state) => {
+      state.isLoading = true;
+    },
+    stopLoading: (state) => {
+      state.isLoading = false;
     },
   },
 });
 
-export const { addGraphic, isSthLoading } = generateSlice.actions;
+export const { addGraphic, startLoading, stopLoading } = generateSlice.actions;
 export default generateSlice.reducer;

@@ -1,7 +1,11 @@
 import { Button } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addGraphic, isSthLoading } from "../../features/team/generateSlice";
+import {
+  addGraphic,
+  startLoading,
+  stopLoading,
+} from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 
 const Generate = () => {
@@ -258,8 +262,12 @@ const Generate = () => {
 
   const start = () => {
     startGenerate();
-    dispatch(isSthLoading());
+    dispatch(startLoading());
   };
+
+  if (bestSolution.length > 0) {
+    dispatch(stopLoading());
+  }
 
   return (
     <>

@@ -3,7 +3,7 @@ import "./ShContainer.css";
 import { Grid, GridItem } from "@chakra-ui/react";
 import ScheduleItem from "./ScheduleItem";
 import { useDispatch, useSelector } from "react-redux";
-import { isSthLoading } from "../../features/team/generateSlice";
+import { startLoading } from "../../features/team/generateSlice";
 
 const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
   const dispatch = useDispatch();
