@@ -166,6 +166,7 @@ hr {
   max-width: 600px;
   border-radius: var(--radius);
   padding: 2rem 1rem;
+  text-align: left;
 }
 .modal h4 {
   margin-bottom: 0;
@@ -178,4 +179,10 @@ hr {
 .btn-container {
   display: flex;
   justify-content: space-around;
+}
+
+.setting-menu {
+  width: 60px;
+  position: fixed;
+  margin: 0;
 }

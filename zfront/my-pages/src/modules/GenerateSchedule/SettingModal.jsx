@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./modal.css";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../features/team/modalSlice";
@@ -9,17 +9,48 @@ import {
   Box,
   Stack,
   StackDivider,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Grid,
+  GridItem,
+  Button,
 } from "@chakra-ui/react";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Grid, GridItem } from "@chakra-ui/react";
 
 const SettingModal = () => {
   const dispatch = useDispatch();
+  const [buttonStates, setButtonStates] = useState({
+    buttonMon: "purple.500",
+    buttonTues: "purple.500",
+    buttonWed: "purple.500",
+    buttonThurs: "purple.500",
+    buttonFri: "purple.500",
+    buttonSat: "purple.200",
+    buttonSun: "purple.200",
+  });
+
+  const days = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+
+  const handleChange = (buttonId) => {
+    const newButtonStates = { ...buttonStates };
+    newButtonStates[buttonId] =
+      newButtonStates[buttonId] === "purple.500" ? "purple.200" : "purple.500";
+
+    setButtonStates(newButtonStates);
+  };
   return (
     <aside className="modal-container">
       <div className="modal">
-        <Card>
-          <CardHeader>
+        <div className="setting-menu">
+          <Button>Days</Button>
+          <Button>Hours</Button>
+          <Button>Shift</Button>
+        </div>
+        <Card
+          style={{ position: "relative", marginLeft: "70px", display: "flex" }}
+        >
+          <CardHeader style={{ background: "#805AD5" }}>
             <Heading size="md">Settings</Heading>
           </CardHeader>
           <CardBody>
@@ -32,47 +63,46 @@ const SettingModal = () => {
                 Check what days you want to work!
               </Text>
             </Box>
-            <Box>
-              <Grid
-                alignItems="center"
-                justifyContent="center"
-                templateColumns="repeat(7, 1fr)"
-                gap={6}
-              >
-                <GridItem justifyContent="center">
-                  <Box w="100%" h="10" bg="purple.500" borderRadius="1rem">
-                    <Text paddingTop="10%">J</Text>
-                  </Box>
-                </GridItem>
-                <GridItem w="100%" h="10" bg="blue.500" />
-                <GridItem w="100%" h="10" bg="blue.500" />
-                <GridItem w="100%" h="10" bg="blue.500" />
-                <GridItem w="100%" h="10" bg="blue.500" />
-                <GridItem w="100%" h="10" bg="blue.500" />
-                <GridItem w="100%" h="10" bg="blue.500" />
-              </Grid>
-            </Box>
+
+            <Grid
+              alignItems="center"
+              justifyContent="center"
+              templateColumns="repeat(7, 1fr)"
+              gap={5}
+            >
+              {days.map((day) => {
+                return (
+                  <GridItem key={day} justifyContent="center">
+                    <Button
+                      size="sm"
+                      bg={buttonStates[`button${day}`]}
+                      color="white"
+                      onClick={() => handleChange(`button${day}`)}
+                    >
+                      {day}
+                    </Button>
+                  </GridItem>
+                );
+              })}
+            </Grid>
           </CardBody>
         </Card>
+
         <div className="btn-container">
-          <div className="btn-container">
-            <button
-              type="button"
-              className="btn confirm-btn"
-              onClick={() => dispatch(closeModal())}
-            >
-              Confirm
-            </button>
-            <button
-              type="button"
-              className="btn clear-btn"
-              onClick={() => dispatch(closeModal())}
-            >
-              Cancel
-            </button>
-          </div>
-          <h4>Dni</h4>
-          <Switch size="lg" />
+          <Button
+            type="button"
+            className="btn confirm-btn"
+            onClick={() => dispatch(closeModal())}
+          >
+            Confirm
+          </Button>
+          <Button
+            type="button"
+            className="btn clear-btn"
+            onClick={() => dispatch(closeModal())}
+          >
+            Cancel
+          </Button>
         </div>
       </div>
     </aside>
