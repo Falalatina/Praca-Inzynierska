@@ -42,17 +42,25 @@ const SettingModal = () => {
   return (
     <aside className="modal-container">
       <div className="modal">
+        <Card>
+          <CardHeader style={{ background: "#805AD5" }}>
+            <Heading size="md">Settings</Heading>
+          </CardHeader>
+        </Card>
         <div className="setting-menu">
-          <Button>Days</Button>
-          <Button>Hours</Button>
-          <Button>Shift</Button>
+          <Button w="67px" variant="ghost">
+            Days
+          </Button>
+          <Button w="67px" variant="ghost">
+            Hours
+          </Button>
+          <Button w="67px" variant="ghost">
+            Shift
+          </Button>
         </div>
         <Card
           style={{ position: "relative", marginLeft: "70px", display: "flex" }}
         >
-          <CardHeader style={{ background: "#805AD5" }}>
-            <Heading size="md">Settings</Heading>
-          </CardHeader>
           <CardBody>
             <Stack divider={<StackDivider />} spacing="4"></Stack>
             <Box>
