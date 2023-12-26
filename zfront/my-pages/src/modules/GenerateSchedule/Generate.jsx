@@ -16,7 +16,7 @@ const Generate = () => {
   const { workers, isLoading } = useSelector((store) => store.generate);
   const [newGeneration, setNewGeneration] = useState(0);
 
-  const { numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
+  const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
 
   // console.log(isLoading);
@@ -27,6 +27,10 @@ const Generate = () => {
   // );
 
   // console.log(workers[0].graphic);
+
+  useEffect(() => {
+    setNewGeneration(newGeneration + 1);
+  }, [isOpen]);
 
   useEffect(() => {
     createStartingPopulation(
