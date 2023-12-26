@@ -28,9 +28,25 @@ const modalSlice = createSlice({
     updateHowLong: (state, action) => {
       state.howLong = action.payload;
     },
+    toggleShift1: (state) => {
+      state.firstShift = !state.firstShift;
+    },
+    toggleShift2: (state) => {
+      state.secondShift = !state.secondShift;
+    },
+    toggleShift3: (state) => {
+      state.thirdShift = !state.thirdShift;
+    },
   },
 });
 
-export const { openModal, closeModal, updateHourOfStart, updateHowLong } =
-  modalSlice.actions;
+export const {
+  openModal,
+  closeModal,
+  updateHourOfStart,
+  updateHowLong,
+  toggleShift1,
+  toggleShift2,
+  toggleShift3,
+} = modalSlice.actions;
 export default modalSlice.reducer;

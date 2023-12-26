@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Switch,
   Heading,
@@ -15,13 +16,27 @@ import {
   Button,
   Input,
 } from "@chakra-ui/react";
+import {
+  toggleShift1,
+  toggleShift2,
+  toggleShift3,
+} from "../../../features/team/modalSlice";
 
 const ShiftModal = () => {
-  const [check, setCheck] = useState({
-    first: true,
-    second: true,
-    third: true,
-  });
+  const dispatch = useDispatch();
+  const { firstShift, secondShift, thirdShift } = useSelector(
+    (state) => state.modal
+  );
+  const handleSwitchToggle1 = () => {
+    dispatch(toggleShift1());
+  };
+  const handleSwitchToggle2 = () => {
+    dispatch(toggleShift2());
+  };
+  const handleSwitchToggle3 = () => {
+    dispatch(toggleShift3());
+  };
+
   return (
     <Card
       style={{
@@ -43,7 +58,11 @@ const ShiftModal = () => {
           <Box>
             <Heading size="xs" textTransform="uppercase">
               First Shift
-              <Switch colorScheme="purple" onChange={() => console.log("hi")} />
+              <Switch
+                colorScheme="purple"
+                defaultChecked
+                onChange={handleSwitchToggle1}
+              />
             </Heading>
             <Text pt="2" fontSize="sm">
               <Input placeholder="number of persons: 3" type="number" />
@@ -51,7 +70,12 @@ const ShiftModal = () => {
           </Box>
           <Box>
             <Heading size="xs" textTransform="uppercase">
-              Second Shift <Switch colorScheme="purple" />
+              Second Shift{" "}
+              <Switch
+                colorScheme="purple"
+                defaultChecked
+                onChange={handleSwitchToggle2}
+              />
             </Heading>
             <Text pt="2" fontSize="sm">
               <Input placeholder="number of persons: 3" type="number" />
@@ -59,7 +83,12 @@ const ShiftModal = () => {
           </Box>
           <Box>
             <Heading size="xs" textTransform="uppercase">
-              Third Shift <Switch colorScheme="purple" />
+              Third Shift{" "}
+              <Switch
+                colorScheme="purple"
+                defaultChecked
+                onChange={handleSwitchToggle3}
+              />
             </Heading>
             <Text pt="2" fontSize="sm">
               <Input placeholder="number of persons: 1" type="number" />
