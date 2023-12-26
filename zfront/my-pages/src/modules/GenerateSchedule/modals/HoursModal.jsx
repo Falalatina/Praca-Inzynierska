@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateHourOfStart } from "../../../features/team/modalSlice";
+import {
+  updateHourOfStart,
+  updateHowLong,
+} from "../../../features/team/modalSlice";
 import {
   Switch,
   Heading,
@@ -20,10 +23,13 @@ import {
 
 const HoursModal = () => {
   const dispatch = useDispatch();
-  const { hourOfStart } = useSelector((state) => state.modal);
+  const { hourOfStart, howLong } = useSelector((state) => state.modal);
 
   const handleInputChange1 = (e) => {
     dispatch(updateHourOfStart(e.target.value));
+  };
+  const handleInputChange2 = (e) => {
+    dispatch(updateHowLong(e.target.value));
   };
 
   return (
@@ -49,8 +55,9 @@ const HoursModal = () => {
               First Shift Start
             </Heading>
             <Text pt="2" fontSize="sm">
+              X:00
               <Input
-                placeholder="6"
+                placeholder="X:00"
                 type="number"
                 value={hourOfStart}
                 onChange={handleInputChange1}
@@ -62,7 +69,13 @@ const HoursModal = () => {
               How Long Shift takes
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="8H" />
+              Hours
+              <Input
+                placeholder="8"
+                type="number"
+                value={howLong}
+                onChange={handleInputChange2}
+              />{" "}
             </Text>
           </Box>
         </Stack>

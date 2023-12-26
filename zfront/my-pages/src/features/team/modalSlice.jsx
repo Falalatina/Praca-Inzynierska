@@ -25,8 +25,12 @@ const modalSlice = createSlice({
     updateHourOfStart: (state, action) => {
       state.hourOfStart = action.payload;
     },
+    updateHowLong: (state, action) => {
+      state.howLong = action.payload;
+    },
   },
 });
 
-export const { openModal, closeModal, updateHourOfStart } = modalSlice.actions;
+export const { openModal, closeModal, updateHourOfStart, updateHowLong } =
+  modalSlice.actions;
 export default modalSlice.reducer;
