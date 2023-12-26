@@ -23,9 +23,9 @@ import ShiftModal from "./ShiftModal";
 
 const SettingModal = () => {
   const dispatch = useDispatch();
-  const [openDays, setOpenDays] = useState(false);
+  const [openDays, setOpenDays] = useState(true);
   const [openHours, setOpenHours] = useState(false);
-  const [openShift, setOpenShift] = useState(true);
+  const [openShift, setOpenShift] = useState(false);
 
   return (
     <aside className="modal-container">

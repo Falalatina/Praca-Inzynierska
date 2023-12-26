@@ -2,6 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: true,
+  hourOfStart: 6,
+  howLong: 8,
+  firstShift: true,
+  numberOfEmployees1: 3,
+  secondShift: true,
+  numberOfEmployees2: 3,
+  thirdShift: true,
+  numberOfEmployees3: 1,
 };
 
 const modalSlice = createSlice({
@@ -14,8 +22,11 @@ const modalSlice = createSlice({
     closeModal: (state, action) => {
       state.isOpen = false;
     },
+    updateHourOfStart: (state, action) => {
+      state.hourOfStart = action.payload;
+    },
   },
 });
 
-export const { openModal, closeModal } = modalSlice.actions;
+export const { openModal, closeModal, updateHourOfStart } = modalSlice.actions;
 export default modalSlice.reducer;
