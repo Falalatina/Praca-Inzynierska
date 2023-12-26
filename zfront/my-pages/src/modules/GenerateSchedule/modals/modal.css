@@ -190,6 +190,7 @@ hr {
 @media (max-width: 900px) {
   .grid-container {
     font-size: 9px;
+    width: 300px;
   }
 }
 

@@ -37,6 +37,7 @@ const DaysModal = () => {
   };
   return (
     <Card
+      className="grid-container"
       style={{
         position: "relative",
         marginLeft: "70px",
@@ -45,7 +46,7 @@ const DaysModal = () => {
     >
       <CardBody style={{ minWidth: "600px" }}>
         <Stack divider={<StackDivider />} spacing="4"></Stack>
-        <Box className="grid-container">
+        <Box>
           <Heading size="xs" textTransform="uppercase">
             Days
           </Heading>

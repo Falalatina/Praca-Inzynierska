@@ -13,6 +13,7 @@ import {
   Grid,
   GridItem,
   Button,
+  Input,
 } from "@chakra-ui/react";
 
 const HoursModal = () => {
@@ -24,7 +25,7 @@ const HoursModal = () => {
         display: "flex",
       }}
     >
-      <CardBody style={{ minWidth: "600px" }}>
+      <CardBody>
         <Stack divider={<StackDivider />} spacing="4">
           <Box className="grid-container">
             <Heading size="xs" textTransform="uppercase">
@@ -34,12 +35,20 @@ const HoursModal = () => {
               Check what hours you want to work!
             </Text>
           </Box>
-          <Box>
+          <Box style={{ maxWidth: "400px" }}>
             <Heading size="xs" textTransform="uppercase">
-              Overview
+              First Shift Start
             </Heading>
             <Text pt="2" fontSize="sm">
-              Check out the overview of your clients.
+              <Input placeholder="6:00" />
+            </Text>
+          </Box>
+          <Box style={{ maxWidth: "400px" }}>
+            <Heading size="xs" textTransform="uppercase">
+              How Long Shift takes
+            </Heading>
+            <Text pt="2" fontSize="sm">
+              <Input placeholder="8H" />
             </Text>
           </Box>
         </Stack>
