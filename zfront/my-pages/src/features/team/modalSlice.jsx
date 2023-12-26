@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isOpen: true,
+  isOpen: false,
   hourOfStart: 6,
   howLong: 8,
   firstShift: true,
