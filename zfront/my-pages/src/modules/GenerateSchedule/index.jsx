@@ -6,6 +6,7 @@ import { SettingsIcon } from "@chakra-ui/icons";
 import SettingModal from "./modals/SettingModal";
 import { openModal } from "../../features/team/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "@chakra-ui/react";
 
 const index = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const index = () => {
       <IconButton
         icon={<SettingsIcon onClick={() => dispatch(openModal())} />}
       />
+
       {isOpen && <SettingModal />}
       <Generate />
     </>

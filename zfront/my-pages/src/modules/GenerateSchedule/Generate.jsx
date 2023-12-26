@@ -3,6 +3,7 @@ import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addGraphic,
+  removeGraphic,
   startLoading,
   stopLoading,
 } from "../../features/team/generateSlice";
@@ -13,6 +14,10 @@ const Generate = () => {
   const [bestSolution, setBestSolution] = useState([]);
   const [population, setPopulation] = useState([]);
   const { workers, isLoading } = useSelector((store) => store.generate);
+  const [newGeneration, setNewGeneration] = useState(0);
+
+  const { numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
+    useSelector((store) => store.modal);
 
   // console.log(isLoading);
   // console.log(
@@ -27,9 +32,11 @@ const Generate = () => {
     createStartingPopulation(
       numberOfParents,
       workShifts,
-      numberOfPersonOnShift
+      numberOfEmployees1,
+      numberOfEmployees2,
+      numberOfEmployees3
     );
-  }, []);
+  }, [newGeneration]);
 
   const numberOfIterations = 100;
   const numberOfParents = 10;
@@ -79,22 +86,30 @@ const Generate = () => {
   const createStartingPopulation = (
     numberOfParents,
     workShifts,
-    numberOfPersonOnShift
+    numberOfEmployees1,
+    numberOfEmployees2,
+    numberOfEmployees3
   ) => {
     for (let i = 0; i < numberOfParents; i++) {
       const chromosome = [];
       for (let index = 0; index < workShifts.length; index++) {
         const day = [];
-        const re1 = /.+[1-2]/;
+        const re1 = /.+[1]/;
+        const re2 = /.+[2]/;
         const re3 = /.+[3]/;
         if (workShifts[index].match(re1)) {
-          for (let index = 0; index < numberOfPersonOnShift; index++) {
+          for (let index = 0; index < numberOfEmployees1; index++) {
             day.push(randomElement(workers).name);
             //  console.log(randomElement(workers).name);
           }
         }
+        if (workShifts[index].match(re2)) {
+          for (let index = 0; index < numberOfEmployees2; index++) {
+            day.push(randomElement(workers).name);
+          }
+        }
         if (workShifts[index].match(re3)) {
-          for (let index = 0; index < numberOfPersonOnShift - 2; index++) {
+          for (let index = 0; index < numberOfEmployees3; index++) {
             day.push(randomElement(workers).name);
           }
         }
@@ -220,7 +235,7 @@ const Generate = () => {
       //Math.min();
     }
   };
-  console.log(population);
+  // console.log(population);
   const startGenerate = () => {
     if (population.length > 0) {
       setPopulation([]);
@@ -264,8 +279,10 @@ const Generate = () => {
   //console.log(workers);
 
   const start = () => {
+    dispatch(removeGraphic());
     startGenerate();
     dispatch(startLoading());
+    setNewGeneration(newGeneration + 1);
   };
 
   return (

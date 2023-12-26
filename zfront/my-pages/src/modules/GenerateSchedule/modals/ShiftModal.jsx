@@ -46,13 +46,13 @@ const ShiftModal = () => {
     dispatch(toggleShift3());
   };
   const handleInputChange1 = (e) => {
-    dispatch(updateNOE1(e.target.value));
+    dispatch(updateNOE1(Number(e.target.value)));
   };
   const handleInputChange2 = (e) => {
-    dispatch(updateNOE2(e.target.value));
+    dispatch(updateNOE2(Number(e.target.value)));
   };
   const handleInputChange3 = (e) => {
-    dispatch(updateNOE3(e.target.value));
+    dispatch(updateNOE3(Number(e.target.value)));
   };
 
   return (
@@ -105,7 +105,7 @@ const ShiftModal = () => {
                 placeholder="number of persons"
                 type="number"
                 value={numberOfEmployees2}
-                onChange={handleInputChange1}
+                onChange={handleInputChange2}
               />
             </Text>
           </Box>
@@ -123,7 +123,7 @@ const ShiftModal = () => {
                 placeholder="number of persons"
                 type="number"
                 value={numberOfEmployees3}
-                onChange={handleInputChange1}
+                onChange={handleInputChange3}
               />
             </Text>
           </Box>

@@ -31,6 +31,11 @@ const generateSlice = createSlice({
         // console.log(person);
       });
     },
+    removeGraphic: (state) => {
+      state.workers.forEach((person) => {
+        person.graphic = [];
+      });
+    },
     startLoading: (state) => {
       state.isLoading = true;
     },
@@ -40,5 +45,6 @@ const generateSlice = createSlice({
   },
 });
 
-export const { addGraphic, startLoading, stopLoading } = generateSlice.actions;
+export const { addGraphic, startLoading, stopLoading, removeGraphic } =
+  generateSlice.actions;
 export default generateSlice.reducer;
