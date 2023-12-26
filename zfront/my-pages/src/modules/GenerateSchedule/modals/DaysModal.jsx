@@ -37,46 +37,45 @@ const DaysModal = () => {
   };
   return (
     <Card
-      className="grid-container"
       style={{
         position: "relative",
         marginLeft: "70px",
         display: "flex",
       }}
     >
-      <CardBody style={{ minWidth: "600px" }}>
-        <Stack divider={<StackDivider />} spacing="4"></Stack>
-        <Box>
-          <Heading size="xs" textTransform="uppercase">
-            Days
-          </Heading>
-          <Text pt="2" fontSize="sm">
-            Check what days you want to work!
-          </Text>
-
-          <Grid
-            style={{ overflowX: "auto", width: "100%" }}
-            alignItems="center"
-            justifyContent="center"
-            templateColumns="repeat(7, 1fr)"
-            gap={5}
-          >
-            {days.map((day) => {
-              return (
-                <GridItem key={day} p={-1}>
-                  <Button
-                    size="sm"
-                    bg={buttonStates[`button${day}`]}
-                    color="white"
-                    onClick={() => handleChange(`button${day}`)}
-                  >
-                    {day}
-                  </Button>
-                </GridItem>
-              );
-            })}
-          </Grid>
-        </Box>
+      <CardBody>
+        <Stack divider={<StackDivider />} spacing="4">
+          <Box>
+            <Heading size="xs" textTransform="uppercase">
+              Days
+            </Heading>
+            <Text pt="2" fontSize="sm">
+              Check what days you want to work!
+            </Text>
+          </Box>
+          <Box>
+            <Grid
+              style={{ overflowX: "auto", scrollbarWidth: "thin" }}
+              templateColumns="repeat(7, 1fr)"
+              gap={1}
+            >
+              {days.map((day) => {
+                return (
+                  <GridItem key={day} p={-1}>
+                    <Button
+                      size="sm"
+                      bg={buttonStates[`button${day}`]}
+                      color="white"
+                      onClick={() => handleChange(`button${day}`)}
+                    >
+                      {day}
+                    </Button>
+                  </GridItem>
+                );
+              })}
+            </Grid>
+          </Box>
+        </Stack>
       </CardBody>
     </Card>
   );
