@@ -19,11 +19,13 @@ import {
 } from "@chakra-ui/react";
 import DaysModal from "./DaysModal";
 import HoursModal from "./HoursModal";
+import ShiftModal from "./ShiftModal";
 
 const SettingModal = () => {
   const dispatch = useDispatch();
   const [openDays, setOpenDays] = useState(false);
-  const [openHours, setOpenHours] = useState(true);
+  const [openHours, setOpenHours] = useState(false);
+  const [openShift, setOpenShift] = useState(true);
 
   return (
     <aside className="modal-container">
@@ -39,6 +41,8 @@ const SettingModal = () => {
             variant="ghost"
             onClick={() => {
               setOpenDays(true);
+              setOpenHours(false);
+              setOpenShift(false);
             }}
           >
             Days
@@ -49,16 +53,33 @@ const SettingModal = () => {
             onClick={() => {
               setOpenHours(true);
               setOpenDays(false);
+              setOpenShift(false);
             }}
           >
             Hours
           </Button>
-          <Button w="67px" variant="ghost">
+          <Button
+            w="67px"
+            variant="ghost"
+            onClick={() => {
+              setOpenHours(false);
+              setOpenDays(false);
+              setOpenShift(true);
+            }}
+          >
             Shift
           </Button>
         </div>
 
-        {openDays ? <DaysModal /> : openHours ? <HoursModal /> : <div></div>}
+        {openDays ? (
+          <DaysModal />
+        ) : openHours ? (
+          <HoursModal />
+        ) : openShift ? (
+          <ShiftModal />
+        ) : (
+          <div></div>
+        )}
 
         <div className="btn-container">
           <Button

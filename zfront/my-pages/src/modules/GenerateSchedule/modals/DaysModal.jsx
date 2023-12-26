@@ -55,7 +55,11 @@ const DaysModal = () => {
           </Box>
           <Box>
             <Grid
-              style={{ overflowX: "auto", scrollbarWidth: "thin" }}
+              style={{
+                overflowX: "auto",
+                scrollbarWidth: "thin",
+                webkitScrollbarThumb: "#D6BCFA",
+              }}
               templateColumns="repeat(7, 1fr)"
               gap={1}
             >
