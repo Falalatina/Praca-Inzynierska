@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Switch,
   Heading,
@@ -17,6 +17,11 @@ import {
 } from "@chakra-ui/react";
 
 const ShiftModal = () => {
+  const [check, setCheck] = useState({
+    first: true,
+    second: true,
+    third: true,
+  });
   return (
     <Card
       style={{
@@ -37,7 +42,8 @@ const ShiftModal = () => {
           </Box>
           <Box>
             <Heading size="xs" textTransform="uppercase">
-              First Shift <Switch colorScheme="purple" />
+              First Shift
+              <Switch colorScheme="purple" onChange={() => console.log("hi")} />
             </Heading>
             <Text pt="2" fontSize="sm">
               <Input placeholder="number of person: 3" type="number" />
