@@ -18,10 +18,12 @@ import {
   Button,
 } from "@chakra-ui/react";
 import DaysModal from "./DaysModal";
+import HoursModal from "./HoursModal";
 
 const SettingModal = () => {
   const dispatch = useDispatch();
-  const [openDays, setOpenDays] = useState(true);
+  const [openDays, setOpenDays] = useState(false);
+  const [openHours, setOpenHours] = useState(true);
 
   return (
     <aside className="modal-container">
@@ -32,10 +34,23 @@ const SettingModal = () => {
           </CardHeader>
         </Card>
         <div className="setting-menu">
-          <Button w="67px" variant="ghost">
+          <Button
+            w="67px"
+            variant="ghost"
+            onClick={() => {
+              setOpenDays(true);
+            }}
+          >
             Days
           </Button>
-          <Button w="67px" variant="ghost">
+          <Button
+            w="67px"
+            variant="ghost"
+            onClick={() => {
+              setOpenHours(true);
+              setOpenDays(false);
+            }}
+          >
             Hours
           </Button>
           <Button w="67px" variant="ghost">
@@ -43,27 +58,7 @@ const SettingModal = () => {
           </Button>
         </div>
 
-        <Card
-          style={{
-            position: "relative",
-            marginLeft: "70px",
-            display: "flex",
-          }}
-        >
-          <CardBody style={{ minWidth: "600px" }}>
-            <Stack divider={<StackDivider />} spacing="4"></Stack>
-            <Box className="grid-container">
-              <Heading size="xs" textTransform="uppercase">
-                Days
-              </Heading>
-              <Text pt="2" fontSize="sm">
-                Check what days you want to work!
-              </Text>
-
-              <DaysModal />
-            </Box>
-          </CardBody>
-        </Card>
+        {openDays ? <DaysModal /> : openHours ? <HoursModal /> : <div></div>}
 
         <div className="btn-container">
           <Button
