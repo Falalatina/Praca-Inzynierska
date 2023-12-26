@@ -37,6 +37,15 @@ const modalSlice = createSlice({
     toggleShift3: (state) => {
       state.thirdShift = !state.thirdShift;
     },
+    updateNOE1: (state, action) => {
+      state.numberOfEmployees1 = action.payload;
+    },
+    updateNOE2: (state, action) => {
+      state.numberOfEmployees2 = action.payload;
+    },
+    updateNOE3: (state, action) => {
+      state.numberOfEmployees3 = action.payload;
+    },
   },
 });
 
@@ -48,5 +57,8 @@ export const {
   toggleShift1,
   toggleShift2,
   toggleShift3,
+  updateNOE1,
+  updateNOE2,
+  updateNOE3,
 } = modalSlice.actions;
 export default modalSlice.reducer;

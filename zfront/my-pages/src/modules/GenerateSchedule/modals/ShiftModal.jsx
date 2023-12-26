@@ -20,13 +20,22 @@ import {
   toggleShift1,
   toggleShift2,
   toggleShift3,
+  updateNOE1,
+  updateNOE2,
+  updateNOE3,
 } from "../../../features/team/modalSlice";
 
 const ShiftModal = () => {
   const dispatch = useDispatch();
-  const { firstShift, secondShift, thirdShift } = useSelector(
-    (state) => state.modal
-  );
+  const {
+    firstShift,
+    secondShift,
+    thirdShift,
+    numberOfEmployees1,
+    numberOfEmployees2,
+    numberOfEmployees3,
+  } = useSelector((state) => state.modal);
+
   const handleSwitchToggle1 = () => {
     dispatch(toggleShift1());
   };
@@ -35,6 +44,15 @@ const ShiftModal = () => {
   };
   const handleSwitchToggle3 = () => {
     dispatch(toggleShift3());
+  };
+  const handleInputChange1 = (e) => {
+    dispatch(updateNOE1(e.target.value));
+  };
+  const handleInputChange2 = (e) => {
+    dispatch(updateNOE2(e.target.value));
+  };
+  const handleInputChange3 = (e) => {
+    dispatch(updateNOE3(e.target.value));
   };
 
   return (
@@ -65,7 +83,12 @@ const ShiftModal = () => {
               />
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="number of persons: 3" type="number" />
+              <Input
+                placeholder="number of persons"
+                type="number"
+                value={numberOfEmployees1}
+                onChange={handleInputChange1}
+              />
             </Text>
           </Box>
           <Box>
@@ -78,7 +101,12 @@ const ShiftModal = () => {
               />
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="number of persons: 3" type="number" />
+              <Input
+                placeholder="number of persons"
+                type="number"
+                value={numberOfEmployees2}
+                onChange={handleInputChange1}
+              />
             </Text>
           </Box>
           <Box>
@@ -91,7 +119,12 @@ const ShiftModal = () => {
               />
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="number of persons: 1" type="number" />
+              <Input
+                placeholder="number of persons"
+                type="number"
+                value={numberOfEmployees3}
+                onChange={handleInputChange1}
+              />
             </Text>
           </Box>
         </Stack>
