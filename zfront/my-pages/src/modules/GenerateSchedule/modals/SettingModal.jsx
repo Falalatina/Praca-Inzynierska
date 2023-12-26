@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./modal.css";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../features/team/modalSlice";
+import { closeModal } from "../../../features/team/modalSlice";
 import {
   Switch,
   Heading,
@@ -29,6 +29,7 @@ const SettingModal = () => {
     buttonSat: "purple.200",
     buttonSun: "purple.200",
   });
+  const [openDays, setOpenDays] = useState(true);
 
   const days = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
 
@@ -58,41 +59,47 @@ const SettingModal = () => {
             Shift
           </Button>
         </div>
+
         <Card
-          style={{ position: "relative", marginLeft: "70px", display: "flex" }}
+          style={{
+            position: "relative",
+            marginLeft: "70px",
+            display: "flex",
+          }}
         >
-          <CardBody>
+          <CardBody style={{ minWidth: "600px" }}>
             <Stack divider={<StackDivider />} spacing="4"></Stack>
-            <Box>
+            <Box className="grid-container">
               <Heading size="xs" textTransform="uppercase">
                 Days
               </Heading>
               <Text pt="2" fontSize="sm">
                 Check what days you want to work!
               </Text>
-            </Box>
 
-            <Grid
-              alignItems="center"
-              justifyContent="center"
-              templateColumns="repeat(7, 1fr)"
-              gap={5}
-            >
-              {days.map((day) => {
-                return (
-                  <GridItem key={day} justifyContent="center">
-                    <Button
-                      size="sm"
-                      bg={buttonStates[`button${day}`]}
-                      color="white"
-                      onClick={() => handleChange(`button${day}`)}
-                    >
-                      {day}
-                    </Button>
-                  </GridItem>
-                );
-              })}
-            </Grid>
+              <Grid
+                style={{ overflowX: "auto", width: "100%" }}
+                alignItems="center"
+                justifyContent="center"
+                templateColumns="repeat(7, 1fr)"
+                gap={5}
+              >
+                {days.map((day) => {
+                  return (
+                    <GridItem key={day} p={-1}>
+                      <Button
+                        size="sm"
+                        bg={buttonStates[`button${day}`]}
+                        color="white"
+                        onClick={() => handleChange(`button${day}`)}
+                      >
+                        {day}
+                      </Button>
+                    </GridItem>
+                  );
+                })}
+              </Grid>
+            </Box>
           </CardBody>
         </Card>
 

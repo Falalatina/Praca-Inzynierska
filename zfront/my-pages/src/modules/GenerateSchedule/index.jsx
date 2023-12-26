@@ -3,7 +3,7 @@ import Generate from "./Generate";
 import "./ShContainer.css";
 import { IconButton } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
-import SettingModal from "./Settingmodal";
+import SettingModal from "./modals/SettingModal";
 import { openModal } from "../../features/team/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 

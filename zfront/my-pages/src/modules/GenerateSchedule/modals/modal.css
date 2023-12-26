@@ -163,7 +163,7 @@ hr {
 .modal {
   background: var(--clr-white);
   width: 80vw;
-  max-width: 600px;
+  max-width: 700px;
   border-radius: var(--radius);
   padding: 2rem 1rem;
   text-align: left;
@@ -185,4 +185,22 @@ hr {
   width: 60px;
   position: fixed;
   margin-top: 5px;
+}
+
+@media (max-width: 900px) {
+  .grid-container {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 901px) and (min-width: 1499px) {
+  .grid-container {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .grid-container {
+    font-size: 16px;
+  }
 }
