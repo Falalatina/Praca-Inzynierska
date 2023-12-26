@@ -60,7 +60,7 @@ const ShiftModal = () => {
               First Shift
               <Switch
                 colorScheme="purple"
-                defaultChecked
+                isChecked={firstShift}
                 onChange={handleSwitchToggle1}
               />
             </Heading>
@@ -73,7 +73,7 @@ const ShiftModal = () => {
               Second Shift{" "}
               <Switch
                 colorScheme="purple"
-                defaultChecked
+                isChecked={secondShift}
                 onChange={handleSwitchToggle2}
               />
             </Heading>
@@ -86,7 +86,7 @@ const ShiftModal = () => {
               Third Shift{" "}
               <Switch
                 colorScheme="purple"
-                defaultChecked
+                isChecked={thirdShift}
                 onChange={handleSwitchToggle3}
               />
             </Heading>
