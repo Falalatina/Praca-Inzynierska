@@ -35,6 +35,30 @@ const ShiftModal = () => {
               Check your shift
             </Text>
           </Box>
+          <Box>
+            <Heading size="xs" textTransform="uppercase">
+              First Shift <Switch colorScheme="purple" />
+            </Heading>
+            <Text pt="2" fontSize="sm">
+              <Input placeholder="number of person: 3" />
+            </Text>
+          </Box>
+          <Box>
+            <Heading size="xs" textTransform="uppercase">
+              Second Shift <Switch colorScheme="purple" />
+            </Heading>
+            <Text pt="2" fontSize="sm">
+              <Input placeholder="number of person: 3" />
+            </Text>
+          </Box>
+          <Box>
+            <Heading size="xs" textTransform="uppercase">
+              Third Shift <Switch colorScheme="purple" />
+            </Heading>
+            <Text pt="2" fontSize="sm">
+              <Input placeholder="number of person: 1" />
+            </Text>
+          </Box>
         </Stack>
       </CardBody>
     </Card>
