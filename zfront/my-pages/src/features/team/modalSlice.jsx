@@ -46,6 +46,9 @@ const modalSlice = createSlice({
     updateNOE3: (state, action) => {
       state.numberOfEmployees3 = action.payload;
     },
+    resetState: (state) => {
+      return initialState;
+    },
   },
 });
 
@@ -60,5 +63,6 @@ export const {
   updateNOE1,
   updateNOE2,
   updateNOE3,
+  resetState,
 } = modalSlice.actions;
 export default modalSlice.reducer;

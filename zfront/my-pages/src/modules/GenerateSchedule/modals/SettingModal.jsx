@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./modal.css";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../../features/team/modalSlice";
+import { closeModal, resetState } from "../../../features/team/modalSlice";
 import {
   Switch,
   Heading,
@@ -92,7 +92,10 @@ const SettingModal = () => {
           <Button
             type="button"
             className="btn clear-btn"
-            onClick={() => dispatch(closeModal())}
+            onClick={() => {
+              dispatch(resetState());
+              dispatch(closeModal());
+            }}
           >
             Cancel
           </Button>
