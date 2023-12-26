@@ -75,7 +75,7 @@ const HoursModal = () => {
                 type="number"
                 value={howLong}
                 onChange={handleInputChange2}
-              />{" "}
+              />
             </Text>
           </Box>
         </Stack>
