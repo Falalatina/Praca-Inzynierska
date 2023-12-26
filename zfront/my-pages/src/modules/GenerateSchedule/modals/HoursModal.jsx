@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateHourOfStart } from "../../../features/team/modalSlice";
 import {
   Switch,
   Heading,
@@ -17,6 +19,13 @@ import {
 } from "@chakra-ui/react";
 
 const HoursModal = () => {
+  const dispatch = useDispatch();
+  const { hourOfStart } = useSelector((state) => state.modal);
+
+  const handleInputChange1 = (e) => {
+    dispatch(updateHourOfStart(e.target.value));
+  };
+
   return (
     <Card
       style={{
@@ -40,7 +49,12 @@ const HoursModal = () => {
               First Shift Start
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="6:00" />
+              <Input
+                placeholder="6"
+                type="number"
+                value={hourOfStart}
+                onChange={handleInputChange1}
+              />
             </Text>
           </Box>
           <Box style={{ maxWidth: "400px" }}>

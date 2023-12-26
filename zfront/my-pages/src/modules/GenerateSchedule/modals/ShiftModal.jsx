@@ -37,7 +37,7 @@ const ShiftModal = () => {
               Shift
             </Heading>
             <Text pt="2" fontSize="sm">
-              Check your shift
+              Check your shifts
             </Text>
           </Box>
           <Box>
@@ -46,7 +46,7 @@ const ShiftModal = () => {
               <Switch colorScheme="purple" onChange={() => console.log("hi")} />
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="number of person: 3" type="number" />
+              <Input placeholder="number of persons: 3" type="number" />
             </Text>
           </Box>
           <Box>
@@ -54,7 +54,7 @@ const ShiftModal = () => {
               Second Shift <Switch colorScheme="purple" />
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="number of person: 3" type="number" />
+              <Input placeholder="number of persons: 3" type="number" />
             </Text>
           </Box>
           <Box>
@@ -62,7 +62,7 @@ const ShiftModal = () => {
               Third Shift <Switch colorScheme="purple" />
             </Heading>
             <Text pt="2" fontSize="sm">
-              <Input placeholder="number of person: 1" type="number" />
+              <Input placeholder="number of persons: 1" type="number" />
             </Text>
           </Box>
         </Stack>
