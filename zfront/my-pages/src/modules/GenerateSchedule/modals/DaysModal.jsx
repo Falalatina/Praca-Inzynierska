@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { memo } from "react";
 import {
   Switch,
   Heading,
@@ -14,29 +15,16 @@ import {
   GridItem,
   Button,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleButton } from "../../../features/team/modalSlice";
 
 const DaysModal = () => {
   const dispatch = useDispatch();
-  const [buttonStates, setButtonStates] = useState({
-    buttonmon: "purple.500",
-    buttontues: "purple.500",
-    buttonwed: "purple.500",
-    buttonthurs: "purple.500",
-    buttonfri: "purple.500",
-    buttonsat: "purple.200",
-    buttonsun: "purple.200",
-  });
+  const { days } = useSelector((store) => store.modal);
 
-  const days = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
+  const daysA = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
 
-  const handleChange = (buttonId, day) => {
-    const newButtonStates = { ...buttonStates };
-    newButtonStates[buttonId] =
-      newButtonStates[buttonId] === "purple.500" ? "purple.200" : "purple.500";
-
-    setButtonStates(newButtonStates);
+  const handleChange = (day) => {
     dispatch(toggleButton(day));
   };
   return (
@@ -66,14 +54,14 @@ const DaysModal = () => {
               templateColumns="repeat(7, 1fr)"
               gap={1}
             >
-              {days.map((day) => {
+              {daysA.map((day) => {
                 return (
                   <GridItem key={day} p={-1}>
                     <Button
                       size="sm"
-                      bg={buttonStates[`button${day}`]}
+                      bg={days[day] ? "purple.500" : "purple.200"}
                       color="white"
-                      onClick={() => handleChange(`button${day}`, day)}
+                      onClick={() => handleChange(day)}
                     >
                       {day}
                     </Button>
@@ -88,4 +76,4 @@ const DaysModal = () => {
   );
 };
 
-export default DaysModal;
+export default memo(DaysModal);
