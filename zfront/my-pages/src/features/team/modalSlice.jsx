@@ -64,24 +64,19 @@ const modalSlice = createSlice({
     updateHowLong: (state, action) => {
       state.howLong = action.payload;
     },
-    toggleShift1: (state) => {
-      state.firstShift = !state.firstShift;
+
+    toggleShift: (state, action) => {
+      const { shiftKey, shiftNumber } = action.payload;
+      state[shiftKey] = !state[shiftKey];
+      if (!state[shiftKey]) {
+        state[`numberOfEmployees${shiftNumber}`] = 0;
+      }
     },
-    toggleShift2: (state) => {
-      state.secondShift = !state.secondShift;
+    updateNumberOfEmployees: (state, action) => {
+      const { shiftNumber, value } = action.payload;
+      state[`numberOfEmployees${shiftNumber}`] = value;
     },
-    toggleShift3: (state) => {
-      state.thirdShift = !state.thirdShift;
-    },
-    updateNOE1: (state, action) => {
-      state.numberOfEmployees1 = action.payload;
-    },
-    updateNOE2: (state, action) => {
-      state.numberOfEmployees2 = action.payload;
-    },
-    updateNOE3: (state, action) => {
-      state.numberOfEmployees3 = action.payload;
-    },
+
     resetState: (state) => {
       return initialState;
     },
@@ -90,13 +85,13 @@ const modalSlice = createSlice({
       state.days[buttonKey] = !state.days[buttonKey];
 
       if (state.days[buttonKey]) {
-        if (state.firstShift) {
+        if (state.firstShift === true) {
           state.assignments.push(`${idToAssignmentMap[buttonKey]}1`);
         }
-        if (state.secondShift) {
+        if (state.secondShift === true) {
           state.assignments.push(`${idToAssignmentMap[buttonKey]}2`);
         }
-        if (state.thirdShift) {
+        if (state.thirdShift === true) {
           state.assignments.push(`${idToAssignmentMap[buttonKey]}3`);
         }
       }
@@ -117,12 +112,8 @@ export const {
   closeModal,
   updateHourOfStart,
   updateHowLong,
-  toggleShift1,
-  toggleShift2,
-  toggleShift3,
-  updateNOE1,
-  updateNOE2,
-  updateNOE3,
+  toggleShift,
+  updateNumberOfEmployees,
   resetState,
 } = modalSlice.actions;
 export default modalSlice.reducer;

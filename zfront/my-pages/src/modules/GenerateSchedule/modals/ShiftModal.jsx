@@ -17,12 +17,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 import {
-  toggleShift1,
-  toggleShift2,
-  toggleShift3,
-  updateNOE1,
-  updateNOE2,
-  updateNOE3,
+  toggleShift,
+  updateNumberOfEmployees,
 } from "../../../features/team/modalSlice";
 
 const ShiftModal = () => {
@@ -37,22 +33,37 @@ const ShiftModal = () => {
   } = useSelector((state) => state.modal);
 
   const handleSwitchToggle1 = () => {
-    dispatch(toggleShift1());
+    dispatch(toggleShift({ shiftKey: "firstShift", shiftNumber: 1 }));
   };
   const handleSwitchToggle2 = () => {
-    dispatch(toggleShift2());
+    dispatch(toggleShift({ shiftKey: "secondShift", shiftNumber: 2 }));
   };
   const handleSwitchToggle3 = () => {
-    dispatch(toggleShift3());
+    dispatch(toggleShift({ shiftKey: "thirdShift", shiftNumber: 3 }));
   };
   const handleInputChange1 = (e) => {
-    dispatch(updateNOE1(Number(e.target.value)));
+    dispatch(
+      updateNumberOfEmployees({
+        shiftNumber: "1",
+        value: Number(e.target.value),
+      })
+    );
   };
   const handleInputChange2 = (e) => {
-    dispatch(updateNOE2(Number(e.target.value)));
+    dispatch(
+      updateNumberOfEmployees({
+        shiftNumber: "2",
+        value: Number(e.target.value),
+      })
+    );
   };
   const handleInputChange3 = (e) => {
-    dispatch(updateNOE3(Number(e.target.value)));
+    dispatch(
+      updateNumberOfEmployees({
+        shiftNumber: "3",
+        value: Number(e.target.value),
+      })
+    );
   };
 
   return (
