@@ -10,6 +10,42 @@ const initialState = {
   numberOfEmployees2: 3,
   thirdShift: true,
   numberOfEmployees3: 1,
+  days: {
+    mon: true,
+    tues: true,
+    wed: true,
+    thurs: true,
+    fri: true,
+    sat: false,
+    sun: false,
+  },
+  assignments: [
+    "pn1",
+    "pn2",
+    "pn3",
+    "wt1",
+    "wt2",
+    "wt3",
+    "sr1",
+    "sr2",
+    "sr3",
+    "czw1",
+    "czw2",
+    "czw3",
+    "pt1",
+    "pt2",
+    "pt3",
+  ],
+};
+
+const idToAssignmentMap = {
+  mon: "pn",
+  tues: "wt",
+  wed: "sr",
+  thurs: "czw",
+  fri: "pt",
+  sat: "sob",
+  sun: "nd",
 };
 
 const modalSlice = createSlice({
@@ -49,10 +85,34 @@ const modalSlice = createSlice({
     resetState: (state) => {
       return initialState;
     },
+    toggleButton: (state, action) => {
+      const buttonKey = action.payload;
+      state.days[buttonKey] = !state.days[buttonKey];
+
+      if (state.days[buttonKey]) {
+        if (state.firstShift) {
+          state.assignments.push(`${idToAssignmentMap[buttonKey]}1`);
+        }
+        if (state.secondShift) {
+          state.assignments.push(`${idToAssignmentMap[buttonKey]}2`);
+        }
+        if (state.thirdShift) {
+          state.assignments.push(`${idToAssignmentMap[buttonKey]}3`);
+        }
+      }
+      if (!state.days[buttonKey]) {
+        state.assignments = state.assignments.filter(
+          (a) => !a.startsWith(idToAssignmentMap[buttonKey])
+        );
+      }
+
+      // console.log(state.assignments);
+    },
   },
 });
 
 export const {
+  toggleButton,
   openModal,
   closeModal,
   updateHourOfStart,

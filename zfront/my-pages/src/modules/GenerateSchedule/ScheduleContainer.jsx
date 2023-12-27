@@ -4,11 +4,12 @@ import { Grid, GridItem, CircularProgress } from "@chakra-ui/react";
 import ScheduleItem from "./ScheduleItem";
 import { useDispatch, useSelector } from "react-redux";
 import { startLoading } from "../../features/team/generateSlice";
+import { memo } from "react";
 
 const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
   const dispatch = useDispatch();
   //console.log(name, id, graphic);
-  const daysOfWeek = ["pn", "wt", "sr", "czw", "pt"];
+  const daysOfWeek = ["pn", "wt", "sr", "czw", "pt", "sob", "nd"];
 
   const findDay = (array, values) => {
     return array.reduce((acc, shift, index) => {
@@ -24,14 +25,19 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
   const indexesOfDays = findDay(workShifts, daysOfWeek);
 
   const filteredDays = daysOfWeek.map((day) => {
-    const filteredData = graphic.filter((element) =>
-      indexesOfDays[day].includes(element)
-    );
-    //console.log(filteredData);
-    if (filteredData.length === 0) {
+    if (indexesOfDays.hasOwnProperty(day)) {
+      const filteredData = graphic.filter((element) =>
+        indexesOfDays[day].includes(element)
+      );
+
+      if (filteredData.length === 0) {
+        return <div key={day} className="shift-container"></div>;
+      }
+
+      return <ScheduleItem key={day} graphic={filteredData} />;
+    } else {
       return <div key={day} className="shift-container"></div>;
     }
-    return <ScheduleItem key={day} graphic={filteredData} />;
   });
 
   // console.log(graphic);
@@ -40,7 +46,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
     <>
       <Grid
         className="grid-shift-container"
-        templateColumns="repeat(6, 1fr)"
+        templateColumns="repeat(8, 1fr)"
         gap={1}
       >
         <div key={name} className="workers-container">
@@ -61,4 +67,4 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
   );
 };
 
-export default ScheduleContainer;
+export default memo(ScheduleContainer);

@@ -14,26 +14,30 @@ import {
   GridItem,
   Button,
 } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { toggleButton } from "../../../features/team/modalSlice";
 
 const DaysModal = () => {
+  const dispatch = useDispatch();
   const [buttonStates, setButtonStates] = useState({
-    buttonMon: "purple.500",
-    buttonTues: "purple.500",
-    buttonWed: "purple.500",
-    buttonThurs: "purple.500",
-    buttonFri: "purple.500",
-    buttonSat: "purple.200",
-    buttonSun: "purple.200",
+    buttonmon: "purple.500",
+    buttontues: "purple.500",
+    buttonwed: "purple.500",
+    buttonthurs: "purple.500",
+    buttonfri: "purple.500",
+    buttonsat: "purple.200",
+    buttonsun: "purple.200",
   });
 
-  const days = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+  const days = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
 
-  const handleChange = (buttonId) => {
+  const handleChange = (buttonId, day) => {
     const newButtonStates = { ...buttonStates };
     newButtonStates[buttonId] =
       newButtonStates[buttonId] === "purple.500" ? "purple.200" : "purple.500";
 
     setButtonStates(newButtonStates);
+    dispatch(toggleButton(day));
   };
   return (
     <Card
@@ -69,7 +73,7 @@ const DaysModal = () => {
                       size="sm"
                       bg={buttonStates[`button${day}`]}
                       color="white"
-                      onClick={() => handleChange(`button${day}`)}
+                      onClick={() => handleChange(`button${day}`, day)}
                     >
                       {day}
                     </Button>

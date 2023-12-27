@@ -14,6 +14,7 @@ const Generate = () => {
   const [bestSolution, setBestSolution] = useState([]);
   const [population, setPopulation] = useState([]);
   const { workers, isLoading } = useSelector((store) => store.generate);
+  const { assignments } = useSelector((store) => store.modal);
   const [newGeneration, setNewGeneration] = useState(0);
 
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
@@ -33,6 +34,7 @@ const Generate = () => {
   }, [isOpen]);
 
   useEffect(() => {
+    workShifts = assignments;
     createStartingPopulation(
       numberOfParents,
       workShifts,
@@ -46,23 +48,10 @@ const Generate = () => {
   const numberOfParents = 10;
   const mutate = 50;
 
-  const workShifts = [
-    "pn1",
-    "pn2",
-    "pn3",
-    "wt1",
-    "wt2",
-    "wt3",
-    "sr1",
-    "sr2",
-    "sr3",
-    "czw1",
-    "czw2",
-    "czw3",
-    "pt1",
-    "pt2",
-    "pt3",
-  ];
+  let workShifts = assignments;
+
+  //console.log(assignments);
+
   const numberOfPersonOnShift = 3;
 
   const randomElement = (array) => {

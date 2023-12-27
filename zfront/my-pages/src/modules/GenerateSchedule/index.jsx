@@ -35,6 +35,14 @@ const index = () => {
           Friday
           <div className="date-time-day">25.08</div>
         </div>
+        <div className="day-in-week">
+          Saturday
+          <div className="date-time-day">26.08</div>
+        </div>
+        <div className="day-in-week">
+          Sunday
+          <div className="date-time-day">27.08</div>
+        </div>
       </div>
       <IconButton
         icon={<SettingsIcon onClick={() => dispatch(openModal())} />}
