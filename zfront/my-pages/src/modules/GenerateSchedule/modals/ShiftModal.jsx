@@ -95,10 +95,10 @@ const ShiftModal = () => {
             </Heading>
             <Text pt="2" fontSize="sm">
               <Input
-                placeholder="number of persons"
+                placeholder={numberOfEmployees1}
                 type="number"
-                value={numberOfEmployees1}
                 onChange={handleInputChange1}
+                disabled={!firstShift}
               />
             </Text>
           </Box>
@@ -113,9 +113,9 @@ const ShiftModal = () => {
             </Heading>
             <Text pt="2" fontSize="sm">
               <Input
-                placeholder="number of persons"
+                disabled={!secondShift}
                 type="number"
-                value={numberOfEmployees2}
+                placeholder={numberOfEmployees2}
                 onChange={handleInputChange2}
               />
             </Text>
@@ -131,9 +131,9 @@ const ShiftModal = () => {
             </Heading>
             <Text pt="2" fontSize="sm">
               <Input
-                placeholder="number of persons"
+                disabled={!thirdShift}
                 type="number"
-                value={numberOfEmployees3}
+                placeholder={numberOfEmployees3}
                 onChange={handleInputChange3}
               />
             </Text>
