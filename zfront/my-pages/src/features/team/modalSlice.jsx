@@ -85,17 +85,22 @@ const modalSlice = createSlice({
       state.days[buttonKey] = !state.days[buttonKey];
 
       if (state.days[buttonKey]) {
-        if (state.firstShift === true) {
-          state.assignments.push(`${idToAssignmentMap[buttonKey]}1`);
-        }
-        if (state.secondShift === true) {
-          state.assignments.push(`${idToAssignmentMap[buttonKey]}2`);
-        }
-        if (state.thirdShift === true) {
-          state.assignments.push(`${idToAssignmentMap[buttonKey]}3`);
-        }
-      }
-      if (!state.days[buttonKey]) {
+        const shifts = ["firstShift", "secondShift", "thirdShift"];
+        shifts.forEach((shift) => {
+          if (state[shift]) {
+            const shiftNumber = state[shift]
+              ? "1"
+              : state[shift]
+              ? "2"
+              : state[shift]
+              ? "3"
+              : "";
+            state.assignments.push(
+              `${idToAssignmentMap[buttonKey]}${shiftNumber}`
+            );
+          }
+        });
+      } else {
         state.assignments = state.assignments.filter(
           (a) => !a.startsWith(idToAssignmentMap[buttonKey])
         );
