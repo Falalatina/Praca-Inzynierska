@@ -81,7 +81,7 @@ const ShiftModal = () => {
               Shift
             </Heading>
             <Text pt="2" fontSize="sm">
-              Check your shifts
+              Check your shifts!
             </Text>
           </Box>
           <Box>
