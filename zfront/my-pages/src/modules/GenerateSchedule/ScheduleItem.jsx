@@ -2,10 +2,44 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const ScheduleItem = ({ graphic }) => {
-  const { hourOfStart, howLong } = useSelector((state) => state.modal);
-  const firstShifts = [0, 3, 6, 9, 12];
-  const secondShifts = [1, 4, 7, 10, 13];
-  const thirdShifts = [2, 5, 8, 11, 14];
+  const { hourOfStart, howLong, firstShift, secondShift, thirdShift } =
+    useSelector((state) => state.modal);
+
+  const allShifts = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21,
+  ];
+  // const firstShiftsActive = [0, 3, 6, 9, 12];
+  // const secondShiftsActive = [1, 4, 7, 10, 13];
+  // const thirdShiftsActive = [2, 5, 8, 11, 14];
+  let firstShiftsActive = [];
+  let secondShiftsActive = [];
+  let thirdShiftsActive = [];
+
+  const amount =
+    (firstShift ? 1 : 0) + (secondShift ? 1 : 0) + (thirdShift ? 1 : 0);
+
+  const getShiftIndex = (shiftIndex, shiftActive) => {
+    if (shiftActive) {
+      return allShifts.filter((index) => index % amount === shiftIndex);
+    }
+    return [];
+  };
+
+  const thirdIndex =
+    firstShift && secondShift ? 2 : firstShift || secondShift ? 1 : 0;
+
+  firstShiftsActive = getShiftIndex(0, firstShift);
+  secondShiftsActive = getShiftIndex(firstShift ? 1 : 0, secondShift);
+  thirdShiftsActive = getShiftIndex(thirdIndex, thirdShift);
+
+  firstShiftsActive.sort((a, b) => a - b);
+  secondShiftsActive.sort((a, b) => a - b);
+  thirdShiftsActive.sort((a, b) => a - b);
+
+  // console.log(firstShift, firstShiftsActive);
+  // console.log(secondShift, secondShiftsActive);
+  //console.log(amount);
 
   let n2 = Number(howLong) * 2;
   let n3 = Number(howLong) * 3;
@@ -29,7 +63,7 @@ const ScheduleItem = ({ graphic }) => {
   return (
     <section>
       {graphic.map((shift) => {
-        if (firstShifts.includes(shift)) {
+        if (firstShiftsActive.includes(shift)) {
           return (
             <div key={shift} className="shift-container">
               <div className="first-shift">
@@ -39,7 +73,7 @@ const ScheduleItem = ({ graphic }) => {
             </div>
           );
         }
-        if (secondShifts.includes(shift)) {
+        if (secondShiftsActive.includes(shift)) {
           return (
             <div key={shift} className="shift-container">
               <div className="second-shift">
@@ -50,7 +84,7 @@ const ScheduleItem = ({ graphic }) => {
             </div>
           );
         }
-        if (thirdShifts.includes(shift)) {
+        if (thirdShiftsActive.includes(shift)) {
           return (
             <div key={shift} className="shift-container">
               <div className="third-shift">

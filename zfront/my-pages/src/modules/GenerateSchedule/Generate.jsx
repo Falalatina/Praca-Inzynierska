@@ -52,8 +52,6 @@ const Generate = () => {
 
   //console.log(assignments);
 
-  const numberOfPersonOnShift = 3;
-
   const randomElement = (array) => {
     return array[Math.floor(Math.random() * array.length)];
   };
