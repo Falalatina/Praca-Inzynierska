@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { produce } from "immer";
 
 const initialState = {
   isConfirm: false,
@@ -38,6 +37,7 @@ const initialState = {
     "pt2",
     "pt3",
   ],
+  forceUpdate: false,
 };
 
 const idToAssignmentMap = {
@@ -93,9 +93,7 @@ const modalSlice = createSlice({
 
     updateNumberOfEmployees: (state, action) => {
       const { shiftNumber, value } = action.payload;
-      return produce(state, (draftState) => {
-        draftState[`numberOfEmployees${shiftNumber}`] = value;
-      });
+      state[`numberOfEmployees${shiftNumber}`] = value;
     },
 
     resetState: () => {
