@@ -76,10 +76,12 @@ const modalSlice = createSlice({
       const { shiftKey, shiftNumber } = action.payload;
       state[shiftKey] = !state[shiftKey];
 
-      if (!state[shiftKey]) {
+      if (state.isConfirm && !state[shiftKey]) {
         state.assignments = state.assignments.filter(
           (a) => !a.endsWith(shiftNumber)
         );
+      }
+      if (!state[shiftKey]) {
         state[`numberOfEmployees${shiftNumber}`] = 0;
       }
     },

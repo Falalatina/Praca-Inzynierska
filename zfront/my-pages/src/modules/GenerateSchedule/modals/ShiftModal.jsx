@@ -23,6 +23,7 @@ import {
 
 const ShiftModal = () => {
   const dispatch = useDispatch();
+  const [disabled, setIsDisabled] = useState(false);
   const {
     firstShift,
     secondShift,
@@ -33,13 +34,19 @@ const ShiftModal = () => {
   } = useSelector((state) => state.modal);
 
   const handleSwitchToggle1 = () => {
-    dispatch(toggleShift({ shiftKey: "firstShift", shiftNumber: 1 }));
+    if (thirdShift || secondShift) {
+      dispatch(toggleShift({ shiftKey: "firstShift", shiftNumber: 1 }));
+    }
   };
   const handleSwitchToggle2 = () => {
-    dispatch(toggleShift({ shiftKey: "secondShift", shiftNumber: 2 }));
+    if (thirdShift || firstShift) {
+      dispatch(toggleShift({ shiftKey: "secondShift", shiftNumber: 2 }));
+    }
   };
   const handleSwitchToggle3 = () => {
-    dispatch(toggleShift({ shiftKey: "thirdShift", shiftNumber: 3 }));
+    if (firstShift || secondShift) {
+      dispatch(toggleShift({ shiftKey: "thirdShift", shiftNumber: 3 }));
+    }
   };
   const handleInputChange1 = (e) => {
     dispatch(
@@ -88,6 +95,7 @@ const ShiftModal = () => {
             <Heading size="xs" textTransform="uppercase">
               First Shift
               <Switch
+                isDisabled={disabled}
                 colorScheme="purple"
                 isChecked={firstShift}
                 onChange={handleSwitchToggle1}
