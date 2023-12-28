@@ -85,12 +85,13 @@ const modalSlice = createSlice({
         state[`numberOfEmployees${shiftNumber}`] = 0;
       }
     },
+
     updateNumberOfEmployees: (state, action) => {
       const { shiftNumber, value } = action.payload;
       state[`numberOfEmployees${shiftNumber}`] = value;
     },
 
-    resetState: (state) => {
+    resetState: () => {
       return initialState;
     },
     toggleButton: (state, action) => {
@@ -108,6 +109,7 @@ const modalSlice = createSlice({
               : state[shift]
               ? "3"
               : "";
+
             const newAssignment = `${idToAssignmentMap[buttonKey]}${shiftNumber}`;
 
             if (!state.assignments.includes(newAssignment)) {
