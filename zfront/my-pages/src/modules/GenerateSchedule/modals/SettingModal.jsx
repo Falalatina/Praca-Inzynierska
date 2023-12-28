@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./modal.css";
 import { useDispatch } from "react-redux";
-import { closeModal, resetState } from "../../../features/team/modalSlice";
+import {
+  closeModal,
+  resetState,
+  openConfirm,
+  closeConfirm,
+} from "../../../features/team/modalSlice";
 import {
   Switch,
   Heading,
@@ -26,6 +31,12 @@ const SettingModal = () => {
   const [openDays, setOpenDays] = useState(true);
   const [openHours, setOpenHours] = useState(false);
   const [openShift, setOpenShift] = useState(false);
+
+  const handleConfirmBtn = () => {
+    dispatch(closeModal());
+    dispatch(openConfirm());
+    setTimeout(() => dispatch(closeConfirm()), 0);
+  };
 
   return (
     <aside className="modal-container">
@@ -85,7 +96,7 @@ const SettingModal = () => {
           <Button
             type="button"
             className="btn confirm-btn"
-            onClick={() => dispatch(closeModal())}
+            onClick={handleConfirmBtn}
           >
             Confirm
           </Button>

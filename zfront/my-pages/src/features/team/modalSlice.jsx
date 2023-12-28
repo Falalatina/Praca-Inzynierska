@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isConfirm: false,
   isOpen: false,
   hourOfStart: 6,
   howLong: 8,
@@ -52,6 +53,12 @@ const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
+    openConfirm: (state) => {
+      state.isConfirm = true;
+    },
+    closeConfirm: (state) => {
+      state.isConfirm = false;
+    },
     openModal: (state) => {
       state.isOpen = true;
     },
@@ -68,7 +75,7 @@ const modalSlice = createSlice({
     toggleShift: (state, action) => {
       const { shiftKey, shiftNumber } = action.payload;
       state[shiftKey] = !state[shiftKey];
-      if (!state[shiftKey]) {
+      if (state.isConfirm && !state[shiftKey]) {
         state.assignments = state.assignments.filter(
           (a) => !a.endsWith(shiftNumber)
         );
@@ -123,5 +130,7 @@ export const {
   toggleShift,
   updateNumberOfEmployees,
   resetState,
+  openConfirm,
+  closeConfirm,
 } = modalSlice.actions;
 export default modalSlice.reducer;
