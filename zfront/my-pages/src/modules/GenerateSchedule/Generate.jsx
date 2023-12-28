@@ -271,7 +271,7 @@ const Generate = () => {
 
   const start = () => {
     dispatch(removeGraphic());
-    startGenerate();
+    setTimeout(startGenerate(), 0);
     dispatch(startLoading());
     setNewGeneration(newGeneration + 1);
   };

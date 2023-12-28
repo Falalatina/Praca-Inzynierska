@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { produce } from "immer";
 
 const initialState = {
   isConfirm: false,
@@ -84,11 +85,17 @@ const modalSlice = createSlice({
       if (!state[shiftKey]) {
         state[`numberOfEmployees${shiftNumber}`] = 0;
       }
+      state.assignments = [];
+      state.days = Object.fromEntries(
+        Object.keys(state.days).map((day) => [day, false])
+      );
     },
 
     updateNumberOfEmployees: (state, action) => {
       const { shiftNumber, value } = action.payload;
-      state[`numberOfEmployees${shiftNumber}`] = value;
+      return produce(state, (draftState) => {
+        draftState[`numberOfEmployees${shiftNumber}`] = value;
+      });
     },
 
     resetState: () => {

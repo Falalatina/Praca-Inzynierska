@@ -28,8 +28,8 @@ import ShiftModal from "./ShiftModal";
 
 const SettingModal = () => {
   const dispatch = useDispatch();
-  const [openDays, setOpenDays] = useState(true);
-  const [openHours, setOpenHours] = useState(false);
+  const [openDays, setOpenDays] = useState(false);
+  const [openHours, setOpenHours] = useState(true);
   const [openShift, setOpenShift] = useState(false);
 
   const handleConfirmBtn = () => {
@@ -51,17 +51,6 @@ const SettingModal = () => {
             w="67px"
             variant="ghost"
             onClick={() => {
-              setOpenDays(true);
-              setOpenHours(false);
-              setOpenShift(false);
-            }}
-          >
-            Days
-          </Button>
-          <Button
-            w="67px"
-            variant="ghost"
-            onClick={() => {
               setOpenHours(true);
               setOpenDays(false);
               setOpenShift(false);
@@ -79,6 +68,17 @@ const SettingModal = () => {
             }}
           >
             Shift
+          </Button>
+          <Button
+            w="67px"
+            variant="ghost"
+            onClick={() => {
+              setOpenDays(true);
+              setOpenHours(false);
+              setOpenShift(false);
+            }}
+          >
+            Days
           </Button>
         </div>
 
