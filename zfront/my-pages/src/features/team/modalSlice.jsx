@@ -106,9 +106,11 @@ const modalSlice = createSlice({
               : state[shift]
               ? "3"
               : "";
-            state.assignments.push(
-              `${idToAssignmentMap[buttonKey]}${shiftNumber}`
-            );
+            const newAssignment = `${idToAssignmentMap[buttonKey]}${shiftNumber}`;
+
+            if (!state.assignments.includes(newAssignment)) {
+              state.assignments.push(newAssignment);
+            }
           }
         });
       } else {
