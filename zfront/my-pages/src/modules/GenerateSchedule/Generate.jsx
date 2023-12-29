@@ -14,7 +14,7 @@ const Generate = () => {
   const [bestSolution, setBestSolution] = useState([]);
   const [population, setPopulation] = useState([]);
   const { workers, isLoading } = useSelector((store) => store.generate);
-  const { assignments } = useSelector((store) => store.modal);
+  const { assignments, isConfirm } = useSelector((store) => store.modal);
   const [newGeneration, setNewGeneration] = useState(0);
 
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
