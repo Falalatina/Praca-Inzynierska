@@ -102,6 +102,7 @@ const ShiftModal = () => {
               />
             </Heading>
             <Text pt="2" fontSize="sm">
+              Number of employees
               <Input
                 placeholder={numberOfEmployees1}
                 type="number"
@@ -120,6 +121,7 @@ const ShiftModal = () => {
               />
             </Heading>
             <Text pt="2" fontSize="sm">
+              Number of employees
               <Input
                 disabled={!secondShift}
                 type="number"
@@ -138,6 +140,7 @@ const ShiftModal = () => {
               />
             </Heading>
             <Text pt="2" fontSize="sm">
+              Number of employees
               <Input
                 disabled={!thirdShift}
                 type="number"
