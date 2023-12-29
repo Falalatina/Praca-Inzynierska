@@ -38,7 +38,10 @@ const Generate = () => {
     e2 = numberOfEmployees2;
     e3 = numberOfEmployees3;
     workShifts = assignments;
-    createStartingPopulation(numberOfParents, workShifts, e1, e2, e3);
+    setTimeout(
+      createStartingPopulation(numberOfParents, workShifts, e1, e2, e3),
+      0
+    );
   }, [newGeneration]);
 
   const numberOfIterations = 100;
@@ -293,6 +296,7 @@ const Generate = () => {
     dispatch(removeGraphic());
     dispatch(startLoading());
     setNewGeneration(newGeneration + 1);
+
     setTimeout(startGenerate(), 0);
   };
 
