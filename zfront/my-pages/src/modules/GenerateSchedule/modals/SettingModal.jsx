@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./modal.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   closeModal,
   resetState,
@@ -31,6 +31,15 @@ const SettingModal = () => {
   const [openDays, setOpenDays] = useState(false);
   const [openHours, setOpenHours] = useState(true);
   const [openShift, setOpenShift] = useState(false);
+  const { assignments } = useSelector((store) => store.modal);
+
+  let isLoading = false;
+
+  if (assignments.length === 0) {
+    isLoading = true;
+  } else {
+    isLoading = false;
+  }
 
   const handleConfirmBtn = () => {
     dispatch(closeModal());
@@ -94,6 +103,8 @@ const SettingModal = () => {
 
         <div className="btn-container">
           <Button
+            isLoading={isLoading}
+            loadingText="Select days"
             type="button"
             className="btn confirm-btn"
             onClick={handleConfirmBtn}

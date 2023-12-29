@@ -86,7 +86,6 @@ const modalSlice = createSlice({
         state[`numberOfEmployees${shiftNumber}`] = 0;
       }
       if (state[`numberOfEmployees${shiftNumber}`] === 0 && state[shiftKey]) {
-        console.log("cant be 0 ");
         state[`numberOfEmployees${shiftNumber}`] = 1;
       }
       state.assignments = [];
