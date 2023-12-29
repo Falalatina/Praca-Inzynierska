@@ -32,6 +32,12 @@ const HoursModal = () => {
     dispatch(updateHowLong(e.target.value));
   };
 
+  let isInvalid = false;
+  let isInvalidHour = false;
+
+  howLong > 20 ? (isInvalid = true) : (isInvalid = false);
+  hourOfStart > 24 ? (isInvalidHour = true) : (isInvalidHour = false);
+
   return (
     <Card
       style={{
@@ -57,6 +63,8 @@ const HoursModal = () => {
             <Text pt="2" fontSize="sm">
               X:00
               <Input
+                isInvalid={isInvalidHour}
+                errorBorderColor="red.300"
                 placeholder="X:00"
                 type="number"
                 value={hourOfStart}
@@ -71,6 +79,8 @@ const HoursModal = () => {
             <Text pt="2" fontSize="sm">
               Hours
               <Input
+                isInvalid={isInvalid}
+                errorBorderColor="red.300"
                 placeholder="8"
                 type="number"
                 value={howLong}

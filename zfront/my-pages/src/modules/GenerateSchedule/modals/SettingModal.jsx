@@ -31,14 +31,22 @@ const SettingModal = () => {
   const [openDays, setOpenDays] = useState(false);
   const [openHours, setOpenHours] = useState(true);
   const [openShift, setOpenShift] = useState(false);
-  const { assignments } = useSelector((store) => store.modal);
+  const { assignments, howLong, hourOfStart } = useSelector(
+    (store) => store.modal
+  );
 
   let isLoading = false;
+  let whatText = "";
+  let hourError = false;
+
+  hourError = howLong > 20 || hourOfStart > 24;
 
   if (assignments.length === 0) {
     isLoading = true;
+    whatText = "Select days";
   } else {
     isLoading = false;
+    whatText = "";
   }
 
   const handleConfirmBtn = () => {
@@ -59,6 +67,7 @@ const SettingModal = () => {
           <Button
             w="67px"
             variant="ghost"
+            background={hourError ? "red" : ""}
             onClick={() => {
               setOpenHours(true);
               setOpenDays(false);
@@ -104,7 +113,7 @@ const SettingModal = () => {
         <div className="btn-container">
           <Button
             isLoading={isLoading}
-            loadingText="Select days"
+            loadingText={whatText}
             type="button"
             className="btn confirm-btn"
             onClick={handleConfirmBtn}
