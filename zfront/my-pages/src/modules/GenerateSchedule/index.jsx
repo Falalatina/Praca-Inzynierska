@@ -45,7 +45,8 @@ const index = () => {
         </div>
       </div>
       <IconButton
-        icon={<SettingsIcon onClick={() => dispatch(openModal())} />}
+        onClick={() => dispatch(openModal())}
+        icon={<SettingsIcon />}
       />
 
       {isOpen && <SettingModal />}
