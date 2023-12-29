@@ -108,19 +108,21 @@ const modalSlice = createSlice({
     },
     toggleButton: (state, action) => {
       const buttonKey = action.payload;
-      state.days[buttonKey] = !state.days[buttonKey];
+      const isButtonChecked = !state.days[buttonKey];
+      state.days[buttonKey] = isButtonChecked;
 
-      if (state.days[buttonKey]) {
+      if (isButtonChecked) {
         const shifts = ["firstShift", "secondShift", "thirdShift"];
         shifts.forEach((shift) => {
           if (state[shift]) {
-            const shiftNumber = state[shift]
-              ? "1"
-              : state[shift]
-              ? "2"
-              : state[shift]
-              ? "3"
-              : "";
+            const shiftNumber =
+              shift === "firstShift"
+                ? "1"
+                : shift === "secondShift"
+                ? "2"
+                : shift === "thirdShift"
+                ? "3"
+                : "";
 
             const newAssignment = `${idToAssignmentMap[buttonKey]}${shiftNumber}`;
 
