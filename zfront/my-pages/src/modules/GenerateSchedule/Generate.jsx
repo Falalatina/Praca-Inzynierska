@@ -34,19 +34,20 @@ const Generate = () => {
   }, [isOpen]);
 
   useEffect(() => {
+    e1 = numberOfEmployees1;
+    e2 = numberOfEmployees2;
+    e3 = numberOfEmployees3;
     workShifts = assignments;
-    createStartingPopulation(
-      numberOfParents,
-      workShifts,
-      numberOfEmployees1,
-      numberOfEmployees2,
-      numberOfEmployees3
-    );
+    createStartingPopulation(numberOfParents, workShifts, e1, e2, e3);
   }, [newGeneration]);
 
   const numberOfIterations = 100;
   const numberOfParents = 10;
   const mutate = 50;
+
+  let e1 = numberOfEmployees1;
+  let e2 = numberOfEmployees2;
+  let e3 = numberOfEmployees3;
 
   let workShifts = assignments;
 
@@ -119,6 +120,12 @@ const Generate = () => {
     item.map((innerItem) => {
       for (let index = 0; index < innerItem.length - 1; index++) {
         if (innerItem[index] === innerItem[index + 1]) {
+          fitness = fitness - 1;
+        }
+        if (innerItem[index] === innerItem[index + 2]) {
+          fitness = fitness - 1;
+        }
+        if (innerItem[index] === innerItem[index + 3]) {
           fitness = fitness - 1;
         }
         // console.log(workShifts[index]); - pn1 pn2 etc.

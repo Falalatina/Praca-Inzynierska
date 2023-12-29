@@ -85,6 +85,10 @@ const modalSlice = createSlice({
       if (!state[shiftKey]) {
         state[`numberOfEmployees${shiftNumber}`] = 0;
       }
+      if (state[`numberOfEmployees${shiftNumber}`] === 0 && state[shiftKey]) {
+        console.log("cant be 0 ");
+        state[`numberOfEmployees${shiftNumber}`] = 1;
+      }
       state.assignments = [];
       state.days = Object.fromEntries(
         Object.keys(state.days).map((day) => [day, false])
@@ -93,7 +97,11 @@ const modalSlice = createSlice({
 
     updateNumberOfEmployees: (state, action) => {
       const { shiftNumber, value } = action.payload;
-      state[`numberOfEmployees${shiftNumber}`] = value;
+      if (value === 0) {
+        console.log("cant be 0");
+      } else {
+        state[`numberOfEmployees${shiftNumber}`] = value;
+      }
     },
 
     resetState: () => {
