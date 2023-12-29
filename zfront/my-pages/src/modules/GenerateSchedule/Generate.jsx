@@ -118,6 +118,7 @@ const Generate = () => {
   const evaluateForOne = (item) => {
     let fitness = 0;
     item.map((innerItem) => {
+      console.log(innerItem);
       for (let index = 0; index < innerItem.length - 1; index++) {
         if (innerItem[index] === innerItem[index + 1]) {
           fitness = fitness - 1;
@@ -162,7 +163,7 @@ const Generate = () => {
 
       let item2 = population.filter((con) => con === contestant2);
 
-      //console.log(item1);
+      // console.log(item1);
       let pointsForC1 = evaluateForOne(item1[0]);
       let pointsForC2 = evaluateForOne(item2[0]);
 
@@ -279,9 +280,9 @@ const Generate = () => {
 
   const start = () => {
     dispatch(removeGraphic());
-    setTimeout(startGenerate(), 0);
     dispatch(startLoading());
     setNewGeneration(newGeneration + 1);
+    setTimeout(startGenerate(), 0);
   };
 
   return (
