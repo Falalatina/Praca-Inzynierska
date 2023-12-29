@@ -100,6 +100,10 @@ const modalSlice = createSlice({
         console.log("cant be 0");
       } else {
         state[`numberOfEmployees${shiftNumber}`] = value;
+        state.assignments = [];
+        state.days = Object.fromEntries(
+          Object.keys(state.days).map((day) => [day, false])
+        );
       }
     },
 
