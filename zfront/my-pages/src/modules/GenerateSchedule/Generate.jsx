@@ -38,10 +38,6 @@ const Generate = () => {
     e2 = numberOfEmployees2;
     e3 = numberOfEmployees3;
     workShifts = assignments;
-    setTimeout(
-      createStartingPopulation(numberOfParents, workShifts, e1, e2, e3),
-      0
-    );
   }, [newGeneration]);
 
   const numberOfIterations = 100;
@@ -87,7 +83,9 @@ const Generate = () => {
   ) => {
     for (let i = 0; i < numberOfParents; i++) {
       const chromosome = [];
+
       for (let index = 0; index < workShifts.length; index++) {
+        // console.log(workShifts.length);
         const day = [];
         const re1 = /.+[1]/;
         const re2 = /.+[2]/;
@@ -169,17 +167,12 @@ const Generate = () => {
       let contestant1 = randomElement(population);
       let contestant2 = randomElement(population);
       //console.log(contestant1); to to index
-      // console.log([...population]);
+      //console.log([...population]);
       if (contestant1 === contestant2) {
         contestant2 = randomElement(population);
       }
-      let item1 = population.filter((con) => con === contestant1);
-
-      let item2 = population.filter((con) => con === contestant2);
-
-      // console.log(item1);
-      let pointsForC1 = evaluateForOne(item1[0]);
-      let pointsForC2 = evaluateForOne(item2[0]);
+      let pointsForC1 = evaluateForOne(contestant1);
+      let pointsForC2 = evaluateForOne(contestant2);
 
       // console.log(pointsForC1);
 
@@ -191,7 +184,7 @@ const Generate = () => {
       // console.log(winner);
       selectedToMate.push(winner);
     }
-    // console.log(selectedToMate[1]);
+    //console.log(selectedToMate[1]);
     for (let index = 0; index < selectedToMate.length - 1; index++) {
       crossover(selectedToMate[index], selectedToMate[index + 1]);
     }
@@ -217,7 +210,7 @@ const Generate = () => {
   };
 
   const mutating = (child) => {
-    // console.log(child[0]);
+    //console.log(child[0]);
     let childCopy = JSON.parse(JSON.stringify(child));
     //console.log(childCopy[0]);
     if (mutate <= randomIntFromInterval(1, 100)) {
@@ -254,6 +247,8 @@ const Generate = () => {
     if (population.length > 0) {
       setPopulation([]);
     }
+    createStartingPopulation(numberOfParents, workShifts, e1, e2, e3);
+
     for (let index = 0; index < numberOfIterations; index++) {
       tournamentSelection(population);
       reducePopulation(population);
