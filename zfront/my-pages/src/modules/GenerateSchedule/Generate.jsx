@@ -117,9 +117,19 @@ const Generate = () => {
   };
   const evaluateForOne = (item) => {
     let fitness = 0;
-    //console.log(item);
+
+    for (let i1 = 0; i1 < item.length - 2; i1++) {
+      for (let i2 = 0; i2 < item[i1].length; i2++) {
+        if (
+          item[i1 + 2].includes(item[i1][i2]) ||
+          item[i1 + 1].includes(item[i1][i2])
+        ) {
+          fitness -= 1;
+        }
+      }
+    }
+
     item.map((innerItem) => {
-      console.log(innerItem);
       for (let index = 0; index < innerItem.length - 1; index++) {
         if (innerItem[index] === innerItem[index + 1]) {
           fitness = fitness - 1;
