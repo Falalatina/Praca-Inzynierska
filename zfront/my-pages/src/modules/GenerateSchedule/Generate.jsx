@@ -30,25 +30,24 @@ const Generate = () => {
   // console.log(workers[0].graphic);
 
   useEffect(() => {
-    setNewGeneration(newGeneration + 1);
+    setNewGeneration((prevGeneration) => prevGeneration + 1);
   }, [isOpen]);
 
+  const [e1, setE1] = useState(numberOfEmployees1);
+  const [e2, setE2] = useState(numberOfEmployees2);
+  const [e3, setE3] = useState(numberOfEmployees3);
+  const [workShifts, setWorkShifts] = useState(assignments);
+
   useEffect(() => {
-    e1 = numberOfEmployees1;
-    e2 = numberOfEmployees2;
-    e3 = numberOfEmployees3;
-    workShifts = assignments;
-  }, [newGeneration]);
+    setE1(numberOfEmployees1);
+    setE2(numberOfEmployees2);
+    setE3(numberOfEmployees3);
+    setWorkShifts(assignments);
+  }, [numberOfEmployees1, numberOfEmployees2, numberOfEmployees3, assignments]);
 
   const numberOfIterations = 100;
   const numberOfParents = 10;
   const mutate = 50;
-
-  let e1 = numberOfEmployees1;
-  let e2 = numberOfEmployees2;
-  let e3 = numberOfEmployees3;
-
-  let workShifts = assignments;
 
   //console.log(assignments);
 
@@ -91,18 +90,18 @@ const Generate = () => {
         const re2 = /.+[2]/;
         const re3 = /.+[3]/;
         if (workShifts[index].match(re1)) {
-          for (let index = 0; index < numberOfEmployees1; index++) {
+          for (let i = 0; i < numberOfEmployees1; i++) {
             day.push(randomElement(workers).name);
             //  console.log(randomElement(workers).name);
           }
         }
         if (workShifts[index].match(re2)) {
-          for (let index = 0; index < numberOfEmployees2; index++) {
+          for (let i = 0; i < numberOfEmployees2; i++) {
             day.push(randomElement(workers).name);
           }
         }
         if (workShifts[index].match(re3)) {
-          for (let index = 0; index < numberOfEmployees3; index++) {
+          for (let i = 0; i < numberOfEmployees3; i++) {
             day.push(randomElement(workers).name);
           }
         }
