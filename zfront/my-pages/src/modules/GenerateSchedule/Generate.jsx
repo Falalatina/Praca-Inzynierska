@@ -221,6 +221,7 @@ const Generate = () => {
     while (population.length > 10) {
       const index = population.indexOf(minWithKey(population, evaluateForOne));
       population.splice(index, 1);
+
       // console.log(minWithKey(population, evaluateForOne));
       // console.log(evaluateForOne(minWithKey(population, evaluateForOne)));
       //Math.min();
