@@ -117,6 +117,7 @@ const Generate = () => {
   };
   const evaluateForOne = (item) => {
     let fitness = 0;
+    //console.log(item);
     item.map((innerItem) => {
       console.log(innerItem);
       for (let index = 0; index < innerItem.length - 1; index++) {
