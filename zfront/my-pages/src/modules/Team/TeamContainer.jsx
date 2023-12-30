@@ -3,9 +3,24 @@ import TeamCard from "./Teamcard";
 import { useSelector } from "react-redux";
 import { Card, Grid, GridItem, CardBody } from "@chakra-ui/react";
 import "./container.css";
+import workers from "../../workers";
 
 const TeamContainer = () => {
   const { teams, amount } = useSelector((state) => state.team);
+
+  const getWorkersForTeam = (teamId) => {
+    const team = teams.find((t) => t.id === teamId);
+
+    if (team) {
+      const teamWorkers = team.workerIds.map((workerId) =>
+        workers.find((worker) => worker.id === workerId)
+      );
+
+      return teamWorkers;
+    }
+
+    return [];
+  };
 
   if (amount < 1) {
     return (
@@ -27,10 +42,12 @@ const TeamContainer = () => {
           </header>
           <div>
             <Grid templateColumns="repeat(2, 1fr)" gap={3}>
-              {teams.map((item) => {
+              {teams.map((team) => {
+                const teamWorkers = getWorkersForTeam(team.id, workers);
+
                 return (
-                  <GridItem key={item.id}>
-                    <TeamCard key={item.id} {...item} />
+                  <GridItem key={team.id}>
+                    <TeamCard key={team.id} {...team} workers={teamWorkers} />
                   </GridItem>
                 );
               })}
