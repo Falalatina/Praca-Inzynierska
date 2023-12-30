@@ -1,24 +1,25 @@
 import React from "react";
 import TeamCard from "./Teamcard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Card, Grid, GridItem, CardBody } from "@chakra-ui/react";
 import "./container.css";
 import workers from "../../workers";
+import { checkAmount } from "../../features/team/teamSlice";
 
 const TeamContainer = () => {
   const { teams, amount } = useSelector((state) => state.team);
+  const dispatch = useDispatch();
+
+  dispatch(checkAmount(teams.length));
 
   const getWorkersForTeam = (teamId) => {
     const team = teams.find((t) => t.id === teamId);
-
     if (team) {
       const teamWorkers = team.workerIds.map((workerId) =>
         workers.find((worker) => worker.id === workerId)
       );
-
       return teamWorkers;
     }
-
     return [];
   };
 
