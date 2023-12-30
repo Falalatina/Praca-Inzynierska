@@ -12,6 +12,7 @@ const TeamContainer = () => {
 
   dispatch(checkAmount(teams.length));
 
+  //funkcja do szukania workerów po id
   const getWorkersForTeam = (teamId) => {
     const team = teams.find((t) => t.id === teamId);
     if (team) {
@@ -58,6 +59,9 @@ const TeamContainer = () => {
       </Card>
     </section>
   );
+
+  //loader
+  const teamLoader = async () => {};
 };
 
 export default TeamContainer;
