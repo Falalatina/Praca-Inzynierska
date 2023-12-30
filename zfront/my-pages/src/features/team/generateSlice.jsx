@@ -42,9 +42,17 @@ const generateSlice = createSlice({
     stopLoading: (state) => {
       state.isLoading = false;
     },
+    changeWorkers: (state, actions) => {
+      state.workers = actions.payload;
+    },
   },
 });
 
-export const { addGraphic, startLoading, stopLoading, removeGraphic } =
-  generateSlice.actions;
+export const {
+  addGraphic,
+  startLoading,
+  stopLoading,
+  removeGraphic,
+  changeWorkers,
+} = generateSlice.actions;
 export default generateSlice.reducer;
