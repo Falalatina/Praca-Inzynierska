@@ -26,6 +26,7 @@ const TeamContainer = () => {
     }
     return [];
   };
+  ///
 
   if (amount < 1) {
     return (
@@ -39,14 +40,14 @@ const TeamContainer = () => {
   }
   return (
     <section className="container">
-      <Card variant="filled">
+      <Card bg="rgb(236, 236, 236);">
         <CardBody>
-          <header>
-            <h1>Your teams: </h1>
-            <h2 className="txt">You have {amount} teams. </h2>
+          <header className="header-container">
+            <h2>Your teams: </h2>
+            <h4 className="txt">You have {amount} teams. </h4>
           </header>
           <div>
-            <Grid templateColumns="repeat(2, 1fr)" gap={10}>
+            <Grid templateColumns="repeat(3, 1fr)" gap={7}>
               {teams.map((team) => {
                 const teamWorkers = getWorkersForTeam(team.id, workers);
 

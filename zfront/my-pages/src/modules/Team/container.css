@@ -1,11 +1,10 @@
 .container {
-  background-color: rgb(255, 255, 255);
+  transform: scale(0.8);
 
-  padding: 2rem;
-  margin: 3rem auto;
+  padding-top: 5rem;
   overflow-x: auto;
-  width: 90vw;
-  max-width: 1410px;
+  width: 100vw;
+  max-width: 1200px;
 }
 
 @media (max-width: 500px) {
@@ -24,4 +23,21 @@
   .container {
     font-size: 16px;
   }
+}
+
+.header-container {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 700;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(190, 185, 185);
 }

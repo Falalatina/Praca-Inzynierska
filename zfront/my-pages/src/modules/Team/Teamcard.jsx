@@ -14,11 +14,11 @@ const TeamCard = ({ id, teamName, workers }) => {
   return (
     <Card variant="elevated" mb="2" className="card-container">
       <CardHeader
-        bg="white"
+        bgGradient="linear(to-l, white)"
         color="black"
         h="89"
         w="100%"
-        borderTopRadius="1rem"
+        borderTopRadius="2rem"
       >
         <Text as="b" fontSize="4xl">
           {teamName}
