@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import "./Header.css";
 
-import { useColorMode, Button } from "@chakra-ui/react";
+import { useColorMode, Button, Switch } from "@chakra-ui/react";
 
 const RootLayout = () => {
   const { toggleColorMode } = useColorMode();

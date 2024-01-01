@@ -103,6 +103,7 @@ p {
   border: none;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: black;
 }
 .btn:hover {
   color: var(--clr-primary);
@@ -158,6 +159,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
 }
 
 .modal {
@@ -185,6 +187,7 @@ hr {
   width: 60px;
   position: fixed;
   margin-top: 5px;
+  color: black;
 }
 
 @media (max-width: 900px) {
