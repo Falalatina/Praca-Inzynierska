@@ -9,6 +9,23 @@
   overflow-y: auto;
   height: 240px;
 }
+@media (max-width: 500px) {
+  .container {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 501px) and (min-width: 1499px) {
+  .cart-container {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .cart-container {
+    font-size: 16px;
+  }
+}
 
 .txt {
   margin: 20px;

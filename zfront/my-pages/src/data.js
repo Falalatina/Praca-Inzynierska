@@ -19,6 +19,11 @@ const teams = [
     teamName: "Kotki",
     workerIds: [1, 4, 2],
   },
+  {
+    id: 5,
+    teamName: "Młotki",
+    workerIds: [5, 1, 4, 2],
+  },
 ];
 
 export default teams;

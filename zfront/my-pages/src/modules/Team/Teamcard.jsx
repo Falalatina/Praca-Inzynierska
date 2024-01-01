@@ -3,6 +3,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Center,
   Divider,
   Heading,
   Text,
@@ -20,7 +21,7 @@ const TeamCard = ({ id, teamName, workers }) => {
         w="100%"
         borderTopRadius="2rem"
       >
-        <Text as="b" fontSize="4xl">
+        <Text as="b" fontSize={{ base: "xl", md: "2xl", lg: "4xl" }}>
           {teamName}
         </Text>
       </CardHeader>
@@ -29,10 +30,12 @@ const TeamCard = ({ id, teamName, workers }) => {
           const { id, name } = item;
           return (
             <Box key={id} h="60px">
-              <CardBody display="flex" alignItems="baseline">
-                <Heading size="sm">{name}</Heading>
-              </CardBody>
               <Divider />
+              <CardBody display="flex" alignItems="center">
+                <Text fontSize={{ base: "sm", md: "md", lg: "lg" }}>
+                  {name}
+                </Text>
+              </CardBody>
             </Box>
           );
         })}

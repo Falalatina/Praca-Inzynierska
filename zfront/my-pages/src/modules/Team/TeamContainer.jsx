@@ -40,14 +40,21 @@ const TeamContainer = () => {
   }
   return (
     <section className="container">
-      <Card bg="rgb(236, 236, 236);">
+      <Card bg="rgb(0,0,0,0);">
         <CardBody>
           <header className="header-container">
             <h2>Your teams: </h2>
             <h4 className="txt">You have {amount} teams. </h4>
           </header>
           <div>
-            <Grid templateColumns="repeat(3, 1fr)" gap={7}>
+            <Grid
+              templateColumns={{
+                base: "1fr",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(3, 1fr)",
+              }}
+              gap={7}
+            >
               {teams.map((team) => {
                 const teamWorkers = getWorkersForTeam(team.id, workers);
 
