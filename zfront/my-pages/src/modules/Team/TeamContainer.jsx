@@ -5,10 +5,13 @@ import { Card, Grid, GridItem, CardBody } from "@chakra-ui/react";
 import "./container.css";
 import workers from "../../workers";
 import { checkAmount } from "../../features/team/teamSlice";
+import { changeWorkers } from "../../features/team/generateSlice";
+import { useNavigate } from "react-router-dom";
 
 const TeamContainer = () => {
   const { teams, amount } = useSelector((state) => state.team);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   dispatch(checkAmount(teams.length));
 
@@ -43,12 +46,18 @@ const TeamContainer = () => {
             <h2 className="txt">You have {amount} teams. </h2>
           </header>
           <div>
-            <Grid templateColumns="repeat(2, 1fr)" gap={3}>
+            <Grid templateColumns="repeat(2, 1fr)" gap={10}>
               {teams.map((team) => {
                 const teamWorkers = getWorkersForTeam(team.id, workers);
 
                 return (
-                  <GridItem key={team.id}>
+                  <GridItem
+                    key={team.id}
+                    onClick={() => {
+                      dispatch(changeWorkers(teamWorkers));
+                      navigate("generate");
+                    }}
+                  >
                     <TeamCard key={team.id} {...team} workers={teamWorkers} />
                   </GridItem>
                 );
