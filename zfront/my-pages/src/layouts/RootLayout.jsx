@@ -2,7 +2,10 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import "./Header.css";
 
+import { useColorMode, Button } from "@chakra-ui/react";
+
 const RootLayout = () => {
+  const { toggleColorMode } = useColorMode();
   return (
     <div className="root-layout">
       <header className="header">
@@ -12,6 +15,9 @@ const RootLayout = () => {
         <div className="middle-section"></div>
         <div className="right-section">
           <NavLink to="/">Home</NavLink>
+          <Button color="black" onClick={toggleColorMode}>
+            Dark Mode
+          </Button>
         </div>
       </header>
       <main>
