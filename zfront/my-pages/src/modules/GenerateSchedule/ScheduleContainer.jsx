@@ -15,7 +15,7 @@ import {
   PopoverArrow,
   PopoverCloseButton,
 } from "@chakra-ui/react";
-import { useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue, useToast } from "@chakra-ui/react";
 
 import { useDispatch } from "react-redux";
 import { updateGraphicForPerson } from "../../features/team/generateSlice";
@@ -25,6 +25,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
   const shiftBackColor = useColorModeValue("rgb(216, 226, 223)", "gray.500");
 
   const dispatch = useDispatch();
+  const toast = useToast();
   //console.log(name, id, graphic);
   //console.log(workShifts);
   const daysOfWeek = ["pn", "wt", "sr", "czw", "pt", "sob", "nd"];
@@ -48,11 +49,33 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
       const findIndex = graphic.findIndex((element) =>
         indexesOfDays[day].includes(element)
       );
+      console.log(
+        indexesOfDays[day],
+
+        graphic
+      );
 
       if (findIndex !== -1) {
         const newGraphic = [...graphic];
-        newGraphic[findIndex] = indexesOfDays[day][shiftIndex];
+        const newShift = indexesOfDays[day][shiftIndex];
 
+        // Sprawdź, czy nowy element już istnieje w grafiku
+        if (!newGraphic.includes(newShift)) {
+          newGraphic[findIndex] = newShift;
+          dispatch(updateGraphicForPerson({ id: id, graphic: newGraphic }));
+        } else {
+          toast({
+            title: "Operation forbidden.",
+            description: "This element already exists in graphic.",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        }
+      } else {
+        // Jeśli element nie istnieje, dodaj go do grafiku
+        const newGraphic = [...graphic];
+        newGraphic.push(indexesOfDays[day][shiftIndex]);
         dispatch(updateGraphicForPerson({ id: id, graphic: newGraphic }));
       }
     };
@@ -129,7 +152,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
         <PopoverCloseButton />
         <PopoverHeader>Change shift for {name}</PopoverHeader>
         <PopoverBody>
-          {[0, 1, 2].map((shiftIndex) => (
+          {[0, 1, 2, 3].map((shiftIndex) => (
             <Box
               key={shiftIndex}
               backgroundColor={shiftBackColor}
@@ -144,7 +167,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
                 ) : shiftIndex === 2 ? (
                   <div className="third-shift">THIRD SHIFT</div>
                 ) : (
-                  <div></div>
+                  <div className="off-day">X</div>
                 )}
               </div>
             </Box>
@@ -191,7 +214,10 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
             <PopoverArrow />
             <PopoverCloseButton />
             <PopoverHeader>Change shift for {name}</PopoverHeader>
-            <PopoverBody>You've chosen to keep this day free!</PopoverBody>
+            <PopoverBody>
+              You've chosen to keep this day free! If you want to change go to
+              days settings
+            </PopoverBody>
           </PopoverContent>
         </Popover>
       );

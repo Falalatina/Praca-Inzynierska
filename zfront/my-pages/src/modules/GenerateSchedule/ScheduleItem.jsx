@@ -95,6 +95,7 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
                   backgroundColor={shiftBackColor}
                   key={shift}
                   className="shift-container"
+                  //onClick={() => console.log(graphic)}
                 >
                   <div className="second-shift">
                     {newT1}&#58;00 &ndash;
