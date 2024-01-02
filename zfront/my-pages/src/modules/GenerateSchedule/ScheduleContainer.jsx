@@ -84,6 +84,13 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
           const newGraphic = [...graphic];
           newGraphic.splice(findIndex, 1);
           dispatch(updateGraphicForPerson({ id: id, graphic: newGraphic }));
+          toast({
+            title: "Operation forbidden.",
+            description: "This shift is off.",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
           return;
         }
 
