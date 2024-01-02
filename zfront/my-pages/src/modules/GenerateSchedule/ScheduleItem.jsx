@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { Box } from "@chakra-ui/react";
+import { Box, Popover, PopoverTrigger } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 
-const ScheduleItem = ({ graphic }) => {
+const ScheduleItem = ({ graphic, popoverContent }) => {
   const { hourOfStart, howLong, firstShift, secondShift, thirdShift } =
     useSelector((state) => state.modal);
 
@@ -70,46 +70,61 @@ const ScheduleItem = ({ graphic }) => {
       {graphic.map((shift) => {
         if (firstShiftsActive.includes(shift)) {
           return (
-            <Box
-              backgroundColor={shiftBackColor}
-              key={shift}
-              className="shift-container"
-            >
-              <div className="first-shift">
-                {hourOfStart}&#58;00 &ndash; {newT1}&#58;00
-                <div className="tooltip">FIRST SHIFT</div>
-              </div>
-            </Box>
+            <Popover key={shift} placement="right" closeOnBlur={false}>
+              <PopoverTrigger>
+                <Box
+                  backgroundColor={shiftBackColor}
+                  key={shift}
+                  className="shift-container"
+                >
+                  <div className="first-shift">
+                    {hourOfStart}&#58;00 &ndash; {newT1}&#58;00
+                    <div className="tooltip">FIRST SHIFT</div>
+                  </div>
+                </Box>
+              </PopoverTrigger>
+              {popoverContent}
+            </Popover>
           );
         }
         if (secondShiftsActive.includes(shift)) {
           return (
-            <Box
-              backgroundColor={shiftBackColor}
-              key={shift}
-              className="shift-container"
-            >
-              <div className="second-shift">
-                {newT1}&#58;00 &ndash;
-                {newT2}&#58;00
-                <div className="tooltip">SECOND SHIFT</div>
-              </div>
-            </Box>
+            <Popover key={shift} placement="right" closeOnBlur={false}>
+              <PopoverTrigger>
+                <Box
+                  backgroundColor={shiftBackColor}
+                  key={shift}
+                  className="shift-container"
+                >
+                  <div className="second-shift">
+                    {newT1}&#58;00 &ndash;
+                    {newT2}&#58;00
+                    <div className="tooltip">SECOND SHIFT</div>
+                  </div>
+                </Box>
+              </PopoverTrigger>
+              {popoverContent}
+            </Popover>
           );
         }
         if (thirdShiftsActive.includes(shift)) {
           return (
-            <Box
-              backgroundColor={shiftBackColor}
-              key={shift}
-              className="shift-container"
-            >
-              <div className="third-shift">
-                {newT2}&#58;00 &ndash;
-                {newT3}&#58;00
-                <div className="tooltip">THIRD SHIFT</div>
-              </div>
-            </Box>
+            <Popover key={shift} placement="right" closeOnBlur={false}>
+              <PopoverTrigger>
+                <Box
+                  backgroundColor={shiftBackColor}
+                  key={shift}
+                  className="shift-container"
+                >
+                  <div className="third-shift">
+                    {newT2}&#58;00 &ndash;
+                    {newT3}&#58;00
+                    <div className="tooltip">THIRD SHIFT</div>
+                  </div>
+                </Box>
+              </PopoverTrigger>
+              {popoverContent}
+            </Popover>
           );
         }
       })}

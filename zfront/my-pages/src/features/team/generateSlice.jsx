@@ -45,6 +45,15 @@ const generateSlice = createSlice({
     changeWorkers: (state, actions) => {
       state.workers = actions.payload;
     },
+    updateGraphicForPerson: (state, action) => {
+      const { id, graphic } = action.payload;
+      const workerIndex = state.workers.findIndex((worker) => worker.id === id);
+
+      if (workerIndex !== -1) {
+        // Znaleziono pracownika o określonym ID, aktualizuj grafikę
+        state.workers[workerIndex].graphic = graphic;
+      }
+    },
   },
 });
 
@@ -54,5 +63,6 @@ export const {
   stopLoading,
   removeGraphic,
   changeWorkers,
+  updateGraphicForPerson,
 } = generateSlice.actions;
 export default generateSlice.reducer;
