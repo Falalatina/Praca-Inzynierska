@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import teams from "../../data";
+import data from "../../data.json";
+
+const teams = JSON.parse(JSON.stringify(data));
 
 const initialState = {
   teams: teams,

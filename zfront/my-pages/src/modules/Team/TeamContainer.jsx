@@ -3,13 +3,14 @@ import TeamCard from "./Teamcard";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Grid, GridItem, CardBody } from "@chakra-ui/react";
 import "./container.css";
-import workers from "../../workers";
+import data from "../../workers.json";
 import { checkAmount } from "../../features/team/teamSlice";
 import { changeWorkers } from "../../features/team/generateSlice";
 import { useNavigate } from "react-router-dom";
 
 const TeamContainer = () => {
   const { teams, amount } = useSelector((state) => state.team);
+  const workers = JSON.parse(JSON.stringify(data));
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
