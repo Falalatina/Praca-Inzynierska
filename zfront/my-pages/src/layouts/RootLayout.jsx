@@ -19,7 +19,12 @@ const RootLayout = () => {
               Home
             </Button>
           </NavLink>
-          <Button variant="ghost" color="black" onClick={toggleColorMode}>
+          <Button
+            ml={5}
+            variant="ghost"
+            color="black"
+            onClick={toggleColorMode}
+          >
             Dark Mode
           </Button>
         </div>

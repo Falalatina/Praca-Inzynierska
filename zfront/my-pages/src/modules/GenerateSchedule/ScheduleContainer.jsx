@@ -49,11 +49,11 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
       const findIndex = graphic.findIndex((element) =>
         indexesOfDays[day].includes(element)
       );
-      // console.log(
-      //   indexesOfDays[day],
+      console.log(
+        indexesOfDays[day],
 
-      //   graphic
-      // );
+        graphic
+      );
 
       if (findIndex !== -1) {
         const newGraphic = [...graphic];
@@ -80,6 +80,12 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
         }
       } else {
         // Jeśli element nie istnieje, dodaj go do grafiku
+        if (indexesOfDays[day][shiftIndex] === undefined) {
+          const newGraphic = [...graphic];
+          newGraphic.splice(findIndex, 1);
+          dispatch(updateGraphicForPerson({ id: id, graphic: newGraphic }));
+          return;
+        }
 
         const newGraphic = [...graphic];
         newGraphic.push(indexesOfDays[day][shiftIndex]);
