@@ -1,6 +1,9 @@
 import { Button } from "@chakra-ui/react";
+
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
 import {
   addGraphic,
   removeGraphic,
@@ -19,6 +22,7 @@ const Generate = () => {
 
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
+  const { id } = useParams();
 
   // console.log(isLoading);
   // console.log(

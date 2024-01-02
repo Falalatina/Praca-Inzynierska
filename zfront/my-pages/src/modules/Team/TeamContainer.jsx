@@ -63,7 +63,7 @@ const TeamContainer = () => {
                     key={team.id}
                     onClick={() => {
                       dispatch(changeWorkers(teamWorkers));
-                      navigate("generate");
+                      navigate("generate/" + team.id.toString());
                     }}
                   >
                     <TeamCard key={team.id} {...team} workers={teamWorkers} />

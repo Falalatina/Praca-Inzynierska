@@ -16,7 +16,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<TeamContainer />} />
-      <Route path="generate" element={<Generate />}></Route>
+      <Route path="generate" element={<Generate />}>
+        <Route path=":teamId" element={<Generate />} />
+      </Route>
 
       <Route path="*" element={<NotFound />} />
     </Route>
