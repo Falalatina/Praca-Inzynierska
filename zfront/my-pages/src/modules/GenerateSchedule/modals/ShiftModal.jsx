@@ -8,12 +8,7 @@ import {
   Stack,
   StackDivider,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Grid,
-  GridItem,
-  Button,
   Input,
 } from "@chakra-ui/react";
 import {
