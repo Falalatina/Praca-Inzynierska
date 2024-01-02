@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Box, Popover, PopoverTrigger } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
+import { WarningIcon, Icon } from "@chakra-ui/icons";
 
 const ScheduleItem = ({ graphic, popoverContent }) => {
   const { hourOfStart, howLong, firstShift, secondShift, thirdShift } =
@@ -72,16 +73,38 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
           return (
             <Popover key={shift} placement="right" closeOnBlur={false}>
               <PopoverTrigger>
-                <Box
-                  backgroundColor={shiftBackColor}
-                  key={shift}
-                  className="shift-container"
-                >
-                  <div className="first-shift">
-                    {hourOfStart}&#58;00 &ndash; {newT1}&#58;00
-                    <div className="tooltip">FIRST SHIFT</div>
-                  </div>
-                </Box>
+                {graphic.length > 1 ? (
+                  <Box
+                    backgroundColor="yellow.300"
+                    key={shift}
+                    className="shift-container"
+                  >
+                    <div className="first-shift">
+                      {hourOfStart}&#58;00 &ndash; {newT1}&#58;00
+                      <div className="tooltip">FIRST SHIFT</div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          right: 0,
+                        }}
+                      >
+                        <Icon as={WarningIcon} boxSize={6} />
+                      </div>
+                    </div>
+                  </Box>
+                ) : (
+                  <Box
+                    backgroundColor={shiftBackColor}
+                    key={shift}
+                    className="shift-container"
+                  >
+                    <div className="first-shift">
+                      {hourOfStart}&#58;00 &ndash; {newT1}&#58;00
+                      <div className="tooltip">FIRST SHIFT</div>
+                    </div>
+                  </Box>
+                )}
               </PopoverTrigger>
               {popoverContent}
             </Popover>
@@ -91,18 +114,42 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
           return (
             <Popover key={shift} placement="right" closeOnBlur={false}>
               <PopoverTrigger>
-                <Box
-                  backgroundColor={shiftBackColor}
-                  key={shift}
-                  className="shift-container"
-                  //onClick={() => console.log(graphic)}
-                >
-                  <div className="second-shift">
-                    {newT1}&#58;00 &ndash;
-                    {newT2}&#58;00
-                    <div className="tooltip">SECOND SHIFT</div>
-                  </div>
-                </Box>
+                {graphic.length > 1 ? (
+                  <Box
+                    backgroundColor="yellow.300"
+                    key={shift}
+                    className="shift-container"
+                    //onClick={() => console.log(graphic)}
+                  >
+                    <div className="second-shift">
+                      {newT1}&#58;00 &ndash;
+                      {newT2}&#58;00
+                      <div className="tooltip">SECOND SHIFT</div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          right: 0,
+                        }}
+                      >
+                        <Icon as={WarningIcon} boxSize={6} />
+                      </div>
+                    </div>
+                  </Box>
+                ) : (
+                  <Box
+                    backgroundColor={shiftBackColor}
+                    key={shift}
+                    className="shift-container"
+                    //onClick={() => console.log(graphic)}
+                  >
+                    <div className="second-shift">
+                      {newT1}&#58;00 &ndash;
+                      {newT2}&#58;00
+                      <div className="tooltip">SECOND SHIFT</div>
+                    </div>
+                  </Box>
+                )}
               </PopoverTrigger>
               {popoverContent}
             </Popover>
@@ -112,17 +159,40 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
           return (
             <Popover key={shift} placement="right" closeOnBlur={false}>
               <PopoverTrigger>
-                <Box
-                  backgroundColor={shiftBackColor}
-                  key={shift}
-                  className="shift-container"
-                >
-                  <div className="third-shift">
-                    {newT2}&#58;00 &ndash;
-                    {newT3}&#58;00
-                    <div className="tooltip">THIRD SHIFT</div>
-                  </div>
-                </Box>
+                {graphic.length > 1 ? (
+                  <Box
+                    backgroundColor="yellow.300"
+                    key={shift}
+                    className="shift-container"
+                  >
+                    <div className="third-shift">
+                      {newT2}&#58;00 &ndash;
+                      {newT3}&#58;00
+                      <div className="tooltip">THIRD SHIFT</div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          right: 0,
+                        }}
+                      >
+                        <Icon as={WarningIcon} boxSize={6} />
+                      </div>
+                    </div>
+                  </Box>
+                ) : (
+                  <Box
+                    backgroundColor={shiftBackColor}
+                    key={shift}
+                    className="shift-container"
+                  >
+                    <div className="third-shift">
+                      {newT2}&#58;00 &ndash;
+                      {newT3}&#58;00
+                      <div className="tooltip">THIRD SHIFT</div>
+                    </div>
+                  </Box>
+                )}
               </PopoverTrigger>
               {popoverContent}
             </Popover>

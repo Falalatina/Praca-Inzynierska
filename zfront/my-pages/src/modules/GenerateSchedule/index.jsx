@@ -1,8 +1,8 @@
 import React from "react";
 import Generate from "./Generate";
 import "./ShContainer.css";
-import { IconButton } from "@chakra-ui/react";
-import { SettingsIcon } from "@chakra-ui/icons";
+import { IconButton, Tooltip } from "@chakra-ui/react";
+import { InfoIcon, SettingsIcon } from "@chakra-ui/icons";
 import SettingModal from "./modals/SettingModal";
 import { openModal } from "../../features/team/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +48,14 @@ const index = () => {
         onClick={() => dispatch(openModal())}
         icon={<SettingsIcon />}
       />
+      <Tooltip
+        label="Yellow warning may appear if you have too many workers per shift and too few actual workers."
+        hasArrow
+        bg="yellow.300"
+        color={"black"}
+      >
+        <IconButton ml={3} icon={<InfoIcon />} />
+      </Tooltip>
 
       {isOpen && <SettingModal />}
       <Generate />
