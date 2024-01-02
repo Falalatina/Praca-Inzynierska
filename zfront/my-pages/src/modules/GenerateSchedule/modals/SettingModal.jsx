@@ -57,7 +57,7 @@ const SettingModal = () => {
 
   return (
     <aside className="modal-container">
-      <div className="modal">
+      <Card className="modal">
         <Card>
           <CardHeader style={{ background: "#805AD5" }}>
             <Heading size="md">Settings</Heading>
@@ -131,7 +131,7 @@ const SettingModal = () => {
             Cancel
           </Button>
         </div>
-      </div>
+      </Card>
     </aside>
   );
 };
