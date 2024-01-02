@@ -1,12 +1,17 @@
 import React from "react";
 import "./ShContainer.css";
-import { Grid, GridItem, CircularProgress } from "@chakra-ui/react";
-import ScheduleItem from "./ScheduleItem";
-import { useDispatch, useSelector } from "react-redux";
-import { startLoading } from "../../features/team/generateSlice";
 import { memo } from "react";
+import ScheduleItem from "./ScheduleItem";
+
+import { Grid, Box, CircularProgress } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
+
+import { useDispatch } from "react-redux";
 
 const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
+  const backgroundColor = useColorModeValue("rgb(236, 236, 236)", "gray.700");
+  const shiftBackColor = useColorModeValue("rgb(216, 226, 223)", "gray.500");
+
   const dispatch = useDispatch();
   //console.log(name, id, graphic);
   const daysOfWeek = ["pn", "wt", "sr", "czw", "pt", "sob", "nd"];
@@ -31,12 +36,24 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
       );
 
       if (filteredData.length === 0) {
-        return <div key={day} className="shift-container"></div>;
+        return (
+          <Box
+            backgroundColor={shiftBackColor}
+            key={day}
+            className="shift-container"
+          ></Box>
+        );
       }
 
       return <ScheduleItem key={day} graphic={filteredData} />;
     } else {
-      return <div key={day} className="shift-container"></div>;
+      return (
+        <Box
+          backgroundColor={shiftBackColor}
+          key={day}
+          className="shift-container"
+        ></Box>
+      );
     }
   });
 
@@ -45,6 +62,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
   return (
     <>
       <Grid
+        backgroundColor={backgroundColor}
         className="grid-shift-container"
         templateColumns="repeat(8, 1fr)"
         gap={1}
