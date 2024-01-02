@@ -7,7 +7,7 @@
   padding: 2rem;
   margin: 3rem auto;
   overflow-x: auto;
-  width: 90vw;
+  width: 100vw;
   max-width: 1410px;
 }
 .week-container {
@@ -16,16 +16,15 @@
   align-items: center;
   border-bottom: 1px solid rgb(160, 160, 160);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(144px, 1fr));
   row-gap: 10px;
-  column-gap: 15px;
+  column-gap: 1px;
   padding: 20px 25px 10px 10px;
 }
 
 .week-container .name {
   row-gap: 10px;
   column-gap: 15px;
-  padding: 20px 25px 10px 10px;
 }
 
 .week-container .day-in-week {
@@ -41,6 +40,7 @@
   position: relative;
   cursor: pointer;
   min-width: 35px;
+  width: 150px;
   flex: 1;
 }
 
@@ -177,8 +177,11 @@
 
 .workers-container {
   background-color: white;
+  width: 130px;
+
   min-height: 50px;
-  min-width: 63px;
+  min-width: 150px;
+  margin-top: 10px;
   margin-top: 10px;
   border-radius: 2px;
   border: 1px solid rgb(212, 212, 212);

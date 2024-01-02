@@ -12,7 +12,7 @@ const index = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store) => store.modal);
   return (
-    <>
+    <section className="whole-graphic">
       <div className="week-container">
         <div className="name"> User</div>
         <div className="day-in-week">
@@ -51,7 +51,7 @@ const index = () => {
 
       {isOpen && <SettingModal />}
       <Generate />
-    </>
+    </section>
   );
 };
 

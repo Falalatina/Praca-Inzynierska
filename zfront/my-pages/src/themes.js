@@ -3,7 +3,7 @@ import { extendTheme } from "@chakra-ui/react";
 const theme = extendTheme({
   styles: {
     global: {
-      // Dodaj styl globalny tutaj
+      body: {},
     },
   },
   colors: {
@@ -14,7 +14,6 @@ const theme = extendTheme({
     dark: {
       background: "#1a202c",
       text: "#ffffff",
-
       Headers: "#ffffff",
     },
   },
