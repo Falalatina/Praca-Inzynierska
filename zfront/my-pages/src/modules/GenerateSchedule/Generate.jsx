@@ -8,6 +8,7 @@ import {
   addGraphic,
   removeGraphic,
   startLoading,
+  fetchWorkers,
 } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 
@@ -31,6 +32,9 @@ const Generate = () => {
   // );
 
   // console.log(workers[0].graphic);
+  useEffect(() => {
+    dispatch(fetchWorkers());
+  }, [dispatch]);
 
   useEffect(() => {
     setNewGeneration((prevGeneration) => prevGeneration + 1);

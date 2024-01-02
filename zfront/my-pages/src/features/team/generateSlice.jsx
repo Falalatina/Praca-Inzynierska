@@ -1,10 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import data from "../../workers.json";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const workers = JSON.parse(JSON.stringify(data.workers));
+export const fetchWorkers = createAsyncThunk(
+  "generate/fetchWorkers",
+  async () => {
+    const res = await fetch("http://localhost:4000/workers");
+    return res.json();
+  }
+);
 
 const initialState = {
-  workers: workers,
+  workers: [],
   graphic: [],
   isLoading: false,
 };
@@ -55,6 +60,19 @@ const generateSlice = createSlice({
         state.workers[workerIndex].graphic = graphic;
       }
     },
+  },
+  extraReducers: (builder) => {
+    // Obsługa zdarzenia związanego z pobieraniem danych
+    builder.addCase(fetchWorkers.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchWorkers.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.workers = action.payload;
+    });
+    builder.addCase(fetchWorkers.rejected, (state) => {
+      state.isLoading = false;
+    });
   },
 });
 

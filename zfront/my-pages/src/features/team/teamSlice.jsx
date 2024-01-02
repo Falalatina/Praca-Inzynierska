@@ -1,14 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
-import data from "../../data.json";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const teams = JSON.parse(JSON.stringify(data.teams));
+export const fetchTeams = createAsyncThunk("team/fetchTeams", async () => {
+  const res = await fetch("http://localhost:4000/teams");
+  return res.json();
+});
 
 const initialState = {
-  teams: teams,
+  teams: [],
   name: "",
   workers: "",
   amount: 0,
-  isLoading: true,
+  isLoading: false,
 };
 
 const teamSlice = createSlice({
@@ -18,6 +20,19 @@ const teamSlice = createSlice({
     checkAmount: (state, action) => {
       state.amount = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTeams.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchTeams.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.teams = action.payload;
+      })
+      .addCase(fetchTeams.rejected, (state) => {
+        state.isLoading = false;
+      });
   },
 });
 export const { checkAmount } = teamSlice.actions;
