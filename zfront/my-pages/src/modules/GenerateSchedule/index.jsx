@@ -1,15 +1,23 @@
 import React from "react";
 import Generate from "./Generate";
 import "./ShContainer.css";
-import { IconButton, Tooltip } from "@chakra-ui/react";
+import { Button, IconButton, Tooltip } from "@chakra-ui/react";
 import { InfoIcon, SettingsIcon } from "@chakra-ui/icons";
 import SettingModal from "./modals/SettingModal";
 import { openModal } from "../../features/team/modalSlice";
+import { saveToLocalStorage } from "../../features/team/generateSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const index = () => {
+  const { teamId } = useParams();
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store) => store.modal);
+  const handleSaveClick = () => {
+    // Dispatchuj akcję, aby zapisać stan do localStorage
+    dispatch(saveToLocalStorage({ teamId }));
+  };
+
   return (
     <section className="whole-graphic">
       <div className="week-container">
@@ -55,6 +63,9 @@ const index = () => {
       >
         <IconButton ml={3} icon={<InfoIcon />} isDisabled />
       </Tooltip>
+      <Button ml={3} onClick={handleSaveClick}>
+        Save
+      </Button>
 
       {isOpen && <SettingModal />}
       <Generate />

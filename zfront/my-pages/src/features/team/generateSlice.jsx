@@ -60,6 +60,15 @@ const generateSlice = createSlice({
         state.workers[workerIndex].graphic = graphic;
       }
     },
+    saveToLocalStorage: (state, action) => {
+      const { teamId } = action.payload;
+      localStorage.setItem(
+        `generateStateTeamId${teamId}`,
+        JSON.stringify({
+          savedWorkers: { teamId: teamId, workers: state.workers },
+        })
+      );
+    },
   },
   extraReducers: (builder) => {
     // Obsługa zdarzenia związanego z pobieraniem danych
@@ -83,5 +92,13 @@ export const {
   removeGraphic,
   changeWorkers,
   updateGraphicForPerson,
+  saveToLocalStorage,
 } = generateSlice.actions;
 export default generateSlice.reducer;
+
+export const fetchDataIfNeeded = () => (dispatch, getState) => {
+  const state = getState();
+  if (!state.generate.workersFetched) {
+    return dispatch(fetchWorkers());
+  }
+};

@@ -8,7 +8,6 @@ import {
   addGraphic,
   removeGraphic,
   startLoading,
-  fetchWorkers,
 } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 
@@ -22,7 +21,6 @@ const Generate = () => {
 
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
-  const { teamId } = useParams();
 
   // console.log(isLoading);
   // console.log(
@@ -32,9 +30,6 @@ const Generate = () => {
   // );
 
   // console.log(workers[0].graphic);
-  useEffect(() => {
-    dispatch(fetchWorkers());
-  }, [dispatch]);
 
   useEffect(() => {
     setNewGeneration((prevGeneration) => prevGeneration + 1);
