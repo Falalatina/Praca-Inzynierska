@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import data from "../../workers.json";
 
-const workers = JSON.parse(JSON.stringify(data));
+const workers = JSON.parse(JSON.stringify(data.workers));
 
 const initialState = {
   workers: workers,

@@ -8,7 +8,6 @@ import {
   addGraphic,
   removeGraphic,
   startLoading,
-  stopLoading,
 } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 
@@ -22,7 +21,7 @@ const Generate = () => {
 
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
-  const { id } = useParams();
+  const { teamId } = useParams();
 
   // console.log(isLoading);
   // console.log(

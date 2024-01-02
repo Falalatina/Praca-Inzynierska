@@ -3,9 +3,7 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Center,
   Divider,
-  Heading,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
