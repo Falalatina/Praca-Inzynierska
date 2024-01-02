@@ -14,7 +14,9 @@ const RootLayout = () => {
         </div>
         <div className="middle-section"></div>
         <div className="right-section">
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">
+            <Button color={"black"}>Home</Button>
+          </NavLink>
           <Button color="black" onClick={toggleColorMode}>
             Dark Mode
           </Button>
