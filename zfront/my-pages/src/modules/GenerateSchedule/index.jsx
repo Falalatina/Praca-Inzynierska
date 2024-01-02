@@ -54,7 +54,7 @@ const index = () => {
         bg="yellow.300"
         color={"black"}
       >
-        <IconButton ml={3} icon={<InfoIcon />} />
+        <IconButton ml={3} icon={<InfoIcon />} isDisabled />
       </Tooltip>
 
       {isOpen && <SettingModal />}
