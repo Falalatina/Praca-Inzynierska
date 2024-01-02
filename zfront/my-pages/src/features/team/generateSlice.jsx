@@ -50,7 +50,7 @@ const generateSlice = createSlice({
       const workerIndex = state.workers.findIndex((worker) => worker.id === id);
 
       if (workerIndex !== -1) {
-        // Znaleziono pracownika o określonym ID, aktualizuj grafikę
+        // Znaleziono pracownika o określonym ID, aktualizuj grafik
         state.workers[workerIndex].graphic = graphic;
       }
     },
