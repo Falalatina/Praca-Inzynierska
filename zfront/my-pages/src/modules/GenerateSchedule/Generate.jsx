@@ -309,7 +309,6 @@ const Generate = () => {
 
   const handleSave = (item) => {
     if (item) {
-      dispatch(changeWorkers([]));
     }
   };
   return (
