@@ -2,10 +2,11 @@ import { Button } from "@chakra-ui/react";
 
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 
 import {
   addGraphic,
+  changeWorkers,
   removeGraphic,
   startLoading,
 } from "../../features/team/generateSlice";
@@ -21,6 +22,7 @@ const Generate = () => {
 
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
+  const { teamId } = useParams();
 
   // console.log(isLoading);
   // console.log(
@@ -30,6 +32,15 @@ const Generate = () => {
   // );
 
   // console.log(workers[0].graphic);
+
+  let item = JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`));
+
+  if (workers.length === 0 && item) {
+    // console.log(item.savedWorkers.workers);
+    dispatch(changeWorkers(item.savedWorkers.workers));
+  }
+
+  // console.log(JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`)));
 
   useEffect(() => {
     setNewGeneration((prevGeneration) => prevGeneration + 1);
