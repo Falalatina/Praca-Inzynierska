@@ -2,12 +2,22 @@ import "./UserList.css";
 
 import AddUser from "./AddUser";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { removePerson } from "../../features/team/generateSlice";
 import { removePersonFromTeam } from "../../features/team/teamSlice";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Heading,
+} from "@chakra-ui/react";
 
 const RenderPeopleOnList = () => {
   const [toggle, setToggle] = useState(false);
@@ -54,50 +64,45 @@ const RenderPeopleOnList = () => {
   };
 
   return (
-    <section className="x ">
+    <Card p={10} mt={10} className="x ">
       <div className="people-list-container">
-        <div className="header-secion-list-ppl">
+        <CardHeader className="header-secion-list-ppl">
+          <Heading size="xs">Name</Heading>
+          <Heading size="xs">Preferences</Heading>
+          <Heading size="xs">Anti-preferences</Heading>
           <div></div>
-          <div>Name</div>
-          {/* <div>Stage</div>
-          <div>Shifts</div> */}
-          <div></div>
-        </div>
+        </CardHeader>
+
         {currentWorkers.map((person) => {
-          const { id, name } = person;
+          const { id, name, preferences } = person;
 
           return (
-            <section key={id} className="person-on-list">
-              <div>{name}</div>
+            <Box key={id}>
+              <CardBody className="header-secion-list-ppl">
+                <div>{name}</div>
 
-              <button
-                className="btn"
-                type="button"
-                onClick={handleRemove(teamId, id)}
-                style={{ marginRight: "1rem", backgroundColor: "red" }}
-              >
-                Delete
-              </button>
-            </section>
+                <div>{`${preferences.yes} `} </div>
+                <div>{`${preferences.no}  `}</div>
+                <Button
+                  size="md"
+                  bg="red.300"
+                  onClick={() => handleRemove(teamId, id)}
+                >
+                  Delete
+                </Button>
+              </CardBody>
+              <Divider />
+            </Box>
           );
         })}
 
-        <button
-          className="btn-delete btn"
-          style={{ backgroundColor: "red" }}
-          type="button"
-          onClick={clearAllItems}
-        >
-          Delete all
-        </button>
-
-        <section className="person-on-list">
+        <CardFooter className="header-secion-list-ppl">
           <div></div>
-          <button className="btn" type="button" onClick={showForm}>
+          <Button onClick={showForm}>
             {toggle ? "Hide Add User" : "Add User"}
-          </button>
+          </Button>
           <div></div>
-        </section>
+        </CardFooter>
       </div>
       {toggle ? (
         <AddUser
@@ -108,8 +113,8 @@ const RenderPeopleOnList = () => {
       ) : (
         <div> </div>
       )}
-    </section>
+    </Card>
   );
 };
 
-export default RenderPeopleOnList;
+export default memo(RenderPeopleOnList);

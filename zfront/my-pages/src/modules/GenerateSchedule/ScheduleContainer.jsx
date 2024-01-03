@@ -21,7 +21,7 @@ import { useDispatch } from "react-redux";
 import { updateGraphicForPerson } from "../../features/team/generateSlice";
 
 const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
-  const backgroundColor = useColorModeValue("rgb(236, 236, 236)", "gray.700");
+  const backgroundColor = useColorModeValue("white", "gray.700");
   const shiftBackColor = useColorModeValue("rgb(216, 226, 223)", "gray.500");
 
   const dispatch = useDispatch();

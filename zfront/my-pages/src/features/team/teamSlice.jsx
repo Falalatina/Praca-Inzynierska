@@ -25,10 +25,24 @@ const teamSlice = createSlice({
       state.amount = action.payload;
     },
     removePersonFromTeam: (state, { payload }) => {
-      const { teamId, workerId } = payload;
+      const { teamId, id } = payload;
       //idTeamu i ID które usuwam z workerId
-      let team = state.teams.find((t) => t.id === teamId);
-      team = team.workerIds.filter((person) => person.id !== workerId);
+      console.log("teamId:", teamId, "id:", id);
+      console.log("Stan przed mutacją:", state.teams);
+      // Zaktualizuj tablicę zespołów przy użyciu map
+      state.teams = state.teams.map((team) => {
+        // Sprawdź, czy to jest zespół, który chcemy zaktualizować
+        if (team.id === Number(teamId)) {
+          // Utwórz nowy obiekt zespołu, aby uniknąć mutacji bezpośrednio oryginalnego obiektu
+          return {
+            ...team,
+            workerIds: team.workerIds.filter((person) => person !== id),
+          };
+        }
+        // Jeśli to nie jest zespół, którego szukamy, zwróć go bez zmian
+        return team;
+      });
+      console.log("Stan po mutacji:", state.teams);
     },
   },
   extraReducers: (builder) => {

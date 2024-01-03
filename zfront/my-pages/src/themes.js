@@ -2,13 +2,15 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   styles: {
-    global: {
-      body: {},
-    },
+    global: ({ colorMode }) => ({
+      body: {
+        background: colorMode === "light" ? "#F7FAFC" : "#1a202c",
+      },
+    }),
   },
   colors: {
     light: {
-      background: "#ffffff",
+      background: "#FFFFFF",
       text: "#333333",
     },
     dark: {
