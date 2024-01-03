@@ -96,9 +96,9 @@ export const {
 } = generateSlice.actions;
 export default generateSlice.reducer;
 
-export const fetchDataIfNeeded = () => (dispatch, getState) => {
-  const state = getState();
-  if (!state.generate.workersFetched) {
-    return dispatch(fetchWorkers());
-  }
-};
+// export const fetchDataIfNeeded = () => (dispatch, getState) => {
+//   const state = getState();
+//   if (!state.generate.workersFetched) {
+//     return dispatch(fetchWorkers());
+//   }
+// };
