@@ -24,6 +24,12 @@ const teamSlice = createSlice({
     checkAmount: (state, action) => {
       state.amount = action.payload;
     },
+    removePersonFromTeam: (state, { payload }) => {
+      const { teamId, workerId } = payload;
+      //idTeamu i ID które usuwam z workerId
+      let team = state.teams.find((t) => t.id === teamId);
+      team = team.workerIds.filter((person) => person.id !== workerId);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -39,5 +45,5 @@ const teamSlice = createSlice({
       });
   },
 });
-export const { checkAmount } = teamSlice.actions;
+export const { checkAmount, removePersonFromTeam } = teamSlice.actions;
 export default teamSlice.reducer;

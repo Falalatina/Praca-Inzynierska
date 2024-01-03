@@ -42,6 +42,12 @@ const generateSlice = createSlice({
         // console.log(person);
       });
     },
+    removePerson: (state, action) => {
+      const { id } = action.payload;
+      state.currentWorkers = state.currentWorkers.filter(
+        (person) => person.id !== id
+      );
+    },
     removeGraphic: (state) => {
       state.workers.forEach((person) => {
         person.graphic = [];
@@ -104,6 +110,7 @@ export const {
   updateGraphicForPerson,
   saveToLocalStorage,
   changeCurrentWorkers,
+  removePerson,
 } = generateSlice.actions;
 export default generateSlice.reducer;
 

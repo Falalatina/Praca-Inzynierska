@@ -7,7 +7,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import Generate from "./modules/GenerateSchedule";
+import Generate from "./pages/TeamView";
 import TeamContainer from "./modules/Team";
 import RootLayout from "./layouts/RootLayout";
 import NotFound from "./pages/NotFound";
