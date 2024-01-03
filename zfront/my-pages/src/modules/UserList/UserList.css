@@ -1,12 +1,10 @@
 .people-list-container {
   display: grid;
   grid-template-columns: 1fr;
-
   width: 90vw;
   max-width: 1410px;
   justify-content: center;
   position: relative;
-
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
 
