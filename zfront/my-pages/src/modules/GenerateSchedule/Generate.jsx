@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { json, useParams } from "react-router-dom";
+import { json, useNavigate, useParams } from "react-router-dom";
 
 import {
   addGraphic,
@@ -34,14 +34,13 @@ const Generate = () => {
   // console.log(workers[0].graphic);
 
   let item = JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`));
-
-  if (workers.length === 0 && item) {
+  //console.log(item);
+  if (workers.length === 0 && item !== null) {
     // console.log(item.savedWorkers.workers);
-    // dispatch(changeWorkers(item.savedWorkers.workers));
-  } else {
+    dispatch(changeWorkers(item.savedWorkers.workers));
   }
 
-  // console.log(JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`)));
+  //console.log(JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`)));
 
   useEffect(() => {
     setNewGeneration((prevGeneration) => prevGeneration + 1);
