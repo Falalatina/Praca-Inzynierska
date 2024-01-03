@@ -4,43 +4,41 @@ import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { json, useNavigate, useParams } from "react-router-dom";
 
+import { getWorkersForTeam } from "../Team/TeamContainer";
+
 import {
   addGraphic,
   changeWorkers,
   removeGraphic,
   startLoading,
+  fetchWorkers,
+  stopLoading,
+  changeCurrentWorkers,
 } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
+import { current } from "@reduxjs/toolkit";
 
 const Generate = () => {
   const dispatch = useDispatch();
   const [bestSolution, setBestSolution] = useState([]);
   const [population, setPopulation] = useState([]);
-  const { workers, isLoading } = useSelector((store) => store.generate);
+  const { currentWorkers, isLoading } = useSelector((store) => store.generate);
   const { assignments, isConfirm } = useSelector((store) => store.modal);
+  const { teams } = useSelector((store) => store.team);
   const [newGeneration, setNewGeneration] = useState(0);
 
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
   const { teamId } = useParams();
 
-  // console.log(isLoading);
-  // console.log(
-  //   useSelector((store) => {
-  //     console.log(store.generate.generateItems[0].workers);
-  //   })
-  // );
-
-  // console.log(workers[0].graphic);
-
-  let item = JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`));
   //console.log(item);
-  if (workers.length === 0 && item !== null) {
-    // console.log(item.savedWorkers.workers);
-    // dispatch(changeWorkers(item.savedWorkers.workers));
-  }
 
-  //console.log(JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`)));
+  let workers = currentWorkers;
+
+  if (currentWorkers.length === 0) {
+    const teamWorkers = getWorkersForTeam(teamId);
+    dispatch(changeCurrentWorkers(teamWorkers));
+  }
 
   useEffect(() => {
     setNewGeneration((prevGeneration) => prevGeneration + 1);

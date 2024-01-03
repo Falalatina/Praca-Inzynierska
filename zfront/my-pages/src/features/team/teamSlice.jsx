@@ -1,8 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchTeams = createAsyncThunk("team/fetchTeams", async () => {
-  const res = await fetch("http://localhost:4000/teams");
-  return res.json();
+  try {
+    const resp = await axios("http://localhost:4000/teams");
+    //console.log(resp.data);
+    return resp.data;
+  } catch (error) {}
 });
 
 const initialState = {

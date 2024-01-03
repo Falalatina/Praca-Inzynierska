@@ -13,6 +13,11 @@ import RootLayout from "./layouts/RootLayout";
 import NotFound from "./pages/NotFound";
 import { teamLoader } from "./modules/Team/TeamContainer";
 
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import { fetchWorkers } from "./features/team/generateSlice";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
@@ -27,6 +32,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchWorkers());
+  }, []);
+
   return (
     <>
       <RouterProvider router={router} />

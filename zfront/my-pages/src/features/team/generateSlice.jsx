@@ -1,15 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchWorkers = createAsyncThunk(
   "generate/fetchWorkers",
   async () => {
-    const res = await fetch("http://localhost:4000/workers");
-    return res.json();
+    try {
+      const resp = await axios("http://localhost:4000/workers");
+      console.log(resp.data);
+      return resp.data;
+    } catch (error) {}
   }
 );
 
 const initialState = {
   workers: [],
+  currentWorkers: [],
   graphic: [],
   isLoading: false,
 };
@@ -50,6 +55,9 @@ const generateSlice = createSlice({
     },
     changeWorkers: (state, actions) => {
       state.workers = actions.payload;
+    },
+    changeCurrentWorkers: (state, actions) => {
+      state.currentWorkers = actions.payload;
     },
     updateGraphicForPerson: (state, action) => {
       const { id, graphic } = action.payload;
@@ -93,6 +101,7 @@ export const {
   changeWorkers,
   updateGraphicForPerson,
   saveToLocalStorage,
+  changeCurrentWorkers,
 } = generateSlice.actions;
 export default generateSlice.reducer;
 

@@ -13,7 +13,10 @@ import {
 import "./container.css";
 
 import { checkAmount, fetchTeams } from "../../features/team/teamSlice";
-import { changeWorkers } from "../../features/team/generateSlice";
+import {
+  changeWorkers,
+  changeCurrentWorkers,
+} from "../../features/team/generateSlice";
 
 import { useLoaderData, useNavigate } from "react-router-dom";
 
@@ -88,7 +91,7 @@ const TeamContainer = () => {
                       <GridItem
                         key={team.id}
                         onClick={() => {
-                          dispatch(changeWorkers(teamWorkers));
+                          dispatch(changeCurrentWorkers(teamWorkers));
                           navigate("generate/" + team.id.toString());
                         }}
                       >
@@ -116,3 +119,14 @@ export const teamLoader = async () => {
 };
 
 export default TeamContainer;
+
+export const getWorkersForTeam = (teamId, teams) => {
+  const team = teams.find((t) => t.id === teamId);
+  if (team) {
+    const teamWorkers = team.workerIds.map((workerId) =>
+      workers.find((worker) => worker.id === workerId)
+    );
+    return teamWorkers;
+  }
+  return [];
+};
