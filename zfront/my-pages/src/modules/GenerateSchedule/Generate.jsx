@@ -37,7 +37,7 @@ const Generate = () => {
   //console.log(item);
   if (workers.length === 0 && item !== null) {
     // console.log(item.savedWorkers.workers);
-    dispatch(changeWorkers(item.savedWorkers.workers));
+    // dispatch(changeWorkers(item.savedWorkers.workers));
   }
 
   //console.log(JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`)));
