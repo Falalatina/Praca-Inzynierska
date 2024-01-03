@@ -36,7 +36,6 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchWorkers());
-    dispatch(fetchTeams());
   }, []);
 
   return (

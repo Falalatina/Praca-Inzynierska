@@ -53,11 +53,11 @@ const generateSlice = createSlice({
     stopLoading: (state) => {
       state.isLoading = false;
     },
-    changeWorkers: (state, actions) => {
-      state.workers = actions.payload;
+    changeWorkers: (state, action) => {
+      state.workers = action.payload;
     },
-    changeCurrentWorkers: (state, actions) => {
-      state.currentWorkers = actions.payload;
+    changeCurrentWorkers: (state, action) => {
+      state.currentWorkers = action.payload;
     },
     updateGraphicForPerson: (state, action) => {
       const { id, graphic } = action.payload;

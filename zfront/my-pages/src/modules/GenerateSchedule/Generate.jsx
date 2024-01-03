@@ -1,8 +1,8 @@
 import { Button } from "@chakra-ui/react";
 
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useRef, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { json, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { getWorkersForTeam } from "../Team/TeamContainer";
 
@@ -17,12 +17,17 @@ import {
 } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 import { current } from "@reduxjs/toolkit";
+import { checkAmount, fetchTeams } from "../../features/team/teamSlice";
 
 const Generate = () => {
   const dispatch = useDispatch();
   const [bestSolution, setBestSolution] = useState([]);
   const [population, setPopulation] = useState([]);
-  const { currentWorkers, isLoading } = useSelector((store) => store.generate);
+  const {
+    currentWorkers,
+    isLoading,
+    workers: w,
+  } = useSelector((store) => store.generate);
   const { assignments, isConfirm } = useSelector((store) => store.modal);
   const { teams } = useSelector((store) => store.team);
   const [newGeneration, setNewGeneration] = useState(0);
@@ -30,18 +35,35 @@ const Generate = () => {
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
   const { teamId } = useParams();
-
-  //console.log(item);
-
   let workers = currentWorkers;
 
-  console.log(teams);
+  // Przekazuj teams i currentWorkers do funkcji getWorkersForTeam
 
-  if (currentWorkers.length === 0 && teams.length !== 0) {
-    const teamWorkers = getWorkersForTeam(teamId, teams);
-    dispatch(changeCurrentWorkers(teamWorkers));
-  }
+  console.log(workers);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(fetchTeams());
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(checkAmount(teams.length));
+    const teamWorkers = getWorkersForTeam(Number(teamId), teams, w);
+    console.log(teamWorkers);
+    const areElementsDefined = (array) => {
+      return array.every((element) => element !== undefined);
+    };
+    if (areElementsDefined(teamWorkers)) {
+      dispatch(changeCurrentWorkers(teamWorkers));
+    }
+  }, [teams.length, dispatch, getWorkersForTeam, teamId, w]);
+
+  /////
+  ///////
+  //////
   useEffect(() => {
     setNewGeneration((prevGeneration) => prevGeneration + 1);
   }, [isOpen]);
