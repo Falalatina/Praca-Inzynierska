@@ -37,7 +37,8 @@ const Generate = () => {
 
   if (workers.length === 0 && item) {
     // console.log(item.savedWorkers.workers);
-    dispatch(changeWorkers(item.savedWorkers.workers));
+    // dispatch(changeWorkers(item.savedWorkers.workers));
+  } else {
   }
 
   // console.log(JSON.parse(localStorage.getItem(`generateStateTeamId${teamId}`)));
@@ -313,7 +314,7 @@ const Generate = () => {
   };
   return (
     <>
-      <Button ml={3} onClick={handleSave(item)}>
+      <Button ml={3} onClick={() => handleSave()}>
         Show Saved Graphic
       </Button>
       <Button style={{ margin: "1rem" }} onClick={() => start()}>
