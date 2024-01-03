@@ -307,9 +307,14 @@ const Generate = () => {
     setTimeout(startGenerate(), 0);
   };
 
+  const handleSave = (item) => {
+    if (item) {
+      dispatch(changeWorkers([]));
+    }
+  };
   return (
     <>
-      <Button ml={3} onClick={() => dispatch(changeWorkers([]))}>
+      <Button ml={3} onClick={handleSave(item)}>
         Show Saved Graphic
       </Button>
       <Button style={{ margin: "1rem" }} onClick={() => start()}>
