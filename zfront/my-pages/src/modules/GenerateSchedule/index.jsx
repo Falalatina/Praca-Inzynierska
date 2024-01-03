@@ -5,7 +5,10 @@ import { Button, IconButton, Tooltip } from "@chakra-ui/react";
 import { InfoIcon, SettingsIcon } from "@chakra-ui/icons";
 import SettingModal from "./modals/SettingModal";
 import { openModal } from "../../features/team/modalSlice";
-import { saveToLocalStorage } from "../../features/team/generateSlice";
+import {
+  changeWorkers,
+  saveToLocalStorage,
+} from "../../features/team/generateSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 

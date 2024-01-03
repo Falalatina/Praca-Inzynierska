@@ -309,6 +309,9 @@ const Generate = () => {
 
   return (
     <>
+      <Button ml={3} onClick={() => dispatch(changeWorkers([]))}>
+        Show Saved Graphic
+      </Button>
       <Button style={{ margin: "1rem" }} onClick={() => start()}>
         Generate
       </Button>
