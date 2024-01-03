@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import { fetchWorkers } from "./features/team/generateSlice";
+import { fetchTeams } from "./features/team/teamSlice";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchWorkers());
+    dispatch(fetchTeams());
   }, []);
 
   return (

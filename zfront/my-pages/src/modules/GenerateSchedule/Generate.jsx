@@ -35,8 +35,10 @@ const Generate = () => {
 
   let workers = currentWorkers;
 
-  if (currentWorkers.length === 0) {
-    const teamWorkers = getWorkersForTeam(teamId);
+  console.log(teams);
+
+  if (currentWorkers.length === 0 && teams.length !== 0) {
+    const teamWorkers = getWorkersForTeam(teamId, teams);
     dispatch(changeCurrentWorkers(teamWorkers));
   }
 
