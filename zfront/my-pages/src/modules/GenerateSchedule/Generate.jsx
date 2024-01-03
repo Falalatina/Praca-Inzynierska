@@ -39,8 +39,9 @@ const Generate = () => {
 
   // Przekazuj teams i currentWorkers do funkcji getWorkersForTeam
 
-  console.log(workers);
+  //console.log(workers);
 
+  //fetchuje workerów by miec wszystkich dostepnych pomimo reload i teamy
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(fetchTeams());
@@ -52,7 +53,8 @@ const Generate = () => {
   useEffect(() => {
     dispatch(checkAmount(teams.length));
     const teamWorkers = getWorkersForTeam(Number(teamId), teams, w);
-    console.log(teamWorkers);
+    // console.log(teamWorkers);
+    //sprawdzam, czy nie sa elementy undefined jak nie ma to changeCurrentWorkers
     const areElementsDefined = (array) => {
       return array.every((element) => element !== undefined);
     };
@@ -329,9 +331,17 @@ const Generate = () => {
     setTimeout(startGenerate(), 0);
   };
 
-  const handleSave = (item) => {
-    if (item) {
+  const handleSave = () => {
+    const item = JSON.parse(
+      localStorage.getItem(`generateStateTeamId${teamId}`)
+    );
+
+    let savedWorkers = item.savedWorkers.workers;
+    console.log(savedWorkers);
+    if (savedWorkers.length !== 0) {
+      dispatch(changeCurrentWorkers(savedWorkers));
     }
+    console.log(workers);
   };
   return (
     <>

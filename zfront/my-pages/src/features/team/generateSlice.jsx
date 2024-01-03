@@ -6,7 +6,7 @@ export const fetchWorkers = createAsyncThunk(
   async () => {
     try {
       const resp = await axios("http://localhost:4000/workers");
-      console.log(resp.data);
+      //   console.log(resp.data);
       return resp.data;
     } catch (error) {}
   }
@@ -61,11 +61,13 @@ const generateSlice = createSlice({
     },
     updateGraphicForPerson: (state, action) => {
       const { id, graphic } = action.payload;
-      const workerIndex = state.workers.findIndex((worker) => worker.id === id);
+      const workerIndex = state.currentWorkers.findIndex(
+        (worker) => worker.id === id
+      );
 
       if (workerIndex !== -1) {
         // Znaleziono pracownika o określonym ID, aktualizuj grafik
-        state.workers[workerIndex].graphic = graphic;
+        state.currentWorkers[workerIndex].graphic = graphic;
       }
     },
     saveToLocalStorage: (state, action) => {
@@ -73,7 +75,7 @@ const generateSlice = createSlice({
       localStorage.setItem(
         `generateStateTeamId${teamId}`,
         JSON.stringify({
-          savedWorkers: { teamId: teamId, workers: state.workers },
+          savedWorkers: { teamId: teamId, workers: state.currentWorkers },
         })
       );
     },
