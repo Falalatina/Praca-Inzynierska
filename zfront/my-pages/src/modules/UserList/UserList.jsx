@@ -25,29 +25,6 @@ const RenderPeopleOnList = () => {
   const dispatch = useDispatch();
   const { teamId } = useParams();
 
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!user.name) return;
-    const fakeId = Date.now();
-    const name = user.name;
-    const stage = user.stage;
-    const shifts = user.shifts;
-    const newPerson = { id: fakeId, name, stage, shifts };
-    const updatePeople = [...people, newPerson];
-    setPeople(updatePeople);
-
-    // console.log(name);
-    setUser({ name: "", stage: "", shifts: "" });
-  };
-
-  const clearAllItems = () => {
-    setPeople([]);
-  };
-
   const showForm = () => {
     setToggle(!toggle);
     setTimeout(() => {
@@ -104,15 +81,7 @@ const RenderPeopleOnList = () => {
           <div></div>
         </CardFooter>
       </div>
-      {toggle ? (
-        <AddUser
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          toggle={toggle}
-        />
-      ) : (
-        <div> </div>
-      )}
+      {toggle ? <AddUser toggle={toggle} /> : <div> </div>}
     </Card>
   );
 };

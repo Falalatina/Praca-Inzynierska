@@ -1,17 +1,25 @@
 import React from "react";
 
-import "./UserList";
+import { ScaleFade } from "@chakra-ui/react";
 
-import { Fade, ScaleFade, Slide, SlideFade, Collapse } from "@chakra-ui/react";
+const AddUser = ({ toggle }) => {
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
-const AddUser = ({ handleChange, handleSubmit, toggle }) => {
-  const { user } = useGlobalContext();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!user.name) return;
+    const fakeId = Date.now();
+    const name = user.name;
+    const stage = user.stage;
+    const shifts = user.shifts;
+    const newPerson = { id: fakeId, name, stage, shifts };
+    const updatePeople = [...people, newPerson];
+    setPeople(updatePeople);
 
-  const goTop = () => {
-    window.scroll({
-      top: 0,
-      behavior: "smooth",
-    });
+    // console.log(name);
+    setUser({ name: "", stage: "", shifts: "" });
   };
 
   return (
@@ -44,24 +52,6 @@ const AddUser = ({ handleChange, handleSubmit, toggle }) => {
             onChange={handleChange}
             name="stage"
           />
-        </div>
-
-        <div className="form-row">
-          <label htmlFor="shifts" className="form-label">
-            shifts
-          </label>
-          <select
-            id="shifts"
-            value={user.shifts}
-            onChange={handleChange}
-            name="shifts"
-            className="form-input"
-          >
-            <option></option>
-            {shiftsSystem.map((shift) => {
-              return <option key={shift}>{shift}</option>;
-            })}
-          </select>
         </div>
 
         <button type="submit" className="btn ">
