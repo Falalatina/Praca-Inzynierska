@@ -25,6 +25,10 @@ const RenderPeopleOnList = () => {
   const dispatch = useDispatch();
   const { teamId } = useParams();
 
+  const handleToggleChange = (value) => {
+    setToggle(value);
+  };
+
   const showForm = () => {
     setToggle(!toggle);
     setTimeout(() => {
@@ -75,13 +79,13 @@ const RenderPeopleOnList = () => {
 
         <CardFooter className="header-secion-list-ppl">
           <div></div>
-          <Button onClick={showForm}>
+          <Button mt={10} onClick={showForm}>
             {toggle ? "Hide Add User" : "Add User"}
           </Button>
           <div></div>
         </CardFooter>
       </div>
-      {toggle ? <AddUser toggle={toggle} /> : <div> </div>}
+      {toggle ? <AddUser toggle={handleToggleChange} /> : <div> </div>}
     </Card>
   );
 };

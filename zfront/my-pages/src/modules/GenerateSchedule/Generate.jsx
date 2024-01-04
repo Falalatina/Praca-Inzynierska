@@ -61,7 +61,7 @@ const Generate = () => {
     if (areElementsDefined(teamWorkers)) {
       dispatch(changeCurrentWorkers(teamWorkers));
     }
-  }, [teams.length, dispatch, getWorkersForTeam, teamId, w]);
+  }, [teams.length, dispatch, getWorkersForTeam, teamId, w, teams]);
 
   /////
   ///////

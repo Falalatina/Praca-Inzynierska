@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import {
   ScaleFade,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Select,
-  Input,
+  Button,
+  useToast,
 } from "@chakra-ui/react";
+import { addUserToTeam } from "../../features/team/teamSlice";
 
 const AddUser = ({ toggle }) => {
   const { workers } = useSelector((store) => store.generate);
 
+  const [userId, setUserId] = useState(null);
+  const dispatch = useDispatch();
+  const { teamId } = useParams();
+  const toast = useToast();
+
   const handleChange = (e) => {
+    //console.log(e.target.value);
+    setUserId(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(userId);
+    dispatch(addUserToTeam({ teamId, userId }));
+    toast({
+      title: "User added to the team",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    toggle(false);
   };
 
   return (
@@ -34,6 +53,9 @@ const AddUser = ({ toggle }) => {
             );
           })}
         </Select>
+        <Button onClick={handleSubmit} mt={10}>
+          Confirm
+        </Button>
       </FormControl>
     </ScaleFade>
   );
