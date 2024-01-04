@@ -41,7 +41,7 @@ const RenderPeopleOnList = () => {
   };
 
   return (
-    <Card p={10} mt={10} className="x ">
+    <Card p={10} mt={10} mb={10} className="x ">
       <div className="people-list-container">
         <CardHeader className="header-secion-list-ppl">
           <Heading size="xs">Name</Heading>

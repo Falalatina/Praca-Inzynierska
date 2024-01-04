@@ -169,13 +169,13 @@ const Generate = () => {
     item.map((innerItem) => {
       for (let index = 0; index < innerItem.length - 1; index++) {
         if (innerItem[index] === innerItem[index + 1]) {
-          fitness = fitness - 1;
+          fitness = fitness - 10;
         }
         if (innerItem[index] === innerItem[index + 2]) {
-          fitness = fitness - 1;
+          fitness = fitness - 5;
         }
         if (innerItem[index] === innerItem[index + 3]) {
-          fitness = fitness - 1;
+          fitness = fitness - 5;
         }
         // console.log(workShifts[index]); - pn1 pn2 etc.
         const array = [workers[index].preferences.yes];

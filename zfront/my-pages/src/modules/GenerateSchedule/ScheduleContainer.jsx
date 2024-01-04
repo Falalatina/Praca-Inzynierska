@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ShContainer.css";
 import { memo } from "react";
 import ScheduleItem from "./ScheduleItem";
@@ -26,6 +26,25 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
 
   const dispatch = useDispatch();
   const toast = useToast();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (isLoading === false) {
+        return () => clearTimeout(timeoutId);
+      }
+
+      toast({
+        title: "Operation takes too long....",
+        description: "Maybe You should check your settings or try to refresh.",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
+    }, 7000);
+
+    return () => clearTimeout(timeoutId);
+  }, [dispatch, toast, isLoading]);
+
   //console.log(name, id, graphic);
   //console.log(workShifts);
   const daysOfWeek = ["pn", "wt", "sr", "czw", "pt", "sob", "nd"];

@@ -32,6 +32,9 @@ const RootLayout = () => {
       <main>
         <Outlet />
       </main>
+      <footer style={{ marginBottom: "10px" }}>
+        Aplikacja do tworzenia harmonogramów z wykorzystaniem AI
+      </footer>
     </div>
   );
 };
