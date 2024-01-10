@@ -19,6 +19,11 @@ const RootLayout = () => {
               Home
             </Button>
           </NavLink>
+          <NavLink to="user">
+            <Button variant="ghost" color={"black"}>
+              Users
+            </Button>
+          </NavLink>
           <Button
             ml={5}
             variant="ghost"
