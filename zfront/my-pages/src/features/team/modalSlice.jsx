@@ -5,6 +5,7 @@ const initialState = {
   isOpen: false,
   hourOfStart: 6,
   howLong: 8,
+  sum: 0,
   firstShift: true,
   numberOfEmployees1: 3,
   secondShift: true,
@@ -72,7 +73,10 @@ const modalSlice = createSlice({
     updateHowLong: (state, action) => {
       state.howLong = action.payload;
     },
-
+    updateSum: (state, action) => {
+      const { graphic } = action.payload;
+      state.sum = state.howLong * graphic.length;
+    },
     toggleShift: (state, action) => {
       const { shiftKey, shiftNumber } = action.payload;
       state[shiftKey] = !state[shiftKey];
@@ -157,5 +161,6 @@ export const {
   resetState,
   openConfirm,
   closeConfirm,
+  updateSum,
 } = modalSlice.actions;
 export default modalSlice.reducer;

@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 import { removePerson } from "../../features/team/generateSlice";
 import { removePersonFromTeam } from "../../features/team/teamSlice";
+import { updateSum } from "../../features/team/modalSlice";
 import {
   Box,
   Button,
@@ -22,6 +23,7 @@ import {
 const RenderPeopleOnList = () => {
   const [toggle, setToggle] = useState(false);
   const { currentWorkers } = useSelector((store) => store.generate);
+  const { sum } = useSelector((store) => store.modal);
   const dispatch = useDispatch();
   const { teamId } = useParams();
 
@@ -49,19 +51,20 @@ const RenderPeopleOnList = () => {
       <div className="people-list-container">
         <CardHeader className="header-secion-list-ppl">
           <Heading size="xs">Name</Heading>
+          <Heading size="xs">Hours</Heading>
           <Heading size="xs">Preferences</Heading>
           <Heading size="xs">Anti-preferences</Heading>
           <div></div>
         </CardHeader>
 
         {currentWorkers.map((person) => {
-          const { id, name, preferences } = person;
-
+          const { id, name, preferences, graphic } = person;
+          dispatch(updateSum({ graphic }));
           return (
             <Box key={id}>
               <CardBody className="header-secion-list-ppl">
                 <div>{name}</div>
-
+                <div>{sum}</div>
                 <div>{`${preferences.yes} `} </div>
                 <div>{`${preferences.no}  `}</div>
                 <Button
