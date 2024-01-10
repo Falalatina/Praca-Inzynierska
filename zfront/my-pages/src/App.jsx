@@ -18,6 +18,7 @@ import { useEffect } from "react";
 
 import { fetchWorkers } from "./features/team/generateSlice";
 import { fetchTeams } from "./features/team/teamSlice";
+import UserChoose from "./modules/User/UserChoose";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,9 @@ const router = createBrowserRouter(
       <Route index element={<TeamContainer />} loader={teamLoader} />
       <Route path="generate" element={<Generate />}>
         <Route path=":teamId" element={<Generate />} />
+      </Route>
+      <Route patch="user" element={<UserChoose />}>
+        <Route path=":userId" element={<UserChoose />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

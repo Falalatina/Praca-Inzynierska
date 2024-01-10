@@ -8,15 +8,12 @@ import { getWorkersForTeam } from "../Team/TeamContainer";
 
 import {
   addGraphic,
-  changeWorkers,
   removeGraphic,
   startLoading,
-  fetchWorkers,
-  stopLoading,
   changeCurrentWorkers,
 } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
-import { current } from "@reduxjs/toolkit";
+
 import { checkAmount, fetchTeams } from "../../features/team/teamSlice";
 
 const Generate = () => {
