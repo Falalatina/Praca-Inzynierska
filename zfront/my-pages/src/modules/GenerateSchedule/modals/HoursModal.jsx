@@ -4,6 +4,7 @@ import {
   updateHourOfStart,
   updateHowLong,
 } from "../../../features/team/modalSlice";
+import { changeSum } from "../../../features/team/generateSlice";
 import {
   Switch,
   Heading,
@@ -30,6 +31,7 @@ const HoursModal = () => {
   };
   const handleInputChange2 = (e) => {
     dispatch(updateHowLong(e.target.value));
+    dispatch(changeSum({ howLong: e.target.value }));
   };
 
   let isInvalid = false;

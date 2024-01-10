@@ -16,6 +16,7 @@ const initialState = {
   workers: [],
   currentWorkers: [],
   graphic: [],
+  howLongS: 8,
   isLoading: false,
 };
 
@@ -25,6 +26,7 @@ const generateSlice = createSlice({
   reducers: {
     addGraphic: (state, { payload }) => {
       const { bestSolution } = payload;
+
       state.workers.forEach((person) => {
         let findInArrayIndex = [];
         for (let i = 0; i < bestSolution.length; i++) {
@@ -39,6 +41,7 @@ const generateSlice = createSlice({
             state.isLoading = false;
           }
         }
+        person.hoursSum = person.graphic.length * state.howLongS;
         // console.log(person);
       });
     },
@@ -47,6 +50,10 @@ const generateSlice = createSlice({
       state.currentWorkers = state.currentWorkers.filter(
         (person) => person.id !== id
       );
+    },
+    changeSum: (state, action) => {
+      const { howLong } = action.payload;
+      state.howLongS = howLong;
     },
     removeGraphic: (state) => {
       state.workers.forEach((person) => {
@@ -74,6 +81,8 @@ const generateSlice = createSlice({
       if (workerIndex !== -1) {
         // Znaleziono pracownika o określonym ID, aktualizuj grafik
         state.currentWorkers[workerIndex].graphic = graphic;
+        state.currentWorkers[workerIndex].hoursSum =
+          state.howLongS * state.currentWorkers[workerIndex].graphic.length;
       }
     },
     saveToLocalStorage: (state, action) => {
@@ -111,6 +120,7 @@ export const {
   saveToLocalStorage,
   changeCurrentWorkers,
   removePerson,
+  changeSum,
 } = generateSlice.actions;
 export default generateSlice.reducer;
 

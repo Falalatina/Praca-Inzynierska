@@ -2,13 +2,13 @@ import "./UserList.css";
 
 import AddUser from "./AddUser";
 
-import { useState, memo, useEffect } from "react";
+import { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { removePerson } from "../../features/team/generateSlice";
 import { removePersonFromTeam } from "../../features/team/teamSlice";
-import { updateSum } from "../../features/team/modalSlice";
+
 import {
   Box,
   Button,
@@ -23,18 +23,12 @@ import {
 const RenderPeopleOnList = () => {
   const [toggle, setToggle] = useState(false);
   const { currentWorkers } = useSelector((store) => store.generate);
-  const { sum } = useSelector((store) => store.modal);
   const dispatch = useDispatch();
   const { teamId } = useParams();
 
   const handleToggleChange = (value) => {
     setToggle(value);
   };
-
-  useEffect(() => {
-    const g = currentWorkers.graphic;
-    dispatch(updateSum({ graphic: g }));
-  }, [currentWorkers, dispatch]);
 
   const showForm = () => {
     setToggle(!toggle);
@@ -63,13 +57,13 @@ const RenderPeopleOnList = () => {
         </CardHeader>
 
         {currentWorkers.map((person) => {
-          const { id, name, preferences, graphic } = person;
+          const { id, name, preferences, hoursSum } = person;
 
           return (
             <Box key={id}>
               <CardBody className="header-secion-list-ppl">
                 <div>{name}</div>
-                <div>{sum}</div>
+                <div>{hoursSum}</div>
                 <div>{`${preferences.yes} `} </div>
                 <div>{`${preferences.no}  `}</div>
                 <Button
