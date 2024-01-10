@@ -59,7 +59,8 @@ const RenderPeopleOnList = () => {
 
         {currentWorkers.map((person) => {
           const { id, name, preferences, graphic } = person;
-          dispatch(updateSum({ graphic }));
+          let g = graphic.length;
+          dispatch(updateSum({ graphic: g }));
           return (
             <Box key={id}>
               <CardBody className="header-secion-list-ppl">

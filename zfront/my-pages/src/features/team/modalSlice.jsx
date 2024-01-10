@@ -75,7 +75,8 @@ const modalSlice = createSlice({
     },
     updateSum: (state, action) => {
       const { graphic } = action.payload;
-      state.sum = state.howLong * graphic.length;
+      console.log(graphic);
+      // state.sum = state.howLong * graphic.length;
     },
     toggleShift: (state, action) => {
       const { shiftKey, shiftNumber } = action.payload;
