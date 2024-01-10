@@ -68,6 +68,7 @@ const RenderPeopleOnList = () => {
                 <div>{`${preferences.no}  `}</div>
                 <Button
                   size="md"
+                  w="100px"
                   bg="red.300"
                   onClick={() => handleRemove(teamId, id)}
                 >

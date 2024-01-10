@@ -20,10 +20,11 @@
 
 .header-secion-list-ppl,
 .person-on-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   height: 3rem;
-  justify-content: space-between;
+  justify-content: center;
   width: 90vw;
   max-width: 1410px;
 }
@@ -33,10 +34,7 @@
   max-width: var(--fixed-width);
   flex-shrink: 0;
 }
-.person-on-list .preferences {
-  display: flex;
-  flex-direction: column;
-}
+
 .header-secion-list-ppl .name,
 .person-on-list .name {
   padding-right: 135px;
