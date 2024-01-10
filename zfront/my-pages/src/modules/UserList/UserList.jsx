@@ -2,7 +2,7 @@ import "./UserList.css";
 
 import AddUser from "./AddUser";
 
-import { useState, memo } from "react";
+import { useState, memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -30,6 +30,11 @@ const RenderPeopleOnList = () => {
   const handleToggleChange = (value) => {
     setToggle(value);
   };
+
+  useEffect(() => {
+    const g = currentWorkers.graphic;
+    dispatch(updateSum({ graphic: g }));
+  }, [currentWorkers, dispatch]);
 
   const showForm = () => {
     setToggle(!toggle);
@@ -59,8 +64,7 @@ const RenderPeopleOnList = () => {
 
         {currentWorkers.map((person) => {
           const { id, name, preferences, graphic } = person;
-          let g = graphic.length;
-          dispatch(updateSum({ graphic: g }));
+
           return (
             <Box key={id}>
               <CardBody className="header-secion-list-ppl">
