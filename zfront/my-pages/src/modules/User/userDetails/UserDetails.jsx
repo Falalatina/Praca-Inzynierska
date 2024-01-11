@@ -14,7 +14,7 @@ import {
   IconButton,
   Text,
 } from "@chakra-ui/react";
-import { DragHandleIcon, CopyIcon } from "@chakra-ui/icons";
+import { BellIcon, CopyIcon } from "@chakra-ui/icons";
 import UserGraphic from "./UserGraphic";
 
 const UserDetails = () => {
@@ -73,7 +73,8 @@ const UserDetails = () => {
               variant="ghost"
               colorScheme="gray"
               aria-label="See menu"
-              icon={<DragHandleIcon />}
+              fontSize="2xl"
+              icon={<BellIcon />}
             />
           </Flex>
           <div style={{ textAlign: "left" }}>
