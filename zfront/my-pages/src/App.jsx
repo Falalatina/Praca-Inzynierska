@@ -11,13 +11,14 @@ import Generate from "./pages/TeamView";
 import TeamContainer from "./modules/Team";
 import RootLayout from "./layouts/RootLayout";
 import NotFound from "./pages/NotFound";
+import UserDetails from "./modules/User/userDetails/userDetails";
 import { teamLoader } from "./modules/Team/TeamContainer";
 
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import { fetchWorkers } from "./features/team/generateSlice";
-import { fetchTeams } from "./features/team/teamSlice";
+
 import UserChoose from "./modules/User/UserChoose";
 
 const router = createBrowserRouter(
@@ -28,7 +29,7 @@ const router = createBrowserRouter(
         <Route path=":teamId" element={<Generate />} />
       </Route>
       <Route patch="user" element={<UserChoose />}>
-        <Route path=":userId" element={<UserChoose />} />
+        <Route path=":userId" element={<UserDetails />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

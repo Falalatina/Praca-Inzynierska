@@ -42,7 +42,7 @@ const UserCard = ({ id, name, hoursSum, index, workers }) => {
       <CardHeader bg={randomColors[index]}>
         <Text fontSize="3xl">{name.toUpperCase()}</Text>
       </CardHeader>
-      <CardBody>{hoursSum}</CardBody>
+      <CardBody> Hours at edit: {hoursSum}</CardBody>
     </Card>
   );
 };

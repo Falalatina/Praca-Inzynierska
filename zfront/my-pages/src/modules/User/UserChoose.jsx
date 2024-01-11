@@ -5,11 +5,14 @@ import { Grid, GridItem } from "@chakra-ui/react";
 
 import "./userStyle.css";
 import UserCard from "./UserCard";
+import { useNavigate } from "react-router-dom";
 
 const UserChoose = () => {
   const { workers } = useSelector((store) => store.user);
+  const { currentWorkers } = useSelector((store) => store.generate);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,9 +35,22 @@ const UserChoose = () => {
       >
         {workers.map((person, index) => {
           const { id } = person;
+          const currentWorker = currentWorkers.find(
+            (currentPerson) => currentPerson.id === id
+          );
+
           return (
-            <GridItem className="user-card" key={id}>
-              <UserCard {...person} index={index} workers={workers} />
+            <GridItem
+              className="user-card"
+              key={id}
+              onClick={() => navigate("user/" + id.toString())}
+            >
+              <UserCard
+                {...person}
+                {...currentWorker}
+                index={index}
+                workers={workers}
+              />
             </GridItem>
           );
         })}
