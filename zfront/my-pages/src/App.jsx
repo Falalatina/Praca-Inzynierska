@@ -11,7 +11,9 @@ import Generate from "./pages/TeamView";
 import TeamContainer from "./modules/Team";
 import RootLayout from "./layouts/RootLayout";
 import NotFound from "./pages/NotFound";
-import UserDetails from "./modules/User/userDetails/UserDetails";
+import UserDetails, {
+  userDLoader,
+} from "./modules/User/userDetails/UserDetails";
 import UserChoose from "./modules/User/UserChoose";
 
 import { teamLoader } from "./modules/Team/TeamContainer";
@@ -29,7 +31,11 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="user" element={<UserChoose />} />
-      <Route path="user/:userId" element={<UserDetails />} />
+      <Route
+        path="user/:userId"
+        element={<UserDetails />}
+        loader={userDLoader}
+      />
 
       <Route path="*" element={<NotFound />} />
     </Route>
