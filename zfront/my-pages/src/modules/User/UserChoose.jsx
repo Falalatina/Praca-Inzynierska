@@ -43,7 +43,9 @@ const UserChoose = () => {
             <GridItem
               className="user-card"
               key={id}
-              onClick={() => navigate("user/" + id.toString())}
+              onClick={() => {
+                navigate(`/user/${id.toString()}`);
+              }}
             >
               <UserCard
                 {...person}

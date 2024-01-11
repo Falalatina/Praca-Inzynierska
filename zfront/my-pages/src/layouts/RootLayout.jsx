@@ -19,7 +19,7 @@ const RootLayout = () => {
               Home
             </Button>
           </NavLink>
-          <NavLink to="user">
+          <NavLink to="user/">
             <Button variant="ghost" color={"black"}>
               Users
             </Button>
