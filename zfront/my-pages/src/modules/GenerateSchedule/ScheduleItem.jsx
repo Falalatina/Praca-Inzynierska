@@ -15,9 +15,7 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     21,
   ];
-  // const firstShiftsActive = [0, 3, 6, 9, 12];
-  // const secondShiftsActive = [1, 4, 7, 10, 13];
-  // const thirdShiftsActive = [2, 5, 8, 11, 14];
+
   let firstShiftsActive = [];
   let secondShiftsActive = [];
   let thirdShiftsActive = [];
@@ -43,7 +41,7 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
   secondShiftsActive.sort((a, b) => a - b);
   thirdShiftsActive.sort((a, b) => a - b);
 
-  // console.log(firstShift, firstShiftsActive);
+  //console.log(firstShift, firstShiftsActive);
   // console.log(secondShift, secondShiftsActive);
   //console.log(amount);
 

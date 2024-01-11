@@ -14,13 +14,21 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
+  Button,
 } from "@chakra-ui/react";
 import { useColorModeValue, useToast } from "@chakra-ui/react";
 
 import { useDispatch } from "react-redux";
 import { updateGraphicForPerson } from "../../features/team/generateSlice";
 
-const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
+const ScheduleContainer = ({
+  workShifts,
+  name,
+  id,
+  graphic,
+  isLoading,
+  isUser,
+}) => {
   const backgroundColor = useColorModeValue("white", "gray.700");
   const shiftBackColor = useColorModeValue("rgb(216, 226, 223)", "gray.500");
 
@@ -68,12 +76,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
       const findIndex = graphic.findIndex((element) =>
         indexesOfDays[day].includes(element)
       );
-      console.log(
-        indexesOfDays[day],
-
-        graphic
-      );
-
+      console.log(indexesOfDays[day], graphic);
       if (findIndex !== -1) {
         const newGraphic = [...graphic];
         const newShift = indexesOfDays[day][shiftIndex];
@@ -117,6 +120,22 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
         newGraphic.push(indexesOfDays[day][shiftIndex]);
         dispatch(updateGraphicForPerson({ id: id, graphic: newGraphic }));
       }
+    };
+
+    const handleFreeSpots = () => {
+      //trzeba pogrupowac indeksy do shiftów!!!
+
+      ///najlepiej to do itema wyslac
+      //tam mmam shift active i callback
+      const thatDayIndexes = indexesOfDays[day];
+      const myArray = [];
+
+      for (let i = 0; i <= 21; i++) {
+        myArray.push(i);
+      }
+      const freeDays = myArray.filter((element) => !graphic.includes(element));
+
+      console.log(graphic, freeDays, thatDayIndexes);
     };
 
     // const popoverContent = (
@@ -185,6 +204,19 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
     //   </PopoverContent>
     // );
 
+    const popoverContentForUser = (
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverHeader>
+          <div>Do you wanna change?</div>
+        </PopoverHeader>
+        <PopoverBody>
+          <Button onClick={() => handleFreeSpots()}>Yes</Button>
+        </PopoverBody>
+      </PopoverContent>
+    );
+
     const popoverContent = (
       <PopoverContent>
         <PopoverArrow />
@@ -233,7 +265,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
         return (
           <Popover key={day} placement="right">
             {popoverTrigger}
-            {popoverContent}
+            {isUser ? popoverContentForUser : popoverContent}
           </Popover>
         );
       }
@@ -242,7 +274,7 @@ const ScheduleContainer = ({ workShifts, name, id, graphic, isLoading }) => {
         <ScheduleItem
           key={day}
           graphic={filteredData}
-          popoverContent={popoverContent}
+          popoverContent={isUser ? popoverContentForUser : popoverContent}
         />
       );
     } else {

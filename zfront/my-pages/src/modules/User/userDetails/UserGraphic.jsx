@@ -59,6 +59,7 @@ const UserGraphic = ({ setTotalSum, teamIds, userId, teams }) => {
 
         return (
           <ScheduleContainer
+            isUser={true}
             key={idTeam}
             {...person}
             name={name}
