@@ -1,5 +1,5 @@
 import React from "react";
-import UserDetails from "./userDetails";
+import UserDetails from "./UserDetails";
 const index = () => {
   return (
     <div>
