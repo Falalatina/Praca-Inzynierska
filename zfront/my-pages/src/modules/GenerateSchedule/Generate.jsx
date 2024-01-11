@@ -11,6 +11,7 @@ import {
   removeGraphic,
   startLoading,
   changeCurrentWorkers,
+  updateAssignments,
 } from "../../features/team/generateSlice";
 import ScheduleContainer from "./ScheduleContainer";
 
@@ -25,7 +26,7 @@ const Generate = () => {
     isLoading,
     workers: w,
   } = useSelector((store) => store.generate);
-  const { assignments, isConfirm } = useSelector((store) => store.modal);
+  const { assignments } = useSelector((store) => store.modal);
   const { teams } = useSelector((store) => store.team);
   const [newGeneration, setNewGeneration] = useState(0);
 
@@ -77,6 +78,7 @@ const Generate = () => {
     setE2(numberOfEmployees2);
     setE3(numberOfEmployees3);
     setWorkShifts(assignments);
+    dispatch(updateAssignments(assignments));
   }, [numberOfEmployees1, numberOfEmployees2, numberOfEmployees3, assignments]);
 
   const numberOfIterations = 100;

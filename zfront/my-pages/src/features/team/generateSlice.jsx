@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export const fetchWorkers = createAsyncThunk(
   "generate/fetchWorkers",
@@ -17,6 +18,7 @@ const initialState = {
   currentWorkers: [],
   graphic: [],
   howLongS: 8,
+  assignments: [],
   isLoading: false,
 };
 
@@ -85,12 +87,19 @@ const generateSlice = createSlice({
           state.howLongS * state.currentWorkers[workerIndex].graphic.length;
       }
     },
+    updateAssignments: (state, action) => {
+      state.assignments = action.payload;
+    },
     saveToLocalStorage: (state, action) => {
       const { teamId } = action.payload;
       localStorage.setItem(
         `generateStateTeamId${teamId}`,
         JSON.stringify({
-          savedWorkers: { teamId: teamId, workers: state.currentWorkers },
+          savedWorkers: {
+            teamId: teamId,
+            workers: state.currentWorkers,
+            assignments: state.assignments,
+          },
         })
       );
     },
@@ -111,6 +120,7 @@ const generateSlice = createSlice({
 });
 
 export const {
+  updateAssignments,
   addGraphic,
   startLoading,
   stopLoading,

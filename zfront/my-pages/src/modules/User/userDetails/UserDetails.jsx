@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoaderData, useParams } from "react-router-dom";
+import ScheduleContainer from "../../GenerateSchedule/ScheduleContainer";
 
 const UserDetails = () => {
   const { workers } = useSelector((store) => store.user);
@@ -21,18 +22,28 @@ const UserDetails = () => {
     const localStorageKey = `generateStateTeamId${teamId}`;
     const localStorageData = localStorage.getItem(localStorageKey);
     const parsedData = JSON.parse(localStorageData);
-    return parsedData.savedWorkers.workers;
+    return parsedData;
   };
 
   const savedWorker = teamIds.flatMap((teamId) =>
     getUserLocalStorageData(teamId)
   );
 
-  const savedUser = savedWorker.filter(
-    (person) => person.id === Number(userId)
-  );
+  const sWW = savedWorker.map((data) => {
+    const worker = data.savedWorkers?.workers || [];
+    const user = worker.find((person) => person.id === Number(userId));
 
-  //console.log(savedWorker, savedUser);
+    // Dodaj pole 'assignments' do user
+    if (user) {
+      user.assignments = data.savedWorkers?.assignments || [];
+    }
+
+    return user;
+  });
+
+  const savedUser = sWW.filter((person) => person.id === Number(userId));
+
+  console.log(savedUser);
 
   return (
     <div>
@@ -51,7 +62,6 @@ const UserDetails = () => {
       <div>
         {savedUser.map((person) => {
           const { id, graphic } = person;
-          return <div key={graphic}>{graphic}</div>;
         })}
       </div>
     </div>
