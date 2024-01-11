@@ -99,6 +99,7 @@ const generateSlice = createSlice({
             teamId: teamId,
             workers: state.currentWorkers,
             assignments: state.assignments,
+            howLongS: state.howLongS,
           },
         })
       );

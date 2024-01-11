@@ -1,12 +1,33 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLoaderData, useParams } from "react-router-dom";
 import ScheduleContainer from "../../GenerateSchedule/ScheduleContainer";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Flex,
+  Avatar,
+  Box,
+  Heading,
+  IconButton,
+  Text,
+} from "@chakra-ui/react";
+import { DragHandleIcon, CopyIcon } from "@chakra-ui/icons";
+import UserGraphic from "./UserGraphic";
 
 const UserDetails = () => {
   const { workers } = useSelector((store) => store.user);
   const { userId } = useParams();
   const teams = useLoaderData();
+  const [totalSum, setTotalSum] = useState(0);
+
+  const colorPalette = ["#D2E0FB", "#F3E691", "#D7E5CA", "#8EACCD"];
+
+  const randomElement = (array) => {
+    return array[Math.floor(Math.random() * array.length)];
+  };
 
   const findTeamIdsByUserId = (userId) => {
     const matchingTeams = teams.filter((team) =>
@@ -15,73 +36,72 @@ const UserDetails = () => {
     return matchingTeams.map((team) => team.id);
   };
 
-  const findTeamNameById = (teamId) => {
-    const team = teams.find((team) => team.id === teamId);
-    return team ? team.teamName : null;
+  const setValue = (value) => {
+    setTotalSum(value);
   };
-
   const user = workers.find((person) => person.id === parseInt(userId));
   const teamIds = findTeamIdsByUserId(Number(userId));
 
-  const getUserLocalStorageData = (teamId) => {
-    const localStorageKey = `generateStateTeamId${teamId}`;
-    const localStorageData = localStorage.getItem(localStorageKey);
-    const parsedData = JSON.parse(localStorageData);
-    return parsedData;
-  };
-
-  const savedWorker = teamIds.flatMap((teamId) =>
-    getUserLocalStorageData(teamId)
-  );
-
-  const sWW = savedWorker.map((data) => {
-    const worker = data.savedWorkers?.workers || [];
-    const user = worker.find((person) => person.id === Number(userId));
-
-    // Dodaj pole 'assignments' do user
-    if (user) {
-      user.assignments = data.savedWorkers?.assignments || [];
-      user.idTeam = data.savedWorkers?.teamId || [];
-    }
-
-    return user;
-  });
-
-  const savedUser = sWW.filter((person) => person.id === Number(userId));
-
-  //console.log(savedWorker, savedUser);
+  // console.log(savedWorker, savedUser);
 
   return (
-    <div>
-      <div>User ID: {userId}</div>
-      <div>User Name: {user.name}</div>
-      {teamIds.length > 0 ? (
-        <div>
-          Belongs to teams:{" "}
-          {teamIds
-            .map((teamId) => teams.find((team) => team.id === teamId)?.teamName)
-            .join(", ")}
-        </div>
-      ) : (
-        " Haven't found matching teams"
-      )}
-      <div>
-        {savedUser.map((person) => {
-          const { assignments, idTeam } = person;
-          const name = findTeamNameById(Number(idTeam));
-          //console.log(name);
-          return (
-            <ScheduleContainer
-              key={idTeam}
-              {...person}
-              name={name}
-              workShifts={assignments}
-              isLoading={false}
+    <section>
+      <Card>
+        <CardHeader>
+          <Flex justifyContent="space-between">
+            <Flex>
+              <Box w="10" h="100" bg={randomElement(colorPalette)} mr="5"></Box>
+              <div style={{ textAlign: "left", minWidth: "200px" }}>
+                <Text as="b" fontSize="2xl">
+                  {user.name.toUpperCase()}
+                </Text>
+                <Flex>
+                  <Text mb="0" fontSize="xl">
+                    User ID:{userId}
+                  </Text>
+                  <IconButton
+                    ml="2"
+                    variant="ghost"
+                    colorScheme="gray"
+                    icon={<CopyIcon />}
+                  />
+                </Flex>
+                <Text>Hours: {totalSum}</Text>
+              </div>
+            </Flex>
+            <IconButton
+              variant="ghost"
+              colorScheme="gray"
+              aria-label="See menu"
+              icon={<DragHandleIcon />}
             />
-          );
-        })}
-      </div>
-    </div>
+          </Flex>
+          <div style={{ textAlign: "left" }}>
+            {teamIds.length > 0 ? (
+              <div>
+                Belongs to teams:{" "}
+                {teamIds
+                  .map(
+                    (teamId) =>
+                      teams.find((team) => team.id === teamId)?.teamName
+                  )
+                  .join(", ")}
+              </div>
+            ) : (
+              " Haven't found matching teams"
+            )}
+          </div>
+        </CardHeader>
+        <CardBody>
+          <UserGraphic
+            setTotalSum={setTotalSum}
+            teamIds={teamIds}
+            userId={userId}
+            teams={teams}
+          />
+        </CardBody>
+      </Card>
+    </section>
   );
 };
 
