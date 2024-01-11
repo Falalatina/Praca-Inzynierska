@@ -15,6 +15,11 @@ const UserDetails = () => {
     return matchingTeams.map((team) => team.id);
   };
 
+  const findTeamNameById = (teamId) => {
+    const team = teams.find((team) => team.id === teamId);
+    return team ? team.teamName : null;
+  };
+
   const user = workers.find((person) => person.id === parseInt(userId));
   const teamIds = findTeamIdsByUserId(Number(userId));
 
@@ -36,6 +41,7 @@ const UserDetails = () => {
     // Dodaj pole 'assignments' do user
     if (user) {
       user.assignments = data.savedWorkers?.assignments || [];
+      user.idTeam = data.savedWorkers?.teamId || [];
     }
 
     return user;
@@ -43,7 +49,7 @@ const UserDetails = () => {
 
   const savedUser = sWW.filter((person) => person.id === Number(userId));
 
-  console.log(savedUser);
+  //console.log(savedWorker, savedUser);
 
   return (
     <div>
@@ -61,7 +67,18 @@ const UserDetails = () => {
       )}
       <div>
         {savedUser.map((person) => {
-          const { id, graphic } = person;
+          const { assignments, idTeam } = person;
+          const name = findTeamNameById(Number(idTeam));
+          //console.log(name);
+          return (
+            <ScheduleContainer
+              key={idTeam}
+              {...person}
+              name={name}
+              workShifts={assignments}
+              isLoading={false}
+            />
+          );
         })}
       </div>
     </div>
