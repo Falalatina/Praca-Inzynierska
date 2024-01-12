@@ -29,7 +29,7 @@ const Generate = () => {
   const { assignments } = useSelector((store) => store.modal);
   const { teams } = useSelector((store) => store.team);
   const [newGeneration, setNewGeneration] = useState(0);
-
+  const { shiftOccupied } = useSelector((store) => store.user);
   const { isOpen, numberOfEmployees1, numberOfEmployees2, numberOfEmployees3 } =
     useSelector((store) => store.modal);
   const { teamId } = useParams();

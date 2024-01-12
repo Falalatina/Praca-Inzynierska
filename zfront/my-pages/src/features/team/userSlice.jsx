@@ -32,7 +32,7 @@ const userSlice = createSlice({
       // Przekształć Set z powrotem na tablicę
       const uniqueShiftsArray = [...uniqueShiftsSet];
 
-      console.log(id, name, uniqueShiftsArray);
+      // console.log(id, name);
 
       const result = indexesOfShift.map((indices) => {
         return indices
@@ -40,13 +40,12 @@ const userSlice = createSlice({
           .map((index) => uniqueShiftsArray[index]);
       });
 
-      const res2 = [...result];
-      console.log("result", res2.flat(Infinity));
+      const res2 = { id: id, name: name, shiftOcc: [...result.flat()] };
+      console.log("result", res2);
 
-      // Zaktualizuj stan Redux z unikalnymi shiftami
       return {
         ...state,
-        shifts: uniqueShiftsArray,
+        shiftOccupied: res2,
       };
     },
   },

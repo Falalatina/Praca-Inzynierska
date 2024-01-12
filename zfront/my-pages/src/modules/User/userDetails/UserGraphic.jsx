@@ -74,12 +74,6 @@ const UserGraphic = ({ setTotalSum, teamIds, userId, teams }) => {
           })
         );
 
-        const result = indexesOfShift.map((indices) => {
-          return indices
-            .filter((index) => index >= 0 && index < arrayOfDays.length)
-            .map((index) => arrayOfDays[index]);
-        });
-        console.log("result", result);
         //  console.log(arrayOfDays);
       }
     });
