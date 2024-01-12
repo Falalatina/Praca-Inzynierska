@@ -180,7 +180,6 @@ const Generate = () => {
         const array = [workers[index].preferences.yes];
         // console.log(array[0].length );
         for (let i = 0; i < array[0].length; i++) {
-          // console.log(workers[index].preferences.yes[i]);
           if (workShifts[index] === workers[index].preferences.yes[i]) {
             fitness = fitness + 1;
           }

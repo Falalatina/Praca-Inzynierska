@@ -41,7 +41,7 @@ const userSlice = createSlice({
       });
 
       const res2 = { id: id, name: name, shiftOcc: [...result.flat()] };
-      console.log("result", res2);
+      //console.log("result", res2);
 
       return {
         ...state,
