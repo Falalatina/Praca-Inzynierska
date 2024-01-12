@@ -14,7 +14,6 @@ const index = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store) => store.modal);
   const handleSaveClick = () => {
-    // Dispatchuj akcję, aby zapisać stan do localStorage
     dispatch(saveToLocalStorage({ teamId }));
   };
 

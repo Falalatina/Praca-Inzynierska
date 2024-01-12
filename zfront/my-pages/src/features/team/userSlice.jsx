@@ -15,12 +15,32 @@ export const fetchWorkers = createAsyncThunk(
 const initialState = {
   workers: [],
   isLoading: false,
+  shiftOccupied: [],
+  shifts: [],
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    updateShiftOccupied: (state, action) => {
+      const { id, name, shifts } = action.payload;
+      // console.log(id, name, shifts);
+
+      const uniqueShiftsSet = new Set([...state.shifts, ...shifts]);
+
+      // Przekształć Set z powrotem na tablicę
+      const uniqueShiftsArray = [...uniqueShiftsSet];
+
+      console.log(id, name, uniqueShiftsArray);
+
+      // Zaktualizuj stan Redux z unikalnymi shiftami
+      return {
+        ...state,
+        shifts: uniqueShiftsArray,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchWorkers.pending, (state) => {
       state.isLoading = true;
@@ -35,5 +55,5 @@ const userSlice = createSlice({
   },
 });
 
-export const {} = userSlice.actions;
+export const { updateShiftOccupied } = userSlice.actions;
 export default userSlice.reducer;

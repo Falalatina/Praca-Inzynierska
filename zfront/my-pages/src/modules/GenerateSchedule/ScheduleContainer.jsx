@@ -21,6 +21,17 @@ import { useColorModeValue, useToast } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { updateGraphicForPerson } from "../../features/team/generateSlice";
 
+export const findDay = (array, values) => {
+  return array.reduce((acc, shift, index) => {
+    values.forEach((value) => {
+      if (shift.includes(value)) {
+        acc[value] = [...(acc[value] || []), index];
+      }
+    });
+    return acc;
+  }, {});
+};
+
 const ScheduleContainer = ({
   workShifts,
   name,
@@ -56,17 +67,6 @@ const ScheduleContainer = ({
   //console.log(name, id, graphic);
   //console.log(workShifts);
   const daysOfWeek = ["pn", "wt", "sr", "czw", "pt", "sob", "nd"];
-
-  const findDay = (array, values) => {
-    return array.reduce((acc, shift, index) => {
-      values.forEach((value) => {
-        if (shift.includes(value)) {
-          acc[value] = [...(acc[value] || []), index];
-        }
-      });
-      return acc;
-    }, {});
-  };
 
   const indexesOfDays = findDay(workShifts, daysOfWeek);
   // console.log(indexesOfDays);
