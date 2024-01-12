@@ -24,7 +24,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     updateShiftOccupied: (state, action) => {
-      const { id, name, shifts } = action.payload;
+      const { id, name, shifts, indexesOfShift } = action.payload;
       // console.log(id, name, shifts);
 
       const uniqueShiftsSet = new Set([...state.shifts, ...shifts]);
@@ -33,6 +33,15 @@ const userSlice = createSlice({
       const uniqueShiftsArray = [...uniqueShiftsSet];
 
       console.log(id, name, uniqueShiftsArray);
+
+      const result = indexesOfShift.map((indices) => {
+        return indices
+          .filter((index) => index >= 0 && index < uniqueShiftsArray.length)
+          .map((index) => uniqueShiftsArray[index]);
+      });
+
+      const res2 = [...result];
+      console.log("result", res2.flat(Infinity));
 
       // Zaktualizuj stan Redux z unikalnymi shiftami
       return {

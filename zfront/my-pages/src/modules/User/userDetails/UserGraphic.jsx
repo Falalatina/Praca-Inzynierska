@@ -65,7 +65,14 @@ const UserGraphic = ({ setTotalSum, teamIds, userId, teams }) => {
           return categoryData;
         });
 
-        dispatch(updateShiftOccupied({ id, name, shifts: arrayOfDays }));
+        dispatch(
+          updateShiftOccupied({
+            id,
+            name,
+            shifts: arrayOfDays,
+            indexesOfShift: indexesOfShift,
+          })
+        );
 
         const result = indexesOfShift.map((indices) => {
           return indices
