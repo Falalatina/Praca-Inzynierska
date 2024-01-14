@@ -81,9 +81,10 @@ const Generate = () => {
     dispatch(updateAssignments(assignments));
   }, [numberOfEmployees1, numberOfEmployees2, numberOfEmployees3, assignments]);
 
-  const numberOfIterations = 100;
+  const numberOfIterations = 1000;
   const numberOfParents = 10;
-  const mutate = 50;
+  const mutate = 10;
+  const maxSizeOfPopulation = 10;
 
   //console.log(assignments);
 
@@ -160,7 +161,7 @@ const Generate = () => {
           item[i1 + 2].includes(item[i1][i2]) ||
           item[i1 + 1].includes(item[i1][i2])
         ) {
-          fitness -= 1;
+          fitness -= 10;
         }
       }
     }
@@ -168,13 +169,13 @@ const Generate = () => {
     item.map((innerItem) => {
       for (let index = 0; index < innerItem.length - 1; index++) {
         if (innerItem[index] === innerItem[index + 1]) {
-          fitness = fitness - 10;
+          fitness = fitness - 100;
         }
         if (innerItem[index] === innerItem[index + 2]) {
-          fitness = fitness - 5;
+          fitness = fitness - 50;
         }
         if (innerItem[index] === innerItem[index + 3]) {
-          fitness = fitness - 5;
+          fitness = fitness - 50;
         }
         // console.log(workShifts[index]); - pn1 pn2 etc.
         const array = [workers[index].preferences.yes];
@@ -266,8 +267,8 @@ const Generate = () => {
     population.push(childCopy[0]);
   };
 
-  const reducePopulation = (population) => {
-    while (population.length > 10) {
+  const reducePopulation = (population, maxSizeOfPopulation) => {
+    while (population.length > maxSizeOfPopulation) {
       const index = population.indexOf(minWithKey(population, evaluateForOne));
       population.splice(index, 1);
 
@@ -285,7 +286,7 @@ const Generate = () => {
 
     for (let index = 0; index < numberOfIterations; index++) {
       tournamentSelection(population);
-      reducePopulation(population);
+      reducePopulation(population, maxSizeOfPopulation);
 
       // console.log(index, population);
     }
