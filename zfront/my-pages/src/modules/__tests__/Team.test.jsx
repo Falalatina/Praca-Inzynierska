@@ -32,5 +32,6 @@ describe("teamComponent", () => {
       const workerNameElement = screen.getByText(worker.name);
       expect(workerNameElement).to.exist;
     });
+    screen.debug();
   });
 });
