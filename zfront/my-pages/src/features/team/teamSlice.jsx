@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchTeams = createAsyncThunk("team/fetchTeams", async () => {
   try {
     const resp = await axios("http://localhost:4000/teams");
-    //console.log(resp.data);
+
     return resp.data;
   } catch (error) {}
 });
@@ -39,7 +39,7 @@ const teamSlice = createSlice({
     },
     addUserToTeam: (state, action) => {
       const { teamId, userId } = action.payload;
-      //  console.log(teamId, userId);
+
       state.teams = state.teams.map((team) => {
         if (team.id === Number(teamId)) {
           if (!team.workerIds.includes(Number(userId))) {

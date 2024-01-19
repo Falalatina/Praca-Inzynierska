@@ -12,15 +12,3 @@ export const store = configureStore({
     user: userSlice,
   },
 });
-
-// store.subscribe(() => {
-//   const state = store.getState();
-//   localStorage.setItem("generateState", JSON.stringify(state.generate));
-// });
-
-// // Inicjalizuj stan z localStorage (jeśli dostępny)
-// const savedState = localStorage.getItem("generateState");
-// if (savedState) {
-//   const parsedState = JSON.parse(savedState);
-//   store.dispatch(changeWorkers(parsedState.workers));
-// }

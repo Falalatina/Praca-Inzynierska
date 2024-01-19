@@ -140,8 +140,6 @@ const modalSlice = createSlice({
           (a) => !a.startsWith(idToAssignmentMap[buttonKey])
         );
       }
-
-      // console.log(state.assignments);
     },
   },
 });

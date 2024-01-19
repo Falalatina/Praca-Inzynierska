@@ -6,7 +6,7 @@ export const fetchWorkers = createAsyncThunk(
   async () => {
     try {
       const resp = await axios("http://localhost:4000/workers");
-      //   console.log(resp.data);
+
       return resp.data;
     } catch (error) {}
   }
@@ -25,14 +25,10 @@ const userSlice = createSlice({
   reducers: {
     updateShiftOccupied: (state, action) => {
       const { id, name, shifts, indexesOfShift } = action.payload;
-      // console.log(id, name, shifts);
 
       const uniqueShiftsSet = new Set([...state.shifts, ...shifts]);
 
-      // Przekształć Set z powrotem na tablicę
       const uniqueShiftsArray = [...uniqueShiftsSet];
-
-      // console.log(id, name);
 
       const result = indexesOfShift.map((indices) => {
         return indices
@@ -41,7 +37,6 @@ const userSlice = createSlice({
       });
 
       const res2 = { id: id, name: name, shiftOcc: [...result.flat()] };
-      //console.log("result", res2);
 
       return {
         ...state,

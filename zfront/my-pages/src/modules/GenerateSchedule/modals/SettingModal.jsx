@@ -7,21 +7,7 @@ import {
   openConfirm,
   closeConfirm,
 } from "../../../features/team/modalSlice";
-import {
-  Switch,
-  Heading,
-  Text,
-  Box,
-  Stack,
-  StackDivider,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Grid,
-  GridItem,
-  Button,
-} from "@chakra-ui/react";
+import { Heading, Card, CardHeader, Button } from "@chakra-ui/react";
 import DaysModal from "./DaysModal";
 import HoursModal from "./HoursModal";
 import ShiftModal from "./ShiftModal";

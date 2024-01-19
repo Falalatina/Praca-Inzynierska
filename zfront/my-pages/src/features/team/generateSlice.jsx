@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 export const fetchWorkers = createAsyncThunk(
   "generate/fetchWorkers",
   async () => {
     try {
       const resp = await axios("http://localhost:4000/workers");
-      //   console.log(resp.data);
+
       return resp.data;
     } catch (error) {}
   }
@@ -35,16 +34,13 @@ const generateSlice = createSlice({
           let bS = bestSolution[i];
           if (bS.includes(person.name)) {
             findInArrayIndex.push([person.name, i]);
-            //console.log("ok");
 
             person.graphic.push(i);
-            //console.log(person.graphic);
-            //  dispatch(addGraphic(person.name, person.graphic));
+
             state.isLoading = false;
           }
         }
         person.hoursSum = person.graphic.length * state.howLongS;
-        // console.log(person);
       });
     },
     removePerson: (state, action) => {
@@ -81,7 +77,6 @@ const generateSlice = createSlice({
       );
 
       if (workerIndex !== -1) {
-        // Znaleziono pracownika o określonym ID, aktualizuj grafik
         state.currentWorkers[workerIndex].graphic = graphic;
         state.currentWorkers[workerIndex].hoursSum =
           state.howLongS * state.currentWorkers[workerIndex].graphic.length;
@@ -106,7 +101,6 @@ const generateSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Obsługa zdarzenia związanego z pobieraniem danych
     builder.addCase(fetchWorkers.pending, (state) => {
       state.isLoading = true;
     });
@@ -134,10 +128,3 @@ export const {
   changeSum,
 } = generateSlice.actions;
 export default generateSlice.reducer;
-
-// export const fetchDataIfNeeded = () => (dispatch, getState) => {
-//   const state = getState();
-//   if (!state.generate.workersFetched) {
-//     return dispatch(fetchWorkers());
-//   }
-// };

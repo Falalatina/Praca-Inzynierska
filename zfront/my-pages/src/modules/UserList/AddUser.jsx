@@ -22,13 +22,12 @@ const AddUser = ({ toggle }) => {
   const toast = useToast();
 
   const handleChange = (e) => {
-    //console.log(e.target.value);
     setUserId(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(userId);
+
     dispatch(addUserToTeam({ teamId, userId }));
     toast({
       title: "User added to the team",

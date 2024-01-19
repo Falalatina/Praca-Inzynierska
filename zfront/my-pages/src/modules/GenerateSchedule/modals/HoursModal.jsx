@@ -6,19 +6,13 @@ import {
 } from "../../../features/team/modalSlice";
 import { changeSum } from "../../../features/team/generateSlice";
 import {
-  Switch,
   Heading,
   Text,
   Box,
   Stack,
   StackDivider,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Grid,
-  GridItem,
-  Button,
   Input,
 } from "@chakra-ui/react";
 

@@ -64,12 +64,9 @@ const ScheduleContainer = ({
     return () => clearTimeout(timeoutId);
   }, [dispatch, toast, isLoading]);
 
-  //console.log(name, id, graphic);
-  //console.log(workShifts);
   const daysOfWeek = ["pn", "wt", "sr", "czw", "pt", "sob", "nd"];
 
   const indexesOfDays = findDay(workShifts, daysOfWeek);
-  // console.log(indexesOfDays);
 
   const filteredDays = daysOfWeek.map((day) => {
     const handleShiftClick = (shiftIndex) => {
@@ -81,8 +78,6 @@ const ScheduleContainer = ({
         const newGraphic = [...graphic];
         const newShift = indexesOfDays[day][shiftIndex];
 
-        //  console.log(indexesOfDays[day][shiftIndex] === undefined);
-        // Sprawdź, czy nowy element już istnieje w grafiku
         if (!newGraphic.includes(newShift)) {
           if (newShift === undefined) {
             newGraphic.splice(findIndex, 1);
@@ -101,7 +96,6 @@ const ScheduleContainer = ({
           });
         }
       } else {
-        // Jeśli element nie istnieje, dodaj go do grafiku
         if (indexesOfDays[day][shiftIndex] === undefined) {
           const newGraphic = [...graphic];
           newGraphic.splice(findIndex, 1);
@@ -123,10 +117,6 @@ const ScheduleContainer = ({
     };
 
     const handleFreeSpots = () => {
-      //trzeba pogrupowac indeksy do shiftów!!!
-
-      ///najlepiej to do itema wyslac
-      //tam mmam shift active i callback
       const thatDayIndexes = indexesOfDays[day];
       const myArray = [];
 
@@ -137,72 +127,6 @@ const ScheduleContainer = ({
 
       console.log(graphic, freeDays, thatDayIndexes);
     };
-
-    // const popoverContent = (
-    //   <PopoverContent>
-    //     <PopoverArrow />
-    //     <PopoverCloseButton />
-    //     <PopoverHeader>Change shift for {name}</PopoverHeader>
-    //     <PopoverBody>
-    //       <Box
-    //         backgroundColor={shiftBackColor}
-    //         className="shift-container"
-    //         onClick={() => {
-    //           let findIndex = graphic.findIndex((element) =>
-    //             indexesOfDays[day].includes(element)
-    //           );
-    //           let newGraphic = [...graphic];
-    //           newGraphic[findIndex] = indexesOfDays[day][0];
-    //           graphic = newGraphic;
-    //           dispatch(updateGraphicForPerson({ id: id, graphic: graphic }));
-
-    //           // console.log(
-    //           //   { name },
-    //           //   `${day}`,
-    //           //   indexesOfDays[day], //jakie zmiany w jaki dzien
-    //           //   graphic, //grafik osoby,
-
-    //           //   graphic[findIndex],
-    //           //   indexesOfDays[day][0],
-    //           //   newGraphic
-    //           // );
-    //         }}
-    //       >
-    //         <div className="first-shift">FIRST SHIFT</div>
-    //       </Box>
-    //       <Box
-    //         backgroundColor={shiftBackColor}
-    //         className="shift-container"
-    //         onClick={() => {
-    //           let findIndex = graphic.findIndex((element) =>
-    //             indexesOfDays[day].includes(element)
-    //           );
-    //           let newGraphic = [...graphic];
-    //           newGraphic[findIndex] = indexesOfDays[day][1];
-    //           graphic = newGraphic;
-    //           dispatch(updateGraphicForPerson({ id: id, graphic: graphic }));
-    //         }}
-    //       >
-    //         <div className="second-shift">SECOND SHIFT</div>
-    //       </Box>
-    //       <Box
-    //         backgroundColor={shiftBackColor}
-    //         className="shift-container"
-    //         onClick={() => {
-    //           let findIndex = graphic.findIndex((element) =>
-    //             indexesOfDays[day].includes(element)
-    //           );
-    //           let newGraphic = [...graphic];
-    //           newGraphic[findIndex] = indexesOfDays[day][2];
-    //           graphic = newGraphic;
-    //           dispatch(updateGraphicForPerson({ id: id, graphic: graphic }));
-    //         }}
-    //       >
-    //         <div className="third-shift">THIRD SHIFT</div>
-    //       </Box>
-    //     </PopoverBody>
-    //   </PopoverContent>
-    // );
 
     const popoverContentForUser = (
       <PopoverContent>
@@ -294,8 +218,6 @@ const ScheduleContainer = ({
       );
     }
   });
-
-  // console.log(graphic);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useLoaderData, useParams } from "react-router-dom";
 
@@ -38,8 +38,6 @@ const UserDetails = () => {
   };
   const user = workers.find((person) => person.id === parseInt(userId));
   const teamIds = findTeamIdsByUserId(Number(userId));
-
-  // console.log(savedWorker, savedUser);
 
   return (
     <section>

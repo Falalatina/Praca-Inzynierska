@@ -41,10 +41,6 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
   secondShiftsActive.sort((a, b) => a - b);
   thirdShiftsActive.sort((a, b) => a - b);
 
-  //console.log(firstShift, firstShiftsActive);
-  // console.log(secondShift, secondShiftsActive);
-  //console.log(amount);
-
   let n2 = Number(howLong) * 2;
   let n3 = Number(howLong) * 3;
 
@@ -117,7 +113,6 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
                     backgroundColor="yellow.300"
                     key={shift}
                     className="shift-container"
-                    //onClick={() => console.log(graphic)}
                   >
                     <div className="second-shift">
                       {newT1}&#58;00 &ndash;
@@ -139,7 +134,6 @@ const ScheduleItem = ({ graphic, popoverContent }) => {
                     backgroundColor={shiftBackColor}
                     key={shift}
                     className="shift-container"
-                    //onClick={() => console.log(graphic)}
                   >
                     <div className="second-shift">
                       {newT1}&#58;00 &ndash;

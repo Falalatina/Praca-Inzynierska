@@ -13,10 +13,7 @@ import {
 import "./container.css";
 
 import { checkAmount, fetchTeams } from "../../features/team/teamSlice";
-import {
-  changeWorkers,
-  changeCurrentWorkers,
-} from "../../features/team/generateSlice";
+import { changeCurrentWorkers } from "../../features/team/generateSlice";
 
 import { useLoaderData, useNavigate } from "react-router-dom";
 
@@ -38,9 +35,7 @@ const TeamContainer = () => {
   const data = useLoaderData();
   const workers = JSON.parse(JSON.stringify(data));
 
-  //funkcja do szukania workerów po id
   const getWorkersForTeam = (teamId) => {
-    //console.log(teams);
     const team = teams.find((t) => t.id === teamId);
     if (team) {
       const teamWorkers = team.workerIds.map((workerId) =>
@@ -122,14 +117,13 @@ export const teamLoader = async () => {
 export default TeamContainer;
 
 export const getWorkersForTeam = (teamId, teams, workers) => {
-  //console.log(Number(teamId), teams, workers);
   const team = teams.find((t) => t.id === teamId);
-  //console.log(team);
+
   if (team) {
     const teamWorkers = team.workerIds.map((workerId) =>
       workers.find((worker) => worker.id === workerId)
     );
-    //console.log("Pracownicy dla zespołu:", teamWorkers);
+
     return teamWorkers;
   }
   return [];

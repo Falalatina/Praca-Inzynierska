@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { memo } from "react";
 import {
-  Switch,
   Heading,
   Text,
   Box,
   Stack,
   StackDivider,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
   Grid,
   GridItem,
   Button,

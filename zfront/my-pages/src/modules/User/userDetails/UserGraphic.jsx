@@ -31,7 +31,7 @@ const UserGraphic = ({ setTotalSum, teamIds, userId, teams }) => {
       user.idTeam = data.savedWorkers?.teamId || [];
       user.howLongS = data.savedWorkers?.howLongS || [];
     }
-    // console.log(user);
+
     return user;
   });
 
@@ -51,16 +51,15 @@ const UserGraphic = ({ setTotalSum, teamIds, userId, teams }) => {
       if (person) {
         totalSum += getTheSum(person);
         const indexesOfDays = findDay(assignments, daysOfWeek);
-        // console.log(indexesOfDays);
+
         const numbers = assignments.map((element) =>
           parseInt(element.match(/\d+/)[0])
         );
 
         const shiftsNumber = Math.max(...numbers);
-        // console.log(shiftsNumber);
 
         const arrayOfDays = Object.keys(assignments).flatMap((day) => {
-          const categoryData = assignments[day]; //wszystkie
+          const categoryData = assignments[day];
 
           return categoryData;
         });
@@ -73,8 +72,6 @@ const UserGraphic = ({ setTotalSum, teamIds, userId, teams }) => {
             indexesOfShift: indexesOfShift,
           })
         );
-
-        //  console.log(arrayOfDays);
       }
     });
 
@@ -91,7 +88,6 @@ const UserGraphic = ({ setTotalSum, teamIds, userId, teams }) => {
       {savedUser.map((person) => {
         const { assignments, idTeam, graphic, howLongS } = person;
         const name = findTeamNameById(Number(idTeam));
-        //console.log(name);
 
         return (
           <ScheduleContainer
